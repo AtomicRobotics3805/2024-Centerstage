@@ -15,6 +15,6 @@ class TestOpMode : TeleOpMode(
     mainRoutine = { TelemetryCommand(100.0, "Woohoo!") },
     drive = MecanumDrive(
         PracticeMecanumDriveConstants,
-        TwoWheelOdometryLocalizer(PracticeOdometryConstants)
+        TwoWheelOdometryLocalizer(PracticeOdometryConstants())
     )
 )
