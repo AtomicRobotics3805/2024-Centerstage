@@ -1,8 +1,9 @@
 package org.firstinspires.ftc.teamcode
+import com.acmerobotics.dashboard.config.Config
 import org.atomicrobotics3805.cflib.driving.localizers.TwoWheelOdometryConstants
 
 @Suppress("PropertyName")
-
+@Config
 class PracticeOdometryConstants() : TwoWheelOdometryConstants {
     @JvmField
     var _PARALLEL_X = 0.075 // in; forward offset of the parallel wheel
