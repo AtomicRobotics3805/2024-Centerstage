@@ -24,9 +24,7 @@ fun main() {
             15.0,
             {
                 sequential {
-                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.downstageStartToDetect)
-                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.downstageDetectToScore)
-                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.upstageScoreToParkA)
+                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.upstageFallbackParkA)
                 }
             },
             Constants.Color.RED

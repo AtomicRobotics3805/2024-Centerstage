@@ -6,9 +6,69 @@ import org.atomicrobotics3805.cflib.trajectories.TrajectoryFactory
 import org.atomicrobotics3805.cflib.trajectories.rad
 import org.atomicrobotics3805.cflib.trajectories.switch
 import org.atomicrobotics3805.cflib.trajectories.switchAngle
+import org.atomicrobotics3805.cflib.trajectories.switchColor
 import org.atomicrobotics3805.cflib.Constants.drive as d
 
 object CompetitionTrajectoryFactory : TrajectoryFactory() {
+
+
+    //region ***NEW POSES***
+    // STARTING POSITIONS
+    var startYPosition = 62.75 // y coordinates for starting, how far from side walls
+    var wingStartPose = Pose2d() // The start pose that is closest to the opponent's wing
+    var backstageStartPose = Pose2d() // The start pose that is closest to the backstage area
+
+    // BACKDROP SCORING POSITIONS
+    var scoreXPosition = 48.0 // x coordinates for the backdrop. Varies depending on the robot
+    var scorePoseLeft = Pose2d() // When looking at the backdrop, the leftmost pair of slots
+    var scorePoseCenter = Pose2d() // When looking at the backdrop, the center pair of slots
+    var scorePoseRight = Pose2d() // When looking at the backdrop, the rightmost pair of slots
+
+    // PARKING POSITIONS
+    var parkXPosition = 60.0 // x coordinates for parking; how far from the wall
+    var parkPoseCenter = Pose2d() // The tile next to the backdrop that is closest to the opponent
+    var parkPoseEdge = Pose2d() // The tile next to the backdrop that is closest to the field wall
+
+    // DETECTION POSITIONS
+    var detectionXPosition = 33.8 // x coordinates for detection; depends on detection method
+    var wingDetectPose = Pose2d() // The location for detecting closest to the wings
+    var backstageDetectPose = Pose2d() // The location for detecting closest to the backstage
+
+    // LOCATIONS FOR SCORING PURPLE PIXEL ON SPIKE TAPE
+    var wingFrontSpikeTape = Pose2d() // Closest to the wing; spike tape closest to audience
+    var wingCenterSpikeTape = Pose2d() // Closest to the wing; spike tape in between other two
+    var wingBackSpikeTape = Pose2d() // Closest to the wing; spike tape farthest from audience
+    var backstageFrontSpikeTape = Pose2d() // Closest to backstage; spike tape closest to audience
+    var backstageCenterSpikeTape = Pose2d() // Closest to backstage; spike tape between other two
+    var backstageBackSpikeTape = Pose2d() // Closest to backstage; spike tape farthest from audience
+    //endregion
+
+    //region ***NEW TRAJECTORIES***
+    // WING TRAJECTORIES
+    lateinit var wingStartToDetect : ParallelTrajectory
+
+    lateinit var wingDetectToFrontSpikeTape : ParallelTrajectory
+    lateinit var wingDetectToCenterSpikeTape : ParallelTrajectory
+    lateinit var wingDetectToBackSpikeTape : ParallelTrajectory
+
+    lateinit var wingFrontSpikeTapeToScoreLeft : ParallelTrajectory
+    lateinit var wingCenterSpikeTapeToScoreCenter : ParallelTrajectory
+    lateinit var wingBackSpikeTapeToScoreRight : ParallelTrajectory
+    
+    // BACKSTAGE TRAJECTORIES
+    lateinit var backstageStartToDetect : ParallelTrajectory
+
+    lateinit var backstageDetectToFrontSpikeTape : ParallelTrajectory
+    lateinit var backstageDetectToCenterSpikeTape : ParallelTrajectory
+    lateinit var backstageDetectToBackSpikeTape : ParallelTrajectory
+
+    lateinit var backstageFrontSpikeTapeToScoreLeft : ParallelTrajectory
+    lateinit var backstageCenterSpikeTapeToScoreCenter : ParallelTrajectory
+    lateinit var backstageBackSpikeTapeToScoreRight : ParallelTrajectory
+
+    //endregion
+
+    //region Old poses & paths
     var upstageStartPose = Pose2d()
     var upstageDetectPose = Pose2d()
     var upstageScorePose = Pose2d()
@@ -25,9 +85,31 @@ object CompetitionTrajectoryFactory : TrajectoryFactory() {
     lateinit var downstageStartToDetect: ParallelTrajectory
     lateinit var downstageDetectToScore: ParallelTrajectory
 
+    // FALLBACK, IN CASE THINGS GO BADLY
+    lateinit var upstageFallbackParkA : ParallelTrajectory
+    lateinit var downstageFallbackParkA : ParallelTrajectory
+    lateinit var upstageFallbackParkB : ParallelTrajectory
+    lateinit var downstageFallbackParkB : ParallelTrajectory
+    //endregion
+
     override fun initialize() {
         super.initialize()
 
+        wingStartPose = Pose2d(-36.0, startYPosition.switch, 270.0.switchAngle.rad)
+        backstageStartPose = Pose2d(12.0, startYPosition.switch, 270.0.switchAngle.rad)
+
+        scorePoseLeft = Pose2d(scoreXPosition, 29.0.switch, 0.0.rad) // BROKEN WHEN SWITCHING TO OTHER SIDE
+        scorePoseCenter = Pose2d(scoreXPosition, 36.0.switch, 0.0.rad) // BROKEN WHEN SWITCHING TO OTHER SIDE
+        scorePoseRight = Pose2d(scoreXPosition, 43.0.switch, 0.0.rad) // BROKEN WHEN SWITCHING TO OTHER SIDE
+
+        parkPoseCenter = Pose2d(parkXPosition, 12.0.switch, 180.0.rad)
+        parkPoseEdge = Pose2d(parkXPosition, 60.0.switch, 180.0.rad)
+
+        wingDetectPose = Pose2d(-36.0, detectionXPosition.switch, 270.0.switchAngle.rad)
+        backstageDetectPose = Pose2d(12.0, detectionXPosition.switch, 270.0.switchAngle.rad)
+
+
+        //region Old Trajectories
         // ***POSES***
 
         // Upstage (Closer to backdrop)
@@ -35,7 +117,8 @@ object CompetitionTrajectoryFactory : TrajectoryFactory() {
         upstageDetectPose = Pose2d(12.0, 33.8.switch, 270.0.switchAngle.rad)
 
         upstageScorePose = Pose2d(48.0, 36.0.switch, 0.0.rad)
-        upstageParkPoseA = Pose2d(60.0, 60.0.switch, 0.0.rad)
+        upstageParkPoseA = Pose2d(60.0, 60.0.switch, 180.0.rad)
+        upstageParkPoseB = Pose2d(60.0, 12.0.switch, 180.0.rad)
 
         // Downstage (Closer to audience)
         downstageStartPose = Pose2d(-36.0, 62.75.switch, 270.0.switchAngle.rad)
@@ -62,5 +145,14 @@ object CompetitionTrajectoryFactory : TrajectoryFactory() {
         downstageDetectToScore = d.trajectoryBuilder(downstageDetectPose)
             .lineToLinearHeading(upstageScorePose)
             .build()
+
+        // FALLBACK
+        upstageFallbackParkA = d.trajectoryBuilder(upstageStartPose)
+            .splineToSplineHeading(upstageParkPoseA, 0.0.rad)
+            .build()
+        upstageFallbackParkB = d.trajectoryBuilder(upstageStartPose)
+            .splineToSplineHeading(upstageParkPoseB, 0.0.rad)
+            .build()
+        //endregion
     }
 }
