@@ -8,6 +8,7 @@ import org.atomicrobotics3805.cflib.driving.localizers.TwoWheelOdometryLocalizer
 import org.atomicrobotics3805.cflib.sequential
 import org.atomicrobotics3805.cflib.visualization.MeepMeepRobot
 import org.atomicrobotics3805.cflib.visualization.MeepMeepVisualizer
+import org.firstinspires.ftc.teamcode.CompetitionDriveConstants
 import org.firstinspires.ftc.teamcode.PracticeMecanumDriveConstants
 import org.firstinspires.ftc.teamcode.PracticeOdometryConstants
 import org.firstinspires.ftc.teamcode.trajectoryFactory.CompetitionTrajectoryFactory
@@ -16,18 +17,19 @@ fun main() {
     MeepMeepVisualizer.addRobot(
         MeepMeepRobot(
             MecanumDrive(
-                PracticeMecanumDriveConstants,
+                CompetitionDriveConstants,
                 TwoWheelOdometryLocalizer(PracticeOdometryConstants())
 
-            ) { Pose2d(0.0, 0.0, 0.0) },
+            ) { CompetitionTrajectoryFactory.backstageStartPose },
             14.5,
             15.0,
             {
                 sequential {
-                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.upstageFallbackParkA)
+                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToDetect)
+                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageDetectToFrontSpikeTape)
                 }
             },
-            Constants.Color.RED
+            Constants.Color.BLUE
         )
     )
 

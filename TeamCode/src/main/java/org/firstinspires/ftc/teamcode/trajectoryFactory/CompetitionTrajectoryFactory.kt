@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.trajectoryFactory
 
+import com.acmerobotics.roadrunner.drive.Drive
 import com.acmerobotics.roadrunner.geometry.Pose2d
 import org.atomicrobotics3805.cflib.trajectories.ParallelTrajectory
 import org.atomicrobotics3805.cflib.trajectories.TrajectoryFactory
@@ -7,10 +8,10 @@ import org.atomicrobotics3805.cflib.trajectories.rad
 import org.atomicrobotics3805.cflib.trajectories.switch
 import org.atomicrobotics3805.cflib.trajectories.switchAngle
 import org.atomicrobotics3805.cflib.trajectories.switchColor
+import org.atomicrobotics3805.cflib.trajectories.toRadians
 import org.atomicrobotics3805.cflib.Constants.drive as d
 
 object CompetitionTrajectoryFactory : TrajectoryFactory() {
-
 
     //region ***NEW POSES***
     // STARTING POSITIONS
@@ -66,6 +67,10 @@ object CompetitionTrajectoryFactory : TrajectoryFactory() {
     lateinit var backstageCenterSpikeTapeToScoreCenter : ParallelTrajectory
     lateinit var backstageBackSpikeTapeToScoreRight : ParallelTrajectory
 
+    // BACKUP TRAJECTORIES
+    lateinit var backstageStartToPark : ParallelTrajectory
+    lateinit var wingStartToPark : ParallelTrajectory
+
     //endregion
 
     //region Old poses & paths
@@ -108,7 +113,22 @@ object CompetitionTrajectoryFactory : TrajectoryFactory() {
         wingDetectPose = Pose2d(-36.0, detectionXPosition.switch, 270.0.switchAngle.rad)
         backstageDetectPose = Pose2d(12.0, detectionXPosition.switch, 270.0.switchAngle.rad)
 
+        backstageFrontSpikeTape = Pose2d(0.5, 38.0.switch, 270.0.switchAngle.rad)
+        backstageCenterSpikeTape = Pose2d(23.0, 24.0.switch, 180.0.switchAngle.rad)
+        backstageBackSpikeTape = Pose2d(24.0, 38.0.switch, 270.0.switchAngle.rad)
 
+        backstageStartToDetect = d.trajectoryBuilder(backstageStartPose)
+                .lineToLinearHeading(backstageDetectPose)
+                .build()
+        backstageDetectToFrontSpikeTape = d.trajectoryBuilder(backstageDetectPose)
+//                .forward(-1.0)
+                .splineToLinearHeading(backstageFrontSpikeTape, 180.0.rad)
+                .build()
+        backstageDetectToCenterSpikeTape = d.trajectoryBuilder(backstageDetectPose, backstageDetectPose.heading + 90.0.switchAngle.toRadians)
+                .splineToSplineHeading(backstageCenterSpikeTape, 270.0.switchAngle.rad)
+                .build()
+        //20.2,24.2,180.0.switchAngle.rad
+// 0,44,270
         //region Old Trajectories
         // ***POSES***
 
