@@ -10,8 +10,6 @@ import org.atomicrobotics3805.cflib.visualization.MeepMeepRobot
 import org.atomicrobotics3805.cflib.visualization.MeepMeepVisualizer
 import org.firstinspires.ftc.teamcode.CompetitionDriveConstants
 import org.firstinspires.ftc.teamcode.CompetitionOdometryConstants
-import org.firstinspires.ftc.teamcode.PracticeMecanumDriveConstants
-import org.firstinspires.ftc.teamcode.PracticeOdometryConstants
 import org.firstinspires.ftc.teamcode.trajectoryFactory.CompetitionTrajectoryFactory
 
 fun main() {
