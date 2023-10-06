@@ -10,7 +10,7 @@ import org.atomicrobotics3805.cflib.hardware.MotorEx
 import org.atomicrobotics3805.cflib.roadrunner.AxisDirection
 import org.atomicrobotics3805.cflib.trajectories.rad
 
-object CompetitionDriveConstants : MecanumDriveConstants {
+object CompetitionDriveConstants: MecanumDriveConstants {
     @JvmField
     var _BACKWARD_DRIFT_MULTIPLIER = 0.0
     @JvmField
@@ -74,7 +74,7 @@ object CompetitionDriveConstants : MecanumDriveConstants {
     @JvmField
     var _kV = 1.0 / rpmToVelocity(MAX_RPM)
 
-
+    //region Backend
     override val BACKWARD_DRIFT_MULTIPLIER: Double
         get() = _BACKWARD_DRIFT_MULTIPLIER
     override val DRIFT_MULTIPLIER: Double
@@ -137,4 +137,5 @@ object CompetitionDriveConstants : MecanumDriveConstants {
         get() = _kStatic
     override val kV: Double
         get() = _kV
+    //endregion
 }

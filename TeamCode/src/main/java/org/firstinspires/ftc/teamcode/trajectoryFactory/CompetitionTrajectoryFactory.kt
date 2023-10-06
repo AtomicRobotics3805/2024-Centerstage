@@ -11,7 +11,7 @@ import org.atomicrobotics3805.cflib.trajectories.switchColor
 import org.atomicrobotics3805.cflib.trajectories.toRadians
 import org.atomicrobotics3805.cflib.Constants.drive as d
 
-object CompetitionTrajectoryFactory : TrajectoryFactory() {
+object CompetitionTrajectoryFactory: TrajectoryFactory() {
 
     //region ***NEW POSES***
     // STARTING POSITIONS
@@ -46,30 +46,30 @@ object CompetitionTrajectoryFactory : TrajectoryFactory() {
 
     //region ***NEW TRAJECTORIES***
     // WING TRAJECTORIES
-    lateinit var wingStartToDetect : ParallelTrajectory
+    lateinit var wingStartToDetect: ParallelTrajectory
 
-    lateinit var wingDetectToFrontSpikeTape : ParallelTrajectory
-    lateinit var wingDetectToCenterSpikeTape : ParallelTrajectory
-    lateinit var wingDetectToBackSpikeTape : ParallelTrajectory
+    lateinit var wingDetectToFrontSpikeTape: ParallelTrajectory
+    lateinit var wingDetectToCenterSpikeTape: ParallelTrajectory
+    lateinit var wingDetectToBackSpikeTape: ParallelTrajectory
 
-    lateinit var wingFrontSpikeTapeToScoreLeft : ParallelTrajectory
-    lateinit var wingCenterSpikeTapeToScoreCenter : ParallelTrajectory
-    lateinit var wingBackSpikeTapeToScoreRight : ParallelTrajectory
+    lateinit var wingFrontSpikeTapeToScoreLeft: ParallelTrajectory
+    lateinit var wingCenterSpikeTapeToScoreCenter: ParallelTrajectory
+    lateinit var wingBackSpikeTapeToScoreRight: ParallelTrajectory
     
     // BACKSTAGE TRAJECTORIES
-    lateinit var backstageStartToDetect : ParallelTrajectory
+    lateinit var backstageStartToDetect: ParallelTrajectory
 
-    lateinit var backstageDetectToFrontSpikeTape : ParallelTrajectory
-    lateinit var backstageDetectToCenterSpikeTape : ParallelTrajectory
-    lateinit var backstageDetectToBackSpikeTape : ParallelTrajectory
+    lateinit var backstageDetectToFrontSpikeTape: ParallelTrajectory
+    lateinit var backstageDetectToCenterSpikeTape: ParallelTrajectory
+    lateinit var backstageDetectToBackSpikeTape: ParallelTrajectory
 
-    lateinit var backstageFrontSpikeTapeToScoreLeft : ParallelTrajectory
-    lateinit var backstageCenterSpikeTapeToScoreCenter : ParallelTrajectory
-    lateinit var backstageBackSpikeTapeToScoreRight : ParallelTrajectory
+    lateinit var backstageFrontSpikeTapeToScoreLeft: ParallelTrajectory
+    lateinit var backstageCenterSpikeTapeToScoreCenter: ParallelTrajectory
+    lateinit var backstageBackSpikeTapeToScoreRight: ParallelTrajectory
 
     // BACKUP TRAJECTORIES
-    lateinit var backstageStartToPark : ParallelTrajectory
-    lateinit var wingStartToPark : ParallelTrajectory
+    lateinit var backstageStartToPark: ParallelTrajectory
+    lateinit var wingStartToPark: ParallelTrajectory
 
     //endregion
 
@@ -83,18 +83,18 @@ object CompetitionTrajectoryFactory : TrajectoryFactory() {
     var downstageStartPose = Pose2d()
     var downstageDetectPose = Pose2d()
 
-    lateinit var upstageStartToDetect : ParallelTrajectory
-    lateinit var upstageDetectToScore : ParallelTrajectory
-    lateinit var upstageScoreToParkA : ParallelTrajectory
+    lateinit var upstageStartToDetect: ParallelTrajectory
+    lateinit var upstageDetectToScore: ParallelTrajectory
+    lateinit var upstageScoreToParkA: ParallelTrajectory
 
     lateinit var downstageStartToDetect: ParallelTrajectory
     lateinit var downstageDetectToScore: ParallelTrajectory
 
     // FALLBACK, IN CASE THINGS GO BADLY
-    lateinit var upstageFallbackParkA : ParallelTrajectory
-    lateinit var downstageFallbackParkA : ParallelTrajectory
-    lateinit var upstageFallbackParkB : ParallelTrajectory
-    lateinit var downstageFallbackParkB : ParallelTrajectory
+    lateinit var upstageFallbackParkA: ParallelTrajectory
+    lateinit var downstageFallbackParkA: ParallelTrajectory
+    lateinit var upstageFallbackParkB: ParallelTrajectory
+    lateinit var downstageFallbackParkB: ParallelTrajectory
     //endregion
 
     override fun initialize() {
