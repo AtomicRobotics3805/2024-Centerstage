@@ -25,7 +25,7 @@ fun main() {
             {
                 sequential {
                     +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToDetect)
-                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageDetectToFrontSpikeTape)
+                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageDetectToBackSpikeTape)
                 }
             },
             Constants.Color.BLUE

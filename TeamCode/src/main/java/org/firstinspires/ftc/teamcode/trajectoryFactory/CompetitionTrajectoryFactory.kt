@@ -120,12 +120,16 @@ object CompetitionTrajectoryFactory: TrajectoryFactory() {
         backstageStartToDetect = d.trajectoryBuilder(backstageStartPose)
                 .lineToLinearHeading(backstageDetectPose)
                 .build()
-        backstageDetectToFrontSpikeTape = d.trajectoryBuilder(backstageDetectPose)
+        backstageDetectToFrontSpikeTape = d.trajectoryBuilder(backstageDetectPose, 90.0.switchAngle.rad)
 //                .forward(-1.0)
                 .splineToLinearHeading(backstageFrontSpikeTape, 180.0.rad)
                 .build()
         backstageDetectToCenterSpikeTape = d.trajectoryBuilder(backstageDetectPose, backstageDetectPose.heading + 90.0.switchAngle.toRadians)
                 .splineToSplineHeading(backstageCenterSpikeTape, 270.0.switchAngle.rad)
+                .build()
+        backstageDetectToBackSpikeTape = d.trajectoryBuilder(backstageDetectPose, 90.0.switchAngle.rad)
+//                .forward(-1.0)
+                .splineToLinearHeading(backstageBackSpikeTape, 0.0.rad)
                 .build()
         //20.2,24.2,180.0.switchAngle.rad
 // 0,44,270
