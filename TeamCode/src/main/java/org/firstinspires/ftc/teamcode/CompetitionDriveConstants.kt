@@ -8,7 +8,6 @@ import org.atomicrobotics3805.cflib.driving.DriverControlled
 import org.atomicrobotics3805.cflib.driving.MecanumDriveConstants
 import org.atomicrobotics3805.cflib.hardware.MotorEx
 import org.atomicrobotics3805.cflib.roadrunner.AxisDirection
-import org.atomicrobotics3805.cflib.trajectories.rad
 
 object CompetitionDriveConstants: MecanumDriveConstants {
     @JvmField
