@@ -9,6 +9,7 @@ import org.atomicrobotics3805.cflib.trajectories.switch
 import org.atomicrobotics3805.cflib.trajectories.switchAngle
 import org.atomicrobotics3805.cflib.trajectories.switchColor
 import org.atomicrobotics3805.cflib.trajectories.toRadians
+import org.atomicrobotics3805.cflib.trajectories.translateAcrossField
 import org.atomicrobotics3805.cflib.Constants.drive as d
 
 object CompetitionTrajectoryFactory: TrajectoryFactory() {
@@ -71,6 +72,19 @@ object CompetitionTrajectoryFactory: TrajectoryFactory() {
     lateinit var backstageStartToPark: ParallelTrajectory
     lateinit var wingStartToPark: ParallelTrajectory
 
+    // GENERAL TRAJECTORIES
+    lateinit var scoreRightToParkA : ParallelTrajectory
+    lateinit var scoreCenterToParkA : ParallelTrajectory
+    lateinit var scoreLeftToParkA : ParallelTrajectory
+    lateinit var scoreRightToParkB : ParallelTrajectory
+    lateinit var scoreCenterToParkB : ParallelTrajectory
+    lateinit var scoreLeftToParkB : ParallelTrajectory
+
+    // BACKUP TRAJECTORIES
+    lateinit var backstageStartToParkA : ParallelTrajectory
+    lateinit var backstageStartToParkB : ParallelTrajectory
+
+
     //endregion
 
     //region Old poses & paths
@@ -103,9 +117,9 @@ object CompetitionTrajectoryFactory: TrajectoryFactory() {
         wingStartPose = Pose2d(-36.0, startYPosition.switch, 270.0.switchAngle.rad)
         backstageStartPose = Pose2d(12.0, startYPosition.switch, 270.0.switchAngle.rad)
 
-        scorePoseLeft = Pose2d(scoreXPosition, 29.0.switch, 0.0.rad) // BROKEN WHEN SWITCHING TO OTHER SIDE
-        scorePoseCenter = Pose2d(scoreXPosition, 36.0.switch, 0.0.rad) // BROKEN WHEN SWITCHING TO OTHER SIDE
-        scorePoseRight = Pose2d(scoreXPosition, 43.0.switch, 0.0.rad) // BROKEN WHEN SWITCHING TO OTHER SIDE
+        scorePoseLeft = Pose2d(scoreXPosition, 29.0.translateAcrossField, 0.0.rad)
+        scorePoseCenter = Pose2d(scoreXPosition, 36.0.translateAcrossField, 0.0.rad)
+        scorePoseRight = Pose2d(scoreXPosition, 43.0.translateAcrossField, 0.0.rad)
 
         parkPoseCenter = Pose2d(parkXPosition, 12.0.switch, 180.0.rad)
         parkPoseEdge = Pose2d(parkXPosition, 60.0.switch, 180.0.rad)
