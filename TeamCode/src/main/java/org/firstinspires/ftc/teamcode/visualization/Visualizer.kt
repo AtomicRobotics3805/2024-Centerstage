@@ -23,9 +23,7 @@ fun main() {
             15.0,
             {
                 sequential {
-                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingStartToDetect)
-                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingDetectToFrontSpikeTape)
-                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingFrontSpikeTapeToScoreLeft)
+                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingStartToParkEdge)
                 }
             },
             Constants.Color.RED
