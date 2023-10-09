@@ -18,16 +18,17 @@ fun main() {
                 CompetitionDriveConstants,
                 TwoWheelOdometryLocalizer(CompetitionOdometryConstants)
 
-            ) { CompetitionTrajectoryFactory.backstageStartPose },
+            ) { CompetitionTrajectoryFactory.wingStartPose },
             14.5,
             15.0,
             {
                 sequential {
-                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToDetect)
-                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageDetectToBackSpikeTape)
+                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingStartToDetect)
+                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingDetectToFrontSpikeTape)
+                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingFrontSpikeTapeToScoreLeft)
                 }
             },
-            Constants.Color.BLUE
+            Constants.Color.RED
         )
     )
 

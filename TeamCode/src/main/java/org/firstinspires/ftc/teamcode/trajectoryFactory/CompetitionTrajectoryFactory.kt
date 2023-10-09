@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.trajectoryFactory
 
 import com.acmerobotics.roadrunner.geometry.Pose2d
+import com.acmerobotics.roadrunner.geometry.Vector2d
 import org.atomicrobotics3805.cflib.trajectories.ParallelTrajectory
 import org.atomicrobotics3805.cflib.trajectories.TrajectoryFactory
 import org.atomicrobotics3805.cflib.trajectories.rad
@@ -54,7 +55,7 @@ object CompetitionTrajectoryFactory: TrajectoryFactory() {
     lateinit var wingFrontSpikeTapeToScoreLeft: ParallelTrajectory
     lateinit var wingCenterSpikeTapeToScoreCenter: ParallelTrajectory
     lateinit var wingBackSpikeTapeToScoreRight: ParallelTrajectory
-    
+
     // BACKSTAGE TRAJECTORIES
     lateinit var backstageStartToDetect: ParallelTrajectory
 
@@ -115,9 +116,9 @@ object CompetitionTrajectoryFactory: TrajectoryFactory() {
         wingStartPose = Pose2d(-36.0, startYPosition.switch, 270.0.switchAngle.rad)
         backstageStartPose = Pose2d(12.0, startYPosition.switch, 270.0.switchAngle.rad)
 
-        scorePoseLeft = Pose2d(scoreXPosition, 29.0.translateAcrossField, 0.0.rad)
-        scorePoseCenter = Pose2d(scoreXPosition, 36.0.translateAcrossField, 0.0.rad)
-        scorePoseRight = Pose2d(scoreXPosition, 43.0.translateAcrossField, 0.0.rad)
+        scorePoseLeft = Pose2d(scoreXPosition, 43.0.translateAcrossField, 180.0.rad)
+        scorePoseCenter = Pose2d(scoreXPosition, 36.0.translateAcrossField, 180.0.rad)
+        scorePoseRight = Pose2d(scoreXPosition, 29.0.translateAcrossField, 180.0.rad)
 
         parkPoseCenter = Pose2d(parkXPosition, 12.0.switch, 180.0.rad)
         parkPoseEdge = Pose2d(parkXPosition, 60.0.switch, 180.0.rad)
@@ -125,26 +126,66 @@ object CompetitionTrajectoryFactory: TrajectoryFactory() {
         wingDetectPose = Pose2d(-36.0, detectionXPosition.switch, 270.0.switchAngle.rad)
         backstageDetectPose = Pose2d(12.0, detectionXPosition.switch, 270.0.switchAngle.rad)
 
+        wingFrontSpikeTape = Pose2d(-46.0, 38.0.switch, 270.0.switchAngle.rad)
+        wingCenterSpikeTape = Pose2d(-45.0, 24.0.switch, 0.0.switchAngle.rad)
+        wingBackSpikeTape = Pose2d(-24.0, 38.0.switch, 270.0.switchAngle.rad)
+
         backstageFrontSpikeTape = Pose2d(0.5, 38.0.switch, 270.0.switchAngle.rad)
         backstageCenterSpikeTape = Pose2d(23.0, 24.0.switch, 180.0.switchAngle.rad)
         backstageBackSpikeTape = Pose2d(24.0, 38.0.switch, 270.0.switchAngle.rad)
 
+        wingStartToDetect = d.trajectoryBuilder(wingStartPose)
+            .lineToLinearHeading(wingDetectPose)
+            .build()
         backstageStartToDetect = d.trajectoryBuilder(backstageStartPose)
-                .lineToLinearHeading(backstageDetectPose)
-                .build()
+            .lineToLinearHeading(backstageDetectPose)
+            .build()
+
+
+        //region DETECT TO PURPLE PIXEL SCORE
+        wingDetectToFrontSpikeTape = d.trajectoryBuilder(wingDetectPose, 90.0.switchAngle.rad)
+            .splineToLinearHeading(wingFrontSpikeTape, 180.0.rad)
+            .build()
+        wingDetectToCenterSpikeTape = d.trajectoryBuilder(wingDetectPose, wingDetectPose.heading - 90.0.switchAngle.toRadians)
+            .splineToSplineHeading(wingCenterSpikeTape, 270.0.switchAngle.rad)
+            .build()
+        wingDetectToBackSpikeTape = d.trajectoryBuilder(wingDetectPose, 90.0.switchAngle.rad)
+            .splineToLinearHeading(wingBackSpikeTape, 0.0.rad)
+            .build()
         backstageDetectToFrontSpikeTape = d.trajectoryBuilder(backstageDetectPose, 90.0.switchAngle.rad)
-//                .forward(-1.0)
-                .splineToLinearHeading(backstageFrontSpikeTape, 180.0.rad)
-                .build()
+            .splineToLinearHeading(backstageFrontSpikeTape, 180.0.rad)
+            .build()
         backstageDetectToCenterSpikeTape = d.trajectoryBuilder(backstageDetectPose, backstageDetectPose.heading + 90.0.switchAngle.toRadians)
-                .splineToSplineHeading(backstageCenterSpikeTape, 270.0.switchAngle.rad)
-                .build()
+            .splineToSplineHeading(backstageCenterSpikeTape, 270.0.switchAngle.rad)
+            .build()
         backstageDetectToBackSpikeTape = d.trajectoryBuilder(backstageDetectPose, 90.0.switchAngle.rad)
-//                .forward(-1.0)
-                .splineToLinearHeading(backstageBackSpikeTape, 0.0.rad)
-                .build()
-        //20.2,24.2,180.0.switchAngle.rad
-// 0,44,270
+            .splineToLinearHeading(backstageBackSpikeTape, 0.0.rad)
+            .build()
+        //endregion
+
+        backstageFrontSpikeTapeToScoreLeft = d.trajectoryBuilder(backstageFrontSpikeTape, 0.0.rad)
+            .splineToSplineHeading(scorePoseLeft, 0.0.rad)
+            .build()
+        backstageCenterSpikeTapeToScoreCenter = d.trajectoryBuilder(backstageCenterSpikeTape, 0.0.rad)
+            .splineToSplineHeading(scorePoseCenter, 0.0.rad)
+            .build()
+        backstageBackSpikeTapeToScoreRight = d.trajectoryBuilder(backstageBackSpikeTape, 0.0.rad)
+            .splineToSplineHeading(scorePoseRight, 0.0.rad)
+            .build()
+
+        wingFrontSpikeTapeToScoreLeft = d.trajectoryBuilder(wingFrontSpikeTape, 0.0.rad)
+            .splineTo(Vector2d(-12.0, 36.0.switch), 0.0.rad)
+            .splineToSplineHeading(scorePoseLeft, 0.0.rad)
+            .build()
+        wingCenterSpikeTapeToScoreCenter = d.trajectoryBuilder(wingCenterSpikeTape, 90.0.switchAngle.rad)
+            .splineToConstantHeading(Vector2d(-12.0, 36.0.switch), 0.0.rad) // Can also be splineTo() instead of splineToConstantHeading()
+            .splineToSplineHeading(scorePoseCenter, 0.0.rad)
+            .build()
+        wingBackSpikeTapeToScoreRight = d.trajectoryBuilder(wingBackSpikeTape)
+            .splineTo(Vector2d(-12.0, 36.0.switch), 0.0.rad)
+            .splineToSplineHeading(scorePoseRight, 0.0.rad)
+            .build()
+
         //region Old Trajectories
         // ***POSES***
 
