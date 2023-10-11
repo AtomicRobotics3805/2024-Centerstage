@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.controls.CompetitionControls
 class EncoderTestTeleOpMode : TeleOpMode(
     CompetitionControls(),
     Constants.Color.RED,
-    //mainRoutine = { TelemetryCommand(100.0) { Constants.drive.localizer.poseEstimate.toString() } },
+    mainRoutine = { TelemetryCommand(100.0) { Constants.drive.localizer.poseEstimate.toString() } },
     drive = MecanumDrive(
         CompetitionDriveConstants,
         TwoWheelOdometryLocalizer(CompetitionOdometryConstants)
