@@ -18,9 +18,9 @@ object CompetitionOdometryConstants: TwoWheelOdometryConstants {
     var _PERPENDICULAR_NAME = "LF" // Whichever motor is on control hub port 1
 
     @JvmField
-    var _TICKS_PER_REV = 360.0 // S4T-360-236-S-B Encoder
+    var _TICKS_PER_REV = 1440.0 // S4T-360-236-S-B Encoder (360 CPR * 4 to get PPR)
     @JvmField
-    var _WHEEL_RADIUS = 1.37795 // Inches, 35mm rotacaster omni wheel
+    var _WHEEL_RADIUS = 0.72571573714576 // Inches, 35mm rotacaster omni wheel
     @JvmField
     var _GEAR_RATIO = 1.0 // Direct drive
     
