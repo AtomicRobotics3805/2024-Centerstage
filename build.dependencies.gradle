@@ -20,8 +20,5 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
 
     implementation('com.acmerobotics.dashboard:dashboard:0.4.6')
-//            {
-//        exclude group: 'org.firstinspires.ftc'
-//    }
 }
 

@@ -23,10 +23,12 @@ fun main() {
             15.0,
             {
                 sequential {
-                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingStartToParkEdge)
+                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToFrontSpikeTape)
+                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageFrontSpikeTapeToScore)
+                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.scoreOuterToParkEdge)
                 }
             },
-            Constants.Color.RED
+            Constants.Color.BLUE
         )
     )
 
