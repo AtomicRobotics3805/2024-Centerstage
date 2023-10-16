@@ -61,7 +61,7 @@ object CompetitionDriveConstants: MecanumDriveConstants {
     @JvmField
     var _TICKS_PER_REV = 24.0 // TO BE REMOVED
     @JvmField
-    var _TRACK_WIDTH = 13.5 // Inches
+    var _TRACK_WIDTH = 13.070866 // Inches
     @JvmField
     var _WHEEL_RADIUS = 2.0 // Inches
     @JvmField

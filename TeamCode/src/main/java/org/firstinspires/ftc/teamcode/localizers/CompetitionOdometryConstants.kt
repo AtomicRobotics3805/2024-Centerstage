@@ -20,7 +20,7 @@ object CompetitionOdometryConstants: TwoWheelOdometryConstants {
     @JvmField
     var _TICKS_PER_REV = 1440.0 // S4T-360-236-S-B Encoder (360 CPR * 4 to get PPR)
     @JvmField
-    var _WHEEL_RADIUS = 0.72571573714576 // Inches, 35mm rotacaster omni wheel
+    var _WHEEL_RADIUS = 0.6889764 // Inches, 35mm rotacaster omni wheel
     @JvmField
     var _GEAR_RATIO = 1.0 // Direct drive
     
@@ -35,7 +35,7 @@ object CompetitionOdometryConstants: TwoWheelOdometryConstants {
     var _X_MULTIPLIER = 1.0
     @JvmField
     var _Y_MULTIPLIER = 1.0
-    
+
     @JvmField
     var _CORRECTED_VELOCITY = false
 
