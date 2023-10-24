@@ -13,9 +13,9 @@ import org.opencv.imgproc.Imgproc
 import org.atomicrobotics3805.cflib.TelemetryController.telemetry
 
 class PropProcessor : VisionProcessor {
-    var rectLeft = Rect(110, 380, 80, 80)
-    var rectMiddle = Rect(280, 360, 80, 80)
-    var rectRight = Rect(450, 380, 80, 80)
+    var rectLeft = Rect(20, 210, 80, 80)
+    var rectMiddle = Rect(280, 160, 80, 80)
+    var rectRight = Rect(540, 210, 80, 80)
     var selection = Selected.NONE
     var submat = Mat()
     var hsvMat = Mat()
