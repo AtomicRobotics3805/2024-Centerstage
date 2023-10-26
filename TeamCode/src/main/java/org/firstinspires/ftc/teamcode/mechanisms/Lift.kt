@@ -48,7 +48,7 @@ object Lift : Subsystem {
     val lower: Command
         get() = OptionCommand("Different signature", { MANUAL_CONTROL }, Pair(true, PowerMotor(MOTOR, -SPEED)))
     val stop: Command
-        get() = OptionCommand("Different signature", { MANUAL_CONTROL }, Pair(true, PowerMotor(MOTOR, 0.0)))
+        get() = PowerMotor(MOTOR, 0.0)
 
     val dpadLeft: Command
         get() = OptionCommand("Different signature", { MANUAL_CONTROL }, Pair(false, toMiddle))

@@ -1,9 +1,10 @@
 package org.firstinspires.ftc.teamcode.controls
 
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp
 import org.atomicrobotics3805.cflib.CommandScheduler
 import org.atomicrobotics3805.cflib.Constants
 import org.atomicrobotics3805.cflib.controls.Controls
+import org.firstinspires.ftc.teamcode.mechanisms.Arm
+import org.firstinspires.ftc.teamcode.mechanisms.Claw
 import org.firstinspires.ftc.teamcode.mechanisms.Intake
 import org.firstinspires.ftc.teamcode.mechanisms.Lift
 
