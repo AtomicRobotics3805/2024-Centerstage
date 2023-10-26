@@ -11,7 +11,7 @@ import org.atomicrobotics3805.cflib.roadrunner.AxisDirection
 
 object CompetitionDriveConstants: MecanumDriveConstants {
     @JvmField
-    var _BACKWARD_DRIFT_MULTIPLIER = 0.0
+    var _BACKWARD_DRIFT_MULTIPLIER = 1.0
     @JvmField
     var _DRIFT_MULTIPLIER = 1.0
     @JvmField
@@ -29,13 +29,13 @@ object CompetitionDriveConstants: MecanumDriveConstants {
     @JvmField
     var _LATERAL_MULTIPLIER = 1.0
     @JvmField
-    var _LEFT_BACK_MOTOR = MotorEx("LB", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 19.2, direction = DcMotorSimple.Direction.REVERSE)
+    var _LEFT_BACK_MOTOR = MotorEx("LB", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 19.2, direction = DcMotorSimple.Direction.FORWARD)
     @JvmField
-    var _LEFT_FRONT_MOTOR = MotorEx("LF", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 19.2, direction = DcMotorSimple.Direction.REVERSE)
+    var _LEFT_FRONT_MOTOR = MotorEx("LF", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 19.2, direction = DcMotorSimple.Direction.FORWARD)
     @JvmField
-    var _RIGHT_FRONT_MOTOR = MotorEx("RF", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 19.2, direction = DcMotorSimple.Direction.FORWARD)
+    var _RIGHT_FRONT_MOTOR = MotorEx("RF", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 19.2, direction = DcMotorSimple.Direction.REVERSE)
     @JvmField
-    var _RIGHT_BACK_MOTOR = MotorEx("RB", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 19.2, direction = DcMotorSimple.Direction.FORWARD)
+    var _RIGHT_BACK_MOTOR = MotorEx("RB", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 19.2, direction = DcMotorSimple.Direction.REVERSE)
     @JvmField
     var _MAX_ACCEL = 30.0
     @JvmField
@@ -49,11 +49,11 @@ object CompetitionDriveConstants: MecanumDriveConstants {
     @JvmField
     var _MOTOR_VEL_PID = PIDFCoefficients(0.0, 0.0, 0.0, getMotorVelocityF(MAX_RPM / 60 * TICKS_PER_REV))
     @JvmField
-    var _POV = DriverControlled.POV.DRIVER_CENTRIC
+    var _POV = DriverControlled.POV.ROBOT_CENTRIC
     @JvmField
     var _REVERSE_STRAFE = false
     @JvmField
-    var _REVERSE_STRAIGHT = false
+    var _REVERSE_STRAIGHT = true
     @JvmField
     var _REVERSE_TURN = false
     @JvmField

@@ -1,34 +1,36 @@
 package org.firstinspires.ftc.teamcode.localizers
 
+import com.acmerobotics.dashboard.config.Config
 import org.atomicrobotics3805.cflib.driving.localizers.TwoWheelOdometryConstants
 
+@Config
 object CompetitionOdometryConstants: TwoWheelOdometryConstants {
     @JvmField
-    var _PARALLEL_X = 0.0 // Inches, forward offset of the wheel
+    var _PARALLEL_X = -1.0766 // Inches, forward offset of the wheel
     @JvmField
-    var _PARALLEL_Y = 0.0 // Inches, left offset of the wheel
+    var _PARALLEL_Y = 4.4469 // Inches, left offset of the wheel
     @JvmField
-    var _PERPENDICULAR_X = 0.0 // Inches, forward offset of the wheel
+    var _PERPENDICULAR_X = -5.3917 // Inches, forward offset of the wheel
     @JvmField
-    var _PERPENDICULAR_Y = 0.0 // Inches, left offset of the wheel
+    var _PERPENDICULAR_Y = 0.7616 // Inches, left offset of the wheel
 
     @JvmField
-    var _PARALLEL_NAME = "LB" // Whichever motor is on control hub port 0
+    var _PARALLEL_NAME = "LF" // PORT 0
     @JvmField
-    var _PERPENDICULAR_NAME = "LF" // Whichever motor is on control hub port 1
+    var _PERPENDICULAR_NAME = "RB" // PORT 3
 
     @JvmField
     var _TICKS_PER_REV = 1440.0 // S4T-360-236-S-B Encoder (360 CPR * 4 to get PPR)
     @JvmField
-    var _WHEEL_RADIUS = 0.6889764 // Inches, 35mm rotacaster omni wheel
+    var _WHEEL_RADIUS = 0.6889764 // Inches, 35mm (diameter) rotacaster omni wheel
     @JvmField
     var _GEAR_RATIO = 1.0 // Direct drive
     
     // If the robot drives at full speed without stopping, one or both of these need to be changed
     @JvmField
-    var _PARALLEL_REVERSED = false
+    var _PARALLEL_REVERSED = true
     @JvmField
-    var _PERPENDICULAR_REVERSED = false
+    var _PERPENDICULAR_REVERSED = true
     
     // Tuning variables
     @JvmField
