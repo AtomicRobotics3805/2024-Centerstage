@@ -17,9 +17,7 @@
 package org.firstinspires.ftc.teamcode
 
 import com.acmerobotics.dashboard.config.Config
-import com.qualcomm.robotcore.hardware.Servo
 import org.atomicrobotics3805.cflib.Command
-import org.atomicrobotics3805.cflib.Constants.opMode
 import org.atomicrobotics3805.cflib.hardware.ServoEx
 import org.atomicrobotics3805.cflib.subsystems.MoveServo
 import org.atomicrobotics3805.cflib.subsystems.Subsystem
@@ -35,7 +33,8 @@ import org.atomicrobotics3805.cflib.subsystems.Subsystem
 @Suppress("PropertyName", "MemberVisibilityCanBePrivate", "unused")
 object Claw : Subsystem {
     var NAME = "claw"
-    var OPEN_POSITION = 0.8
+    var OPEN_POSITION = 0.4
+    var DELIVER_POSITION = 0.2
     var CLOSE_POSITION = 0.0
     var TIME = 1.0
     val clawServo = ServoEx(NAME)
@@ -44,6 +43,8 @@ object Claw : Subsystem {
     }
     val open: Command
         get() = MoveServo(clawServo, OPEN_POSITION, TIME)
+    val deliver: Command
+        get() = MoveServo(clawServo, DELIVER_POSITION, TIME)
     val close: Command
         get() = MoveServo(clawServo, CLOSE_POSITION, TIME)
 

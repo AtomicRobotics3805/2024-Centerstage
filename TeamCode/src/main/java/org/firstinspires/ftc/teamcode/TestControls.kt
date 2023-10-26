@@ -48,6 +48,7 @@ object TestControls : Controls() {
         gamepad1.x.pressedCommand = { Claw.close}
         gamepad1.y.pressedCommand = { Arm.open}
         gamepad1.b.pressedCommand = { Arm.close}
+        gamepad1.rightTrigger.pressedCommand = { Routines.doneDeliveringRoutine }
     }
 
 }

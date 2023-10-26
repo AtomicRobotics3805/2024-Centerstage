@@ -22,11 +22,15 @@ class ShippingElementDetection : LinearOpMode(
         try {
             // setting constants
             Constants.opMode = this
+            Constants.drive = MecanumDrive(
+                CompetitionDriveConstants,
+                TwoWheelOdometryLocalizer(CompetitionOdometryConstants)
+            )
             // initializing trajectory factory
             // controls stuff
             TestControls.registerGamepads()
             // this both registers & initializes the subsystems
-            CommandScheduler.registerSubsystems(TelemetryController, DetectionMechanism, Lift)
+            CommandScheduler.registerSubsystems(TelemetryController, Constants.drive, DetectionMechanism, Lift)
             CommandScheduler.scheduleCommand(DetectionMechanism.DetectCommand())
             CommandScheduler.scheduleCommand(TelemetryCommand(1000.0, { DetectionMechanism.propProcessor.selection.toString()}))
             // if there is a routine that's supposed to be performed on init, then do it
