@@ -13,9 +13,9 @@ object WingRoutines {
         get() = sequential {
             +OptionCommand("Different signature",
                 { DetectionMechanism.selectedPosition },
-                Pair(PropProcessor.Selected.LEFT, WingRoutines.wingLeftRoutine),
-                Pair(PropProcessor.Selected.MIDDLE, WingRoutines.wingCenterRoutine),
-                Pair(PropProcessor.Selected.RIGHT, WingRoutines.wingRightRoutine))
+                Pair(PropProcessor.Selected.LEFT, wingLeftRoutine),
+                Pair(PropProcessor.Selected.MIDDLE, wingCenterRoutine),
+                Pair(PropProcessor.Selected.RIGHT, wingRightRoutine))
         }
 
     val wingLeftRoutine : Command

@@ -10,8 +10,7 @@ import org.atomicrobotics3805.cflib.hardware.MotorEx
 import org.atomicrobotics3805.cflib.roadrunner.AxisDirection
 
 object CompetitionDriveConstants: MecanumDriveConstants {
-    @JvmField
-    var _BACKWARD_DRIFT_MULTIPLIER = 1.0
+
     @JvmField
     var _DRIFT_MULTIPLIER = 1.0
     @JvmField
@@ -56,16 +55,20 @@ object CompetitionDriveConstants: MecanumDriveConstants {
     var _REVERSE_STRAIGHT = true
     @JvmField
     var _REVERSE_TURN = false
-    @JvmField
+
     var _RIGHT_DRIFT_MULTIPLIER = 1.0
-    @JvmField
+    var _BACKWARD_DRIFT_MULTIPLIER = 1.0
+
     var _TICKS_PER_REV = 24.0 // TO BE REMOVED
+
     @JvmField
     var _TRACK_WIDTH = 13.070866 // Inches
-    @JvmField
-    var _WHEEL_RADIUS = 2.0 // Inches
+
+    var _WHEEL_RADIUS = 1.889765 // Inches
+
     @JvmField
     var _VERTICAL_AXIS = AxisDirection.POS_Z
+
     @JvmField
     var _kA = 0.0
     @JvmField

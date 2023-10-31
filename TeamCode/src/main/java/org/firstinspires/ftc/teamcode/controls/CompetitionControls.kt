@@ -7,7 +7,6 @@ import org.atomicrobotics3805.cflib.driving.DriverControlled
 import org.atomicrobotics3805.cflib.parallel
 import org.atomicrobotics3805.cflib.sequential
 import org.atomicrobotics3805.cflib.utilCommands.Delay
-import org.firstinspires.ftc.teamcode.drive.CompetitionDriveConstants
 import org.firstinspires.ftc.teamcode.mechanisms.Arm
 import org.firstinspires.ftc.teamcode.mechanisms.Claw
 import org.firstinspires.ftc.teamcode.mechanisms.Intake
@@ -44,7 +43,7 @@ class CompetitionControls : Controls() {
             +parallel {
                 +Claw.intake
                 +Arm.close
-                +Lift.toBottom
+                +Lift.toIntake
             }
             +Delay(1.0)
             +Claw.close
@@ -54,7 +53,7 @@ class CompetitionControls : Controls() {
 //        gamepad2.leftTrigger.pressedCommand = { Lift.manualControl }
 //        gamepad2.leftTrigger.releasedCommand = { Lift.automaticControl }
         gamepad2.dpadUp.pressedCommand = { Lift.toHigh }
-        gamepad2.dpadLeft.pressedCommand = { Lift.toMiddle }
+        gamepad2.dpadLeft.pressedCommand = { Lift.toLow }
 
         gamepad2.leftBumper.pressedCommand = { Claw.intake }
         gamepad1.a.pressedCommand = { Claw.drop }

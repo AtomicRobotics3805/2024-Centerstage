@@ -5,13 +5,9 @@ import com.qualcomm.robotcore.hardware.DcMotor
 import com.qualcomm.robotcore.hardware.DcMotorSimple
 import org.atomicrobotics3805.cflib.Command
 import org.atomicrobotics3805.cflib.hardware.MotorEx
-import org.atomicrobotics3805.cflib.hardware.ServoEx
 import org.atomicrobotics3805.cflib.subsystems.MotorToPosition
 import org.atomicrobotics3805.cflib.subsystems.PowerMotor
 import org.atomicrobotics3805.cflib.subsystems.Subsystem
-import org.atomicrobotics3805.cflib.utilCommands.ConditionalCommand
-import org.atomicrobotics3805.cflib.utilCommands.CustomCommand
-import org.atomicrobotics3805.cflib.utilCommands.OptionCommand
 
 @Config
 object Lift : Subsystem {
@@ -19,8 +15,8 @@ object Lift : Subsystem {
     var NAME = "lift"
 
     @JvmField
-    var BOTTOM_POSITION = 0.5 // in
-    var MIDDLE_POSITION = 12.0 // in
+    var INTAKE_POSITION = 0.5 // in
+    var LOW_POSITION = 12.0 // in
     var HIGH_POSITION = 25.0 // in
 
     @JvmField
@@ -34,10 +30,10 @@ object Lift : Subsystem {
     private const val DRIVE_GEAR_REDUCTION = 1.0
     private var COUNTS_PER_INCH: Double = MOTOR.ticksPerRev * DRIVE_GEAR_REDUCTION / (2 * PULLEY_RADIUS * Math.PI)
 
-    val toBottom: Command
-        get() = MotorToPosition(MOTOR, (BOTTOM_POSITION * COUNTS_PER_INCH).toInt(), SPEED, requirements = listOf(this@Lift))
-    val toMiddle: Command
-        get() = MotorToPosition(MOTOR, (MIDDLE_POSITION * COUNTS_PER_INCH).toInt(), SPEED, requirements = listOf(this@Lift))
+    val toIntake: Command
+        get() = MotorToPosition(MOTOR, (INTAKE_POSITION * COUNTS_PER_INCH).toInt(), SPEED, requirements = listOf(this@Lift))
+    val toLow: Command
+        get() = MotorToPosition(MOTOR, (LOW_POSITION * COUNTS_PER_INCH).toInt(), SPEED, requirements = listOf(this@Lift))
     val toHigh: Command
         get() = MotorToPosition(MOTOR, (HIGH_POSITION * COUNTS_PER_INCH).toInt(), SPEED, requirements = listOf(this@Lift))
 

@@ -2,10 +2,15 @@ package org.firstinspires.ftc.teamcode.routines
 
 import org.atomicrobotics3805.cflib.Command
 import org.atomicrobotics3805.cflib.Constants
+import org.atomicrobotics3805.cflib.parallel
 import org.atomicrobotics3805.cflib.sequential
 import org.atomicrobotics3805.cflib.utilCommands.CustomCommand
 import org.atomicrobotics3805.cflib.utilCommands.OptionCommand
+import org.firstinspires.ftc.teamcode.mechanisms.Arm
+import org.firstinspires.ftc.teamcode.mechanisms.Claw
 import org.firstinspires.ftc.teamcode.mechanisms.DetectionMechanism
+import org.firstinspires.ftc.teamcode.mechanisms.Intake
+import org.firstinspires.ftc.teamcode.mechanisms.Lift
 import org.firstinspires.ftc.teamcode.trajectoryFactory.CompetitionTrajectoryFactory
 
 object SharedRoutines {
@@ -25,10 +30,20 @@ object SharedRoutines {
         get() = CustomCommand(_start = { parkTarget = ParkTarget.EDGE })
 
 
-    val initRoutine : Command
-        get() = sequential {
+    val initRoutineEdgePark : Command
+        get() = parallel {
             +DetectionMechanism.DetectCommand()
-            // Any other mechanism initialization commands
+            +Arm.close
+            +Claw.close
+            +setParkTargetEdge
+        }
+
+    val initRoutineCenterPark : Command
+        get() = parallel {
+            +DetectionMechanism.DetectCommand()
+            +Arm.close
+            +Claw.close
+            +setParkTargetCenter
         }
 
     val scoreInnerToPark : Command
