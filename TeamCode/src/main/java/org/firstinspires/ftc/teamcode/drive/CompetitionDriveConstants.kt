@@ -51,7 +51,7 @@ object CompetitionDriveConstants: MecanumDriveConstants {
     @JvmField
     var _POV = DriverControlled.POV.ROBOT_CENTRIC
     @JvmField
-    var _REVERSE_STRAFE = false
+    var _REVERSE_STRAFE = true
     @JvmField
     var _REVERSE_STRAIGHT = true
     @JvmField

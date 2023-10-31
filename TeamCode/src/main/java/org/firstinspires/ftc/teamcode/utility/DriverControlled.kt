@@ -33,9 +33,9 @@ class DriverControlled(
         val drivePower: Pose2d
         if (pov == POV.FIELD_CENTRIC) {
             // Swapped x and y is intentional because roadrunner uses "robotics" x and y whereas gamepad uses "gaming" x and y
-            var x: Double = (if(reverseStraight) -gamepad.left_stick_y else gamepad.left_stick_y).toDouble()
-            var y: Double = (if(reverseStrafe) -gamepad.left_stick_y else gamepad.left_stick_y).toDouble()
-            var rx: Double = (if(reverseTurn) -gamepad.left_stick_y else gamepad.left_stick_y).toDouble()
+            val x: Double = (if(reverseStraight) -gamepad.left_stick_y else gamepad.left_stick_y).toDouble()
+            val y: Double = (if(reverseStrafe) -gamepad.left_stick_x else gamepad.left_stick_x).toDouble()
+            val rx: Double = (if(reverseTurn) -gamepad.right_stick_x else gamepad.right_stick_x).toDouble()
 
             /*
             double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
@@ -48,8 +48,8 @@ class DriverControlled(
             */
 
             val heading = drive.poseEstimate.heading
-            val rotX = x * cos(-heading) - y * sin(-heading)
-            val rotY = x * sin(-heading) - y * cos(-heading)
+            val rotX = x * cos(heading) + y * sin(heading)
+            val rotY = x * sin(heading) - y * cos(heading)
 
 
 

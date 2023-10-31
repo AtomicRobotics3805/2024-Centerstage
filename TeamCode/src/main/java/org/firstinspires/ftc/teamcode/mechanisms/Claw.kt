@@ -35,7 +35,7 @@ object Claw : Subsystem {
     var NAME = "claw"
     var INTAKE_POSITION = 0.1
     var CLOSE_POSITION = 0.0
-    var DROP_POSITION = 0.06
+    var DROP_POSITION = 0.05
     var TIME = 1.0
     val clawServo = ServoEx(NAME)
     override fun initialize() {
