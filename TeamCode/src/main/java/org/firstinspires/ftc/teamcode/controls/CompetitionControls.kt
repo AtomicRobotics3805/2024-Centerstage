@@ -46,7 +46,6 @@ class CompetitionControls : Controls() {
                 +Arm.close
                 +Lift.toBottom
             }
-            +Delay(1.0)
             +Claw.close
         } }
 
