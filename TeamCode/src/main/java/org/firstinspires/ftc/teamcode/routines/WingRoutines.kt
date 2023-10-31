@@ -2,9 +2,14 @@ package org.firstinspires.ftc.teamcode.routines
 
 import org.atomicrobotics3805.cflib.Command
 import org.atomicrobotics3805.cflib.Constants
+import org.atomicrobotics3805.cflib.parallel
 import org.atomicrobotics3805.cflib.sequential
 import org.atomicrobotics3805.cflib.utilCommands.OptionCommand
+import org.firstinspires.ftc.teamcode.mechanisms.Arm
+import org.firstinspires.ftc.teamcode.mechanisms.Claw
 import org.firstinspires.ftc.teamcode.mechanisms.DetectionMechanism
+import org.firstinspires.ftc.teamcode.mechanisms.Intake
+import org.firstinspires.ftc.teamcode.mechanisms.Lift
 import org.firstinspires.ftc.teamcode.mechanisms.PropProcessor
 import org.firstinspires.ftc.teamcode.trajectoryFactory.CompetitionTrajectoryFactory
 
@@ -24,22 +29,38 @@ object WingRoutines {
                 Pair(
                     Constants.Color.BLUE,
                     sequential {
-                        // Blue side (left is on the "BACK" side of the field)
                         +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingStartToBackSpikeTape)
-                        // +intake.spikeTapeEject
-                        +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingBackSpikeTapeToScore)
-                        // Score the yellow pixel
-                        +SharedRoutines.scoreOuterToPark
+                        +Intake.slowEject
+                        +parallel {
+                            +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingBackSpikeTapeToScore)
+                            +Lift.toLow
+                            +Arm.open
+                        }
+                        +Claw.drop
+                        +parallel {
+                            +SharedRoutines.scoreOuterToPark
+                            +Arm.close
+                            +Claw.close
+                            +Lift.toIntake
+                        }
                     }
                 ), Pair(
                     Constants.Color.RED,
                     sequential {
-                        // Red side (left is on the "FRONT" side of the field)
                         +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingStartToFrontSpikeTape)
-                        // Score purple pixel
-                        +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingFrontSpikeTapeToScore)
-                        // Score yellow pixel
-                        +SharedRoutines.scoreInnerToPark
+                        +Intake.slowEject
+                        +parallel {
+                            +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingFrontSpikeTapeToScore)
+                            +Lift.toLow
+                            +Arm.open
+                        }
+                        +Claw.drop
+                        +parallel {
+                            +SharedRoutines.scoreInnerToPark
+                            +Arm.close
+                            +Claw.close
+                            +Lift.toIntake
+                        }
                     }
                 )
             )
@@ -48,8 +69,19 @@ object WingRoutines {
     val wingCenterRoutine : Command
         get() = sequential {
             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingStartToCenterSpikeTape)
-            +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingCenterSpikeTapeToScore)
-            +SharedRoutines.scoreCenterToPark
+            +Intake.slowEject
+            +parallel {
+                +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingCenterSpikeTapeToScore)
+                +Lift.toLow
+                +Arm.open
+            }
+            +Claw.drop
+            +parallel {
+                +SharedRoutines.scoreCenterToPark
+                +Arm.close
+                +Claw.close
+                +Lift.toIntake
+            }
         }
 
     val wingRightRoutine : Command
@@ -58,19 +90,37 @@ object WingRoutines {
                 Pair(
                     Constants.Color.BLUE,
                     sequential {
-                        // Blue side ("right" is on the front side of the field)
                         +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingStartToFrontSpikeTape)
-                        // +intake.spikeTapeEjects
-                        +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingFrontSpikeTapeToScore)
-                        +SharedRoutines.scoreInnerToPark
+                        +Intake.slowEject
+                        +parallel {
+                            +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingFrontSpikeTapeToScore)
+                            +Lift.toLow
+                            +Arm.open
+                        }
+                        +Claw.drop
+                        +parallel {
+                            +SharedRoutines.scoreInnerToPark
+                            +Arm.close
+                            +Claw.close
+                            +Lift.toIntake
+                        }
                     }
                 ), Pair(Constants.Color.RED,
                     sequential {
-                        // Red side ("right" is on the back side of the field)
                         +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingStartToBackSpikeTape)
-                        // +intake.spikeTapeEject
-                        +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingBackSpikeTapeToScore)
-                        +SharedRoutines.scoreOuterToPark
+                        +Intake.slowEject
+                        +parallel {
+                            +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingBackSpikeTapeToScore)
+                            +Lift.toLow
+                            +Arm.open
+                        }
+                        +Claw.drop
+                        +parallel {
+                            +SharedRoutines.scoreOuterToPark
+                            +Arm.close
+                            +Claw.close
+                            +Lift.toIntake
+                        }
                     })
             )
         }
