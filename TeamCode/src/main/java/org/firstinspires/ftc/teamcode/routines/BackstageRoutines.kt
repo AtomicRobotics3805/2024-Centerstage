@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.mechanisms.PropProcessor
 import org.firstinspires.ftc.teamcode.trajectoryFactory.CompetitionTrajectoryFactory
 
 object BackstageRoutines {
-    val backstageFullPathAndPark : Command
+    val backstageFullPathAndPark: Command
         get() = sequential {
             +OptionCommand("Different signature",
                 { DetectionMechanism.selectedPosition },
@@ -23,7 +23,7 @@ object BackstageRoutines {
                 Pair(PropProcessor.Selected.RIGHT, backstageRightRoutine))
         }
 
-    val backstageLeftRoutine : Command
+    val backstageLeftRoutine: Command
         get() = sequential {
             +OptionCommand("Different signature", { Constants.color },
                 Pair(
@@ -68,7 +68,7 @@ object BackstageRoutines {
 
         }
 
-    val backstageCenterRoutine : Command
+    val backstageCenterRoutine: Command
         get() = sequential {
             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToCenterSpikeTape)
             +Intake.slowEject
@@ -86,7 +86,7 @@ object BackstageRoutines {
             }
         }
 
-    val backstageRightRoutine : Command
+    val backstageRightRoutine: Command
         get() = sequential {
             +OptionCommand("Different signature", { Constants.color },
                 Pair(

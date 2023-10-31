@@ -28,7 +28,7 @@ import org.firstinspires.ftc.teamcode.localizers.CompetitionOdometryConstants
  */
 @Config
 @Autonomous(group = "tuning")
-class LocalizationTest : LinearOpMode() {
+class LocalizationTest: LinearOpMode() {
     @Throws(InterruptedException::class)
     override fun runOpMode() {
         opMode = this

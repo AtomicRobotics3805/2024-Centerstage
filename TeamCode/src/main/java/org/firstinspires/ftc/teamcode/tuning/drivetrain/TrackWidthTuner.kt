@@ -30,7 +30,7 @@ import kotlin.math.sqrt
  */
 @Config
 @Autonomous(group = "tuning")
-class TrackWidthTuner : LinearOpMode() {
+class TrackWidthTuner: LinearOpMode() {
     @Throws(InterruptedException::class)
     override fun runOpMode() {
         Constants.opMode = this

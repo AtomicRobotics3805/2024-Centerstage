@@ -29,7 +29,7 @@ import org.firstinspires.ftc.teamcode.localizers.CompetitionOdometryConstants
  */
 @Config
 @Autonomous(group = "tuning")
-class BackAndForth : LinearOpMode() {
+class BackAndForth: LinearOpMode() {
 
     private lateinit var trajectoryForward: ParallelTrajectory
     private lateinit var trajectoryBackward: ParallelTrajectory

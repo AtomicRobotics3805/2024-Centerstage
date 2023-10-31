@@ -7,7 +7,7 @@ import org.atomicrobotics3805.cflib.subsystems.Subsystem
 import org.atomicrobotics3805.cflib.utilCommands.CustomCommand
 import org.atomicrobotics3805.cflib.utilCommands.TelemetryCommand
 
-object Drone : Subsystem {
+object Drone: Subsystem {
     var NAME = "drone"
     var CLOSE_POSITION = 0.0
     var LAUNCH_POSITION = 1.0

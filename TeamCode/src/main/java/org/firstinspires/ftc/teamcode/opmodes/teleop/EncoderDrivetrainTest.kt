@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.drive.CompetitionDriveConstants
 import org.firstinspires.ftc.teamcode.localizers.CompetitionOdometryConstants
 
 @TeleOp(name = "Encoder Drivetrain Test")
-class EncoderDrivetrainTest : TeleOpMode(
+class EncoderDrivetrainTest: TeleOpMode(
     CompetitionControls(),
     Constants.Color.RED,
     initRoutine = { parallel {

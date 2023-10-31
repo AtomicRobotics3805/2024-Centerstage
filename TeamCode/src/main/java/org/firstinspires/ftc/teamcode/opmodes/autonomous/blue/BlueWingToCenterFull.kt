@@ -17,7 +17,7 @@ import org.firstinspires.ftc.teamcode.routines.WingRoutines
 import org.firstinspires.ftc.teamcode.trajectoryFactory.CompetitionTrajectoryFactory
 
 @Autonomous(name = "Blue Wing to Center Park Two Pixels", group = "Blue Wing")
-class BlueWingToCenterFull : AutonomousOpMode(
+class BlueWingToCenterFull: AutonomousOpMode(
     Constants.Color.BLUE,
     CompetitionTrajectoryFactory,
     { WingRoutines.wingFullPathAndPark },

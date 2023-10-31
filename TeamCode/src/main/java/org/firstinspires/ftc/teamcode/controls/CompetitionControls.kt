@@ -3,19 +3,19 @@ package org.firstinspires.ftc.teamcode.controls
 import org.atomicrobotics3805.cflib.CommandScheduler
 import org.atomicrobotics3805.cflib.Constants
 import org.atomicrobotics3805.cflib.controls.Controls
-import org.atomicrobotics3805.cflib.driving.DriverControlled
 import org.atomicrobotics3805.cflib.parallel
 import org.atomicrobotics3805.cflib.sequential
-import org.atomicrobotics3805.cflib.utilCommands.Delay
+import org.firstinspires.ftc.teamcode.drive.CompetitionDriveConstants
 import org.firstinspires.ftc.teamcode.mechanisms.Arm
 import org.firstinspires.ftc.teamcode.mechanisms.Claw
 import org.firstinspires.ftc.teamcode.mechanisms.Drone
 import org.firstinspires.ftc.teamcode.mechanisms.Intake
 import org.firstinspires.ftc.teamcode.mechanisms.Lift
+import org.firstinspires.ftc.teamcode.utility.DriverControlled
 
-class CompetitionControls : Controls() {
+class CompetitionControls: Controls() {
     override fun registerCommands() {
-        CommandScheduler.scheduleCommand(org.firstinspires.ftc.teamcode.utility.DriverControlled(Constants.opMode.gamepad1, pov = org.firstinspires.ftc.teamcode.utility.DriverControlled.POV.FIELD_CENTRIC, reverseStrafe = CompetitionDriveConstants.REVERSE_STRAFE, reverseStraight = CompetitionDriveConstants.REVERSE_STRAIGHT, reverseTurn = CompetitionDriveConstants.REVERSE_TURN))
+        CommandScheduler.scheduleCommand(DriverControlled(Constants.opMode.gamepad1, pov = DriverControlled.POV.FIELD_CENTRIC, reverseStrafe = CompetitionDriveConstants.REVERSE_STRAFE, reverseStraight = CompetitionDriveConstants.REVERSE_STRAIGHT, reverseTurn = CompetitionDriveConstants.REVERSE_TURN))
 
         gamepad2.rightTrigger.pressedCommand = { parallel {
             +Claw.intake

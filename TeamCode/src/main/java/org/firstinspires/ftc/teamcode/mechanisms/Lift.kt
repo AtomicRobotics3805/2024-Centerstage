@@ -10,7 +10,7 @@ import org.atomicrobotics3805.cflib.subsystems.PowerMotor
 import org.atomicrobotics3805.cflib.subsystems.Subsystem
 
 @Config
-object Lift : Subsystem {
+object Lift: Subsystem {
     @JvmField
     var NAME = "lift"
 

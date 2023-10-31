@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.mechanisms.PropProcessor
 import org.firstinspires.ftc.teamcode.trajectoryFactory.CompetitionTrajectoryFactory
 
 object WingRoutines {
-    val wingFullPathAndPark : Command
+    val wingFullPathAndPark: Command
         get() = sequential {
             +OptionCommand("Different signature",
                 { DetectionMechanism.selectedPosition },
@@ -23,7 +23,7 @@ object WingRoutines {
                 Pair(PropProcessor.Selected.RIGHT, wingRightRoutine))
         }
 
-    val wingLeftRoutine : Command
+    val wingLeftRoutine: Command
         get() = sequential {
             +OptionCommand("Different signature", { Constants.color },
                 Pair(
@@ -66,7 +66,7 @@ object WingRoutines {
             )
         }
 
-    val wingCenterRoutine : Command
+    val wingCenterRoutine: Command
         get() = sequential {
             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingStartToCenterSpikeTape)
             +Intake.slowEject
@@ -84,7 +84,7 @@ object WingRoutines {
             }
         }
 
-    val wingRightRoutine : Command
+    val wingRightRoutine: Command
         get() = sequential {
             +OptionCommand("Different signature", { Constants.color },
                 Pair(

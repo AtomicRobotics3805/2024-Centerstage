@@ -18,7 +18,7 @@ import org.firstinspires.ftc.teamcode.mechanisms.Lift
 import org.firstinspires.ftc.teamcode.routines.SharedRoutines
 
 @TeleOp(name = "Competition TeleOp v1")
-class CompetitionTeleOp : TeleOpMode(
+class CompetitionTeleOp: TeleOpMode(
     CompetitionControls(),
     Constants.Color.UNKNOWN,
     null,

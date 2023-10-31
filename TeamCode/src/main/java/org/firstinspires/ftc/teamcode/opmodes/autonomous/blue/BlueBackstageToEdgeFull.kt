@@ -17,7 +17,7 @@ import org.firstinspires.ftc.teamcode.routines.SharedRoutines
 import org.firstinspires.ftc.teamcode.trajectoryFactory.CompetitionTrajectoryFactory
 
 @Autonomous(name = "Blue Backstage to Edge Park Two Pixels", group = "Blue Backstage")
-class BlueBackstageToEdgeFull : AutonomousOpMode(
+class BlueBackstageToEdgeFull: AutonomousOpMode(
     Constants.Color.BLUE,
     CompetitionTrajectoryFactory,
     { BackstageRoutines.backstageFullPathAndPark },

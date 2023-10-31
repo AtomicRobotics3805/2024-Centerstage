@@ -58,17 +58,17 @@ object CompetitionTrajectoryFactory: TrajectoryFactory() {
     lateinit var backstageBackSpikeTapeToScore: ParallelTrajectory
 
     // GENERAL TRAJECTORIES
-    lateinit var scoreInnerToParkCenter : ParallelTrajectory
-    lateinit var scoreCenterToParkCenter : ParallelTrajectory
-    lateinit var scoreOuterToParkCenter : ParallelTrajectory
+    lateinit var scoreInnerToParkCenter: ParallelTrajectory
+    lateinit var scoreCenterToParkCenter: ParallelTrajectory
+    lateinit var scoreOuterToParkCenter: ParallelTrajectory
 
-    lateinit var scoreInnerToParkEdge : ParallelTrajectory
-    lateinit var scoreCenterToParkEdge : ParallelTrajectory
-    lateinit var scoreOuterToParkEdge : ParallelTrajectory
+    lateinit var scoreInnerToParkEdge: ParallelTrajectory
+    lateinit var scoreCenterToParkEdge: ParallelTrajectory
+    lateinit var scoreOuterToParkEdge: ParallelTrajectory
 
     // BACKUP TRAJECTORIES
-    lateinit var backstageStartToParkCenter : ParallelTrajectory
-    lateinit var backstageStartToParkEdge : ParallelTrajectory
+    lateinit var backstageStartToParkCenter: ParallelTrajectory
+    lateinit var backstageStartToParkEdge: ParallelTrajectory
     lateinit var wingStartToParkCenter: ParallelTrajectory
     lateinit var wingStartToParkEdge: ParallelTrajectory
 

@@ -11,7 +11,7 @@ import org.atomicrobotics3805.cflib.subsystems.PowerMotor
 import org.atomicrobotics3805.cflib.subsystems.Subsystem
 import org.atomicrobotics3805.cflib.utilCommands.Delay
 
-object Intake : Subsystem {
+object Intake: Subsystem {
     @JvmField
     var  NAME = "intake"
 
@@ -29,9 +29,9 @@ object Intake : Subsystem {
 
     val MOTOR = MotorEx(NAME, MotorEx.MotorType.ANDYMARK_NEVEREST, 3.7, DIRECTION)
 
-    val start : Command
+    val start: Command
         get() = PowerMotor(MOTOR, SPEED, requirements = listOf(this@Intake), logData = true)
-    val stop : Command
+    val stop: Command
         get() = PowerMotor(MOTOR, 0.0, requirements = listOf(this@Intake), logData = true)
     val reverse: Command
         get() = PowerMotor(MOTOR, -SPEED, requirements = listOf(this@Intake), logData = true)

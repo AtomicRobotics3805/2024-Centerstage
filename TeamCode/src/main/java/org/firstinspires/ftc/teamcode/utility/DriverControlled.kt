@@ -17,7 +17,7 @@ class DriverControlled(
     private val reverseTurn: Boolean = true,
     private val lowMultiplier: Double = 0.65,
     private val highMultiplier: Double = 1.0
-) : Command() {
+): Command() {
 
     enum class POV {
         ROBOT_CENTRIC,

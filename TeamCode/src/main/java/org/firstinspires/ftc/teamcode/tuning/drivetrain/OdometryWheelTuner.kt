@@ -21,7 +21,7 @@ import kotlin.math.PI
 
 @Autonomous(group = "tuning")
 @Config
-class OdometryWheelTuner : AutonomousOpMode(
+class OdometryWheelTuner: AutonomousOpMode(
     Constants.Color.UNKNOWN,
     EmptyTrajectoryFactory,
     { TuneWheels() },
@@ -89,4 +89,4 @@ class OdometryWheelTuner : AutonomousOpMode(
     }
 }
 
-object EmptyTrajectoryFactory : TrajectoryFactory()
+object EmptyTrajectoryFactory: TrajectoryFactory()

@@ -40,7 +40,7 @@ import java.util.*
 */
 @Config
 @Autonomous(group = "tuning")
-class ManualFeedforwardTuner : LinearOpMode() {
+class ManualFeedforwardTuner: LinearOpMode() {
 
     enum class Mode {
         DRIVER_MODE, TUNING_MODE

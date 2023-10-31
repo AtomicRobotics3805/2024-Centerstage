@@ -21,7 +21,7 @@ import org.firstinspires.ftc.teamcode.localizers.CompetitionOdometryConstants
  * This is an example of a more complex path to really test the tuning.
  */
 @Autonomous(group = "tuning")
-class SplineTest : LinearOpMode() {
+class SplineTest: LinearOpMode() {
     @Throws(InterruptedException::class)
     override fun runOpMode() {
         Constants.opMode = this

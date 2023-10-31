@@ -16,14 +16,14 @@ import org.opencv.core.Mat
 import org.opencv.core.Rect
 import org.opencv.imgproc.Imgproc
 
-object DetectionMechanism : Subsystem {
+object DetectionMechanism: Subsystem {
     var visionPortal: VisionPortal? = null
 
     var selectedPosition: PropProcessor.Selected = PropProcessor.Selected.NONE
 
     lateinit var propProcessor: PropProcessor
 
-    class DetectCommand : Command() {
+    class DetectCommand: Command() {
         override val _isDone: Boolean
             get() = Constants.opMode.isStarted
         override fun start() {
@@ -57,16 +57,16 @@ object DetectionMechanism : Subsystem {
     }
 }
 
-class PropProcessor : VisionProcessor {
+class PropProcessor: VisionProcessor {
     var rectLeft = Rect(20, 210, 80, 80)
     var rectMiddle = Rect(280, 160, 80, 80)
     var rectRight = Rect(540, 210, 80, 80)
     var selection = Selected.NONE
     var submat = Mat()
     var hsvMat = Mat()
-    var satRectLeft : Double = 0.0
-    var satRectMiddle : Double = 0.0
-    var satRectRight : Double = 0.0
+    var satRectLeft: Double = 0.0
+    var satRectMiddle: Double = 0.0
+    var satRectRight: Double = 0.0
     override fun init(width: Int, height: Int, calibration: CameraCalibration) {}
     override fun processFrame(frame: Mat, captureTimeNanos: Long): Any {
         Imgproc.cvtColor(frame, hsvMat, Imgproc.COLOR_RGB2HSV)
@@ -145,16 +145,16 @@ class PropProcessor : VisionProcessor {
     enum class Selected {
         NONE, LEFT, MIDDLE, RIGHT
     }
-//    public fun getSelection () : Selected {
+//    public fun getSelection (): Selected {
 //        return selection
 //    }
-//    public fun getSatRectLeft () : Double {
+//    public fun getSatRectLeft (): Double {
 //        return satRectLeft
 //    }
-//    public fun getSatRectMiddle () : Double {
+//    public fun getSatRectMiddle (): Double {
 //        return satRectMiddle
 //    }
-//    public fun getSatRectRight () : Double {
+//    public fun getSatRectRight (): Double {
 //        return satRectRight
 //    }
 }

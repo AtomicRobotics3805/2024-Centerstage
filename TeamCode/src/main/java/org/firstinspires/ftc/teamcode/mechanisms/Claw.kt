@@ -31,7 +31,7 @@ import org.atomicrobotics3805.cflib.subsystems.Subsystem
  */
 @Config
 @Suppress("PropertyName", "MemberVisibilityCanBePrivate", "unused")
-object Claw : Subsystem {
+object Claw: Subsystem {
     var NAME = "claw"
     var INTAKE_POSITION = 0.1
     var CLOSE_POSITION = 0.0

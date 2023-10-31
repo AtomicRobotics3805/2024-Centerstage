@@ -19,7 +19,7 @@ import org.firstinspires.ftc.teamcode.localizers.CompetitionOdometryConstants
  */
 @Config
 @Autonomous(group = "tuning")
-class TurnTest : LinearOpMode() {
+class TurnTest: LinearOpMode() {
     @Throws(InterruptedException::class)
     override fun runOpMode() {
         Constants.opMode = this

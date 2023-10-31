@@ -29,7 +29,7 @@ import org.firstinspires.ftc.teamcode.localizers.CompetitionOdometryConstants
  */
 @Config
 @Autonomous(group = "tuning")
-class FollowerPIDTuner : LinearOpMode() {
+class FollowerPIDTuner: LinearOpMode() {
 
     private var startPose = Pose2d(-DISTANCE / 2, -DISTANCE / 2, 0.0)
     private val followTrajectories: Command

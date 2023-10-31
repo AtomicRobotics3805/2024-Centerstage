@@ -45,7 +45,7 @@ import org.firstinspires.ftc.teamcode.localizers.CompetitionOdometryConstants
  */
 @Config
 @Autonomous(group = "tuning")
-class DriveVelocityPIDTuner : LinearOpMode() {
+class DriveVelocityPIDTuner: LinearOpMode() {
     enum class Mode {
         DRIVER_MODE, TUNING_MODE
     }

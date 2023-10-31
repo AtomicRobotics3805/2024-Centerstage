@@ -18,7 +18,7 @@ import org.firstinspires.ftc.teamcode.localizers.CompetitionOdometryConstants
 import org.firstinspires.ftc.teamcode.controls.CompetitionControls
 
 @TeleOp(name = "Encoder Test")
-class EncoderTestTeleOpMode : TeleOpMode(
+class EncoderTestTeleOpMode: TeleOpMode(
     CompetitionControls(),
     Constants.Color.RED,
     mainRoutine = { parallel {
@@ -31,7 +31,7 @@ class EncoderTestTeleOpMode : TeleOpMode(
     ) { Pose2d(0.0, 0.0, 0.0.rad) },
     subsystems = arrayOf()
 )
-class DisplayEncoderCount : Command() {
+class DisplayEncoderCount: Command() {
     private lateinit var parallelEncoder: Encoder
     private lateinit var perpendicularEncoder: Encoder
     override val _isDone: Boolean
