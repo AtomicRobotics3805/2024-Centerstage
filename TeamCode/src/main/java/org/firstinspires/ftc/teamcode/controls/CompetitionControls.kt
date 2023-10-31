@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.mechanisms.Lift
 
 class CompetitionControls : Controls() {
     override fun registerCommands() {
-        CommandScheduler.scheduleCommand(DriverControlled(Constants.opMode.gamepad1))
+        CommandScheduler.scheduleCommand(org.firstinspires.ftc.teamcode.utility.DriverControlled(Constants.opMode.gamepad1, pov = org.firstinspires.ftc.teamcode.utility.DriverControlled.POV.FIELD_CENTRIC, reverseStrafe = CompetitionDriveConstants.REVERSE_STRAFE, reverseStraight = CompetitionDriveConstants.REVERSE_STRAIGHT, reverseTurn = CompetitionDriveConstants.REVERSE_TURN))
 
         gamepad2.rightTrigger.pressedCommand = { parallel {
             +Claw.intake
@@ -45,7 +45,6 @@ class CompetitionControls : Controls() {
                 +Arm.close
                 +Lift.toIntake
             }
-            +Delay(1.0)
             +Claw.close
         } }
 
