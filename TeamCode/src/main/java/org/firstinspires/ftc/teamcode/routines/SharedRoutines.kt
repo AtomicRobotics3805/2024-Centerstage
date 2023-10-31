@@ -9,6 +9,7 @@ import org.atomicrobotics3805.cflib.utilCommands.OptionCommand
 import org.firstinspires.ftc.teamcode.mechanisms.Arm
 import org.firstinspires.ftc.teamcode.mechanisms.Claw
 import org.firstinspires.ftc.teamcode.mechanisms.DetectionMechanism
+import org.firstinspires.ftc.teamcode.mechanisms.Drone
 import org.firstinspires.ftc.teamcode.mechanisms.Intake
 import org.firstinspires.ftc.teamcode.mechanisms.Lift
 import org.firstinspires.ftc.teamcode.trajectoryFactory.CompetitionTrajectoryFactory
@@ -21,16 +22,16 @@ object SharedRoutines {
         NONE
     }
 
-    var parkTarget : ParkTarget = ParkTarget.NONE
+    var parkTarget: ParkTarget = ParkTarget.NONE
 
     // Set the park target; will get triggered by the gamepad in initialization of auton (?), either way minimizes the # of routines
-    val setParkTargetCenter : Command
+    val setParkTargetCenter: Command
         get() = CustomCommand(_start = { parkTarget = ParkTarget.CENTER })
-    val setParkTargetEdge : Command
+    val setParkTargetEdge: Command
         get() = CustomCommand(_start = { parkTarget = ParkTarget.EDGE })
 
 
-    val initRoutineEdgePark : Command
+    val initRoutineEdgePark: Command
         get() = parallel {
             +DetectionMechanism.DetectCommand()
             +Arm.close
@@ -38,7 +39,7 @@ object SharedRoutines {
             +setParkTargetEdge
         }
 
-    val initRoutineCenterPark : Command
+    val initRoutineCenterPark: Command
         get() = parallel {
             +DetectionMechanism.DetectCommand()
             +Arm.close
@@ -46,21 +47,28 @@ object SharedRoutines {
             +setParkTargetCenter
         }
 
-    val scoreInnerToPark : Command
+    val teleopInitRoutine: Command
+        get() = parallel {
+            +Claw.close
+            +Arm.close
+            +Drone.reset
+        }
+
+    val scoreInnerToPark: Command
         get() = sequential {
             +OptionCommand("Different signature", { parkTarget },
                 Pair(ParkTarget.EDGE, Constants.drive.followTrajectory(CompetitionTrajectoryFactory.scoreInnerToParkEdge)),
                 Pair(ParkTarget.CENTER, Constants.drive.followTrajectory((CompetitionTrajectoryFactory.scoreInnerToParkCenter))))
         }
     
-    val scoreCenterToPark : Command
+    val scoreCenterToPark: Command
         get() = sequential {
             +OptionCommand("Different signature", { parkTarget },
                 Pair(ParkTarget.EDGE, Constants.drive.followTrajectory(CompetitionTrajectoryFactory.scoreCenterToParkEdge)),
                 Pair(ParkTarget.CENTER, Constants.drive.followTrajectory((CompetitionTrajectoryFactory.scoreCenterToParkCenter))))
         }
 
-    val scoreOuterToPark : Command
+    val scoreOuterToPark: Command
         get() = sequential {
             +OptionCommand("Different signature", { parkTarget },
                 Pair(ParkTarget.EDGE, Constants.drive.followTrajectory(CompetitionTrajectoryFactory.scoreOuterToParkEdge)),

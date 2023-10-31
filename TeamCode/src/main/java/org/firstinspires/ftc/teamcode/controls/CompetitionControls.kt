@@ -9,6 +9,7 @@ import org.atomicrobotics3805.cflib.sequential
 import org.atomicrobotics3805.cflib.utilCommands.Delay
 import org.firstinspires.ftc.teamcode.mechanisms.Arm
 import org.firstinspires.ftc.teamcode.mechanisms.Claw
+import org.firstinspires.ftc.teamcode.mechanisms.Drone
 import org.firstinspires.ftc.teamcode.mechanisms.Intake
 import org.firstinspires.ftc.teamcode.mechanisms.Lift
 
@@ -60,5 +61,8 @@ class CompetitionControls : Controls() {
         gamepad2.y.pressedCommand = { Arm.open }
         gamepad2.b.pressedCommand = { Arm.close }
         gamepad1.x.pressedCommand = { Constants.drive.switchSpeed() }
+        gamepad2.dpadRight.pressedCommand = { Drone.prime }
+        gamepad2.dpadRight.releasedCommand = { Drone.unPrime }
+        gamepad2.rightBumper.pressedCommand = { Drone.launch }
     }
 }

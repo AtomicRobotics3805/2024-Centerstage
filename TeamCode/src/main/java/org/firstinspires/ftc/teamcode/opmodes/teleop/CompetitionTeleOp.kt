@@ -12,8 +12,10 @@ import org.firstinspires.ftc.teamcode.drive.CompetitionDriveConstants
 import org.firstinspires.ftc.teamcode.localizers.CompetitionOdometryConstants
 import org.firstinspires.ftc.teamcode.mechanisms.Arm
 import org.firstinspires.ftc.teamcode.mechanisms.Claw
+import org.firstinspires.ftc.teamcode.mechanisms.Drone
 import org.firstinspires.ftc.teamcode.mechanisms.Intake
 import org.firstinspires.ftc.teamcode.mechanisms.Lift
+import org.firstinspires.ftc.teamcode.routines.SharedRoutines
 
 @TeleOp(name = "Competition TeleOp v1")
 class CompetitionTeleOp : TeleOpMode(
@@ -24,7 +26,7 @@ class CompetitionTeleOp : TeleOpMode(
         +TelemetryCommand(1000.0, { Constants.drive.poseEstimate.heading.toString() })
 
     }},
-    null,
+    { SharedRoutines.teleopInitRoutine },
     MecanumDrive(
         CompetitionDriveConstants,
         TwoWheelOdometryLocalizer(CompetitionOdometryConstants)
@@ -32,5 +34,6 @@ class CompetitionTeleOp : TeleOpMode(
     Intake,
     Lift,
     Arm,
-    Claw
+    Claw,
+    Drone
 )
