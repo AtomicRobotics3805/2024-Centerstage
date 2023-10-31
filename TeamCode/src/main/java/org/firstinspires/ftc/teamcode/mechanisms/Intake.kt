@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.mechanisms
 
 import com.qualcomm.robotcore.hardware.DcMotor
 import com.qualcomm.robotcore.hardware.DcMotorSimple
+import com.qualcomm.robotcore.util.RobotLog
 import org.atomicrobotics3805.cflib.Command
 import org.atomicrobotics3805.cflib.hardware.MotorEx
 import org.atomicrobotics3805.cflib.subsystems.PowerMotor
@@ -12,13 +13,13 @@ object Intake : Subsystem {
     var  NAME = "intake"
 
     @JvmField
-    var DIRECTION = DcMotorSimple.Direction.REVERSE
+    var DIRECTION = DcMotorSimple.Direction.FORWARD
 
     @JvmField
     var SPEED = 0.8
 
     @JvmField
-    var EJECTION_SPEED = 0.1
+    var EJECTION_SPEED = 0.8
 
     val MOTOR = MotorEx(NAME, MotorEx.MotorType.ANDYMARK_NEVEREST, 3.7, DIRECTION)
 
@@ -36,3 +37,4 @@ object Intake : Subsystem {
         MOTOR.mode = DcMotor.RunMode.RUN_WITHOUT_ENCODER
     }
 }
+

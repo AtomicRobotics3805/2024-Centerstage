@@ -17,7 +17,7 @@ object CompetitionDriveConstants: MecanumDriveConstants {
     @JvmField
     var _DRIFT_TURN_MULTIPLIER = 1.0
     @JvmField
-    var _DRIVER_SPEEDS = listOf(1.0, 0.5, 0.2)
+    var _DRIVER_SPEEDS = listOf(1.0, 0.5)
     @JvmField
     var _GEAR_RATIO = 1.0
     @JvmField

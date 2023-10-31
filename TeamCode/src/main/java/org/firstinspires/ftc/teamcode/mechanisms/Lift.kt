@@ -19,16 +19,14 @@ object Lift : Subsystem {
     var NAME = "lift"
 
     @JvmField
-    var BOTTOM_POSITION = 0.0 // in
-    var MIDDLE_POSITION = 10.0 // in
-    var HIGH_POSITION = 20.0 // in
+    var BOTTOM_POSITION = 0.5 // in
+    var MIDDLE_POSITION = 12.0 // in
+    var HIGH_POSITION = 25.0 // in
 
     @JvmField
     var DIRECTION = DcMotorSimple.Direction.FORWARD
     @JvmField
-    var SPEED = 0.5
-
-    var MANUAL_CONTROL = false
+    var SPEED = 1.0
 
     val MOTOR = MotorEx(NAME, MotorEx.MotorType.GOBILDA_YELLOWJACKET, 19.2, DIRECTION)
 
@@ -44,21 +42,11 @@ object Lift : Subsystem {
         get() = MotorToPosition(MOTOR, (HIGH_POSITION * COUNTS_PER_INCH).toInt(), SPEED, requirements = listOf(this@Lift))
 
     val raise: Command
-        get() = OptionCommand("Different signature", { MANUAL_CONTROL }, Pair(true, PowerMotor(MOTOR, SPEED)))
+        get() = PowerMotor(MOTOR, SPEED)
     val lower: Command
-        get() = OptionCommand("Different signature", { MANUAL_CONTROL }, Pair(true, PowerMotor(MOTOR, -SPEED)))
+        get() = PowerMotor(MOTOR, -SPEED)
     val stop: Command
         get() = PowerMotor(MOTOR, 0.0)
-
-    val dpadLeft: Command
-        get() = OptionCommand("Different signature", { MANUAL_CONTROL }, Pair(false, toMiddle))
-    val dpadUp: Command
-        get() = OptionCommand("Different signature", { MANUAL_CONTROL }, Pair(true, raise), Pair(false, toHigh))
-
-    val manualControl: Command
-        get() = CustomCommand(_start = { MANUAL_CONTROL = true })
-    val automaticControl: Command
-        get() = CustomCommand(_start = { MANUAL_CONTROL = false })
 
     override fun initialize() {
         MOTOR.initialize()

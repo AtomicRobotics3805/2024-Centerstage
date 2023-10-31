@@ -32,15 +32,18 @@ class EncoderTestTeleOpMode : TeleOpMode(
     subsystems = arrayOf()
 )
 class DisplayEncoderCount : Command() {
-    private lateinit var encoder: Encoder
+    private lateinit var parallelEncoder: Encoder
+    private lateinit var perpendicularEncoder: Encoder
     override val _isDone: Boolean
         get() = false
 
     override fun start() {
-        encoder = Encoder(Constants.opMode.hardwareMap.get(DcMotorEx::class.java, CompetitionOdometryConstants.PARALLEL_NAME))
+        parallelEncoder = Encoder(Constants.opMode.hardwareMap.get(DcMotorEx::class.java, CompetitionOdometryConstants.PARALLEL_NAME))
+        perpendicularEncoder = Encoder(Constants.opMode.hardwareMap.get(DcMotorEx::class.java, CompetitionOdometryConstants.PERPENDICULAR_NAME))
     }
 
     override fun execute() {
-        TelemetryController.telemetry.addData("Encoder Count", encoder.currentPosition)
+        TelemetryController.telemetry.addData("Parallel Encoder Count", parallelEncoder.currentPosition)
+        TelemetryController.telemetry.addData("Perpendicular Encoder Count", perpendicularEncoder.currentPosition)
     }
 }
