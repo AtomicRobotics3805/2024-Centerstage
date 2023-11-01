@@ -54,6 +54,7 @@ class CompetitionControls: Controls() {
 //        gamepad2.leftTrigger.releasedCommand = { Lift.automaticControl }
         gamepad2.dpadUp.pressedCommand = { Lift.toHigh }
         gamepad2.dpadLeft.pressedCommand = { Lift.toLow }
+        gamepad2.dpadRight.pressedCommand = { Lift.toHang}
 
         gamepad2.leftBumper.pressedCommand = { Claw.intake }
         gamepad1.a.pressedCommand = { Claw.drop }
@@ -61,8 +62,8 @@ class CompetitionControls: Controls() {
         gamepad2.y.pressedCommand = { Arm.open }
         gamepad2.b.pressedCommand = { Arm.close }
         gamepad1.x.pressedCommand = { Constants.drive.switchSpeed() }
-        gamepad2.dpadRight.pressedCommand = { Drone.prime }
-        gamepad2.dpadRight.releasedCommand = { Drone.unPrime }
+        gamepad2.leftStick.button.pressedCommand = { Drone.prime }
+        gamepad2.leftStick.button.releasedCommand = { Drone.unPrime }
         gamepad2.rightBumper.pressedCommand = { Drone.launch }
     }
 }

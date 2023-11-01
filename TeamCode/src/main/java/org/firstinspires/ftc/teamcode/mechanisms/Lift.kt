@@ -17,6 +17,7 @@ object Lift: Subsystem {
     @JvmField
     var INTAKE_POSITION = 0.5 // in
     var LOW_POSITION = 12.0 // in
+    var HANG_POSITION = 18.0 // in
     var HIGH_POSITION = 25.0 // in
 
     @JvmField
@@ -34,6 +35,8 @@ object Lift: Subsystem {
         get() = MotorToPosition(MOTOR, (INTAKE_POSITION * COUNTS_PER_INCH).toInt(), SPEED, requirements = listOf(this@Lift))
     val toLow: Command
         get() = MotorToPosition(MOTOR, (LOW_POSITION * COUNTS_PER_INCH).toInt(), SPEED, requirements = listOf(this@Lift))
+    val toHang: Command
+        get() = MotorToPosition(MOTOR, (HANG_POSITION * COUNTS_PER_INCH).toInt(), SPEED, requirements = listOf(this@Lift))
     val toHigh: Command
         get() = MotorToPosition(MOTOR, (HIGH_POSITION * COUNTS_PER_INCH).toInt(), SPEED, requirements = listOf(this@Lift))
 
