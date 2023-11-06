@@ -33,9 +33,9 @@ import org.atomicrobotics3805.cflib.subsystems.Subsystem
 @Suppress("PropertyName", "MemberVisibilityCanBePrivate", "unused")
 object Claw: Subsystem {
     var NAME = "claw"
-    var INTAKE_POSITION = 0.1
+    var INTAKE_POSITION = 0.12
     var CLOSE_POSITION = 0.0
-    var DROP_POSITION = 0.05
+    var DROP_POSITION = 0.065
     var TIME = 1.0
     val clawServo = ServoEx(NAME)
     override fun initialize() {

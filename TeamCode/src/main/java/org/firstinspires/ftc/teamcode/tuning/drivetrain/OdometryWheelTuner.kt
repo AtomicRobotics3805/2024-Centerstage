@@ -12,6 +12,7 @@ import org.atomicrobotics3805.cflib.driving.localizers.TwoWheelOdometryLocalizer
 import org.atomicrobotics3805.cflib.opmodes.AutonomousOpMode
 import org.atomicrobotics3805.cflib.utilCommands.TelemetryCommand
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous
+import com.qualcomm.robotcore.eventloop.opmode.Disabled
 import com.qualcomm.robotcore.util.ElapsedTime
 import org.atomicrobotics3805.cflib.*
 import org.atomicrobotics3805.cflib.trajectories.TrajectoryFactory
@@ -21,6 +22,7 @@ import kotlin.math.PI
 
 @Autonomous(group = "tuning")
 @Config
+@Disabled
 class OdometryWheelTuner: AutonomousOpMode(
     Constants.Color.UNKNOWN,
     EmptyTrajectoryFactory,

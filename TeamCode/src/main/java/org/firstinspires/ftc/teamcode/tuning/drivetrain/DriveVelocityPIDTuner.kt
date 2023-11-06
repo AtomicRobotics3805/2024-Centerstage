@@ -14,6 +14,7 @@ import org.atomicrobotics3805.cflib.driving.MecanumDriveConstants
 import org.atomicrobotics3805.cflib.driving.drivers.MecanumDrive
 import org.atomicrobotics3805.cflib.driving.localizers.TwoWheelOdometryLocalizer
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous
+import com.qualcomm.robotcore.eventloop.opmode.Disabled
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode
 import com.qualcomm.robotcore.hardware.DcMotor
 import org.firstinspires.ftc.teamcode.drive.CompetitionDriveConstants
@@ -45,6 +46,7 @@ import org.firstinspires.ftc.teamcode.localizers.CompetitionOdometryConstants
  */
 @Config
 @Autonomous(group = "tuning")
+@Disabled
 class DriveVelocityPIDTuner: LinearOpMode() {
     enum class Mode {
         DRIVER_MODE, TUNING_MODE

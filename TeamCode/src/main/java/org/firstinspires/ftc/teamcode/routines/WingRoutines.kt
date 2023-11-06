@@ -4,6 +4,7 @@ import org.atomicrobotics3805.cflib.Command
 import org.atomicrobotics3805.cflib.Constants
 import org.atomicrobotics3805.cflib.parallel
 import org.atomicrobotics3805.cflib.sequential
+import org.atomicrobotics3805.cflib.utilCommands.Delay
 import org.atomicrobotics3805.cflib.utilCommands.OptionCommand
 import org.firstinspires.ftc.teamcode.mechanisms.Arm
 import org.firstinspires.ftc.teamcode.mechanisms.Claw
@@ -33,16 +34,19 @@ object WingRoutines {
                         +Intake.slowEject
                         +parallel {
                             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingBackSpikeTapeToScore)
-                            +Lift.toLow
+                            +sequential {
+                                +Delay(5.0)
+                                +Lift.toLow
+                            }
                             +Arm.open
                         }
-                        +Claw.drop
+                        +Claw.intake
                         +parallel {
                             +SharedRoutines.scoreOuterToPark
                             +Arm.close
-                            +Claw.close
                             +Lift.toIntake
                         }
+                        +Claw.close
                     }
                 ), Pair(
                     Constants.Color.RED,
@@ -51,16 +55,19 @@ object WingRoutines {
                         +Intake.slowEject
                         +parallel {
                             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingFrontSpikeTapeToScore)
-                            +Lift.toLow
+                            +sequential {
+                                +Delay(5.0)
+                                +Lift.toLow
+                            }
                             +Arm.open
                         }
-                        +Claw.drop
+                        +Claw.intake
                         +parallel {
                             +SharedRoutines.scoreInnerToPark
                             +Arm.close
-                            +Claw.close
                             +Lift.toIntake
                         }
+                        +Claw.close
                     }
                 )
             )
@@ -72,16 +79,19 @@ object WingRoutines {
             +Intake.slowEject
             +parallel {
                 +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingCenterSpikeTapeToScore)
-                +Lift.toLow
+                +sequential {
+                    +Delay(5.0)
+                    +Lift.toLow
+                }
                 +Arm.open
             }
-            +Claw.drop
+            +Claw.intake
             +parallel {
                 +SharedRoutines.scoreCenterToPark
                 +Arm.close
-                +Claw.close
                 +Lift.toIntake
             }
+            +Claw.close
         }
 
     val wingRightRoutine: Command
@@ -94,16 +104,19 @@ object WingRoutines {
                         +Intake.slowEject
                         +parallel {
                             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingFrontSpikeTapeToScore)
-                            +Lift.toLow
+                            +sequential {
+                                +Delay(5.0)
+                                +Lift.toLow
+                            }
                             +Arm.open
                         }
-                        +Claw.drop
+                        +Claw.intake
                         +parallel {
                             +SharedRoutines.scoreInnerToPark
                             +Arm.close
-                            +Claw.close
                             +Lift.toIntake
                         }
+                        +Claw.close
                     }
                 ), Pair(Constants.Color.RED,
                     sequential {
@@ -111,16 +124,19 @@ object WingRoutines {
                         +Intake.slowEject
                         +parallel {
                             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingBackSpikeTapeToScore)
-                            +Lift.toLow
+                            +sequential {
+                                +Delay(5.0)
+                                +Lift.toLow
+                            }
                             +Arm.open
                         }
-                        +Claw.drop
+                        +Claw.intake
                         +parallel {
                             +SharedRoutines.scoreOuterToPark
                             +Arm.close
-                            +Claw.close
                             +Lift.toIntake
                         }
+                        +Claw.close
                     })
             )
         }

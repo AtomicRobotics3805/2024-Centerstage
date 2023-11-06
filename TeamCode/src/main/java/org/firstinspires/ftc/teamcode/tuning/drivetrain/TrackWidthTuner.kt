@@ -12,6 +12,7 @@ import org.atomicrobotics3805.cflib.driving.drivers.MecanumDrive
 import org.atomicrobotics3805.cflib.driving.localizers.TwoWheelOdometryLocalizer
 import org.atomicrobotics3805.cflib.trajectories.toRadians
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous
+import com.qualcomm.robotcore.eventloop.opmode.Disabled
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode
 import com.qualcomm.robotcore.util.MovingStatistics
 import org.firstinspires.ftc.robotcore.internal.system.Misc
@@ -30,7 +31,8 @@ import kotlin.math.sqrt
  */
 @Config
 @Autonomous(group = "tuning")
-class TrackWidthTuner: LinearOpMode() {
+@Disabled
+class   TrackWidthTuner: LinearOpMode() {
     @Throws(InterruptedException::class)
     override fun runOpMode() {
         Constants.opMode = this
@@ -56,6 +58,7 @@ class TrackWidthTuner: LinearOpMode() {
             var headingAccumulator = 0.0
             var lastHeading = 0.0
             CommandScheduler.scheduleCommand(drive.turn(ANGLE.toRadians, Turn.TurnType.RELATIVE))
+            CommandScheduler.run()
             while (opModeIsActive() && CommandScheduler.hasCommands()) {
                 val heading: Double = drive.poseEstimate.heading
                 headingAccumulator += norm(heading - lastHeading)

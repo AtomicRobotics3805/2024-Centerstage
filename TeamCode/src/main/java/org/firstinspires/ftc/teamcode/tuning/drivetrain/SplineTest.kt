@@ -13,6 +13,7 @@ import org.atomicrobotics3805.cflib.trajectories.ParallelTrajectory
 import org.atomicrobotics3805.cflib.trajectories.toRadians
 import org.atomicrobotics3805.cflib.utilCommands.Delay
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous
+import com.qualcomm.robotcore.eventloop.opmode.Disabled
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode
 import org.firstinspires.ftc.teamcode.drive.CompetitionDriveConstants
 import org.firstinspires.ftc.teamcode.localizers.CompetitionOdometryConstants
@@ -21,6 +22,7 @@ import org.firstinspires.ftc.teamcode.localizers.CompetitionOdometryConstants
  * This is an example of a more complex path to really test the tuning.
  */
 @Autonomous(group = "tuning")
+@Disabled
 class SplineTest: LinearOpMode() {
     @Throws(InterruptedException::class)
     override fun runOpMode() {

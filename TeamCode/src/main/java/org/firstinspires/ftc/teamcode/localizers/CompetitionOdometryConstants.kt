@@ -15,9 +15,9 @@ object CompetitionOdometryConstants: TwoWheelOdometryConstants {
     var _PERPENDICULAR_Y = 0.7616 // Inches, left offset of the wheel
 
     @JvmField
-    var _PARALLEL_NAME = "LF" // PORT 0
+    var _PARALLEL_NAME = "RF" // PORT 0
     @JvmField
-    var _PERPENDICULAR_NAME = "RB" // PORT 3
+    var _PERPENDICULAR_NAME = "LB" // PORT 3
 
     @JvmField
     var _TICKS_PER_REV = 1440.0 // S4T-360-236-S-B Encoder (360 CPR * 4 to get PPR)
@@ -34,9 +34,9 @@ object CompetitionOdometryConstants: TwoWheelOdometryConstants {
     
     // Tuning variables
     @JvmField
-    var _X_MULTIPLIER = 1.0
+    var _X_MULTIPLIER = 0.9826 // FRONT AND BACK
     @JvmField
-    var _Y_MULTIPLIER = 1.0
+    var _Y_MULTIPLIER = 1.0119 // SIDE TO SIDE
 
     @JvmField
     var _CORRECTED_VELOCITY = false

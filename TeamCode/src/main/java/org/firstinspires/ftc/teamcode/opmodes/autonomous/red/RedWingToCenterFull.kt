@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.routines.SharedRoutines
 import org.firstinspires.ftc.teamcode.routines.WingRoutines
 import org.firstinspires.ftc.teamcode.trajectoryFactory.CompetitionTrajectoryFactory
 
-@Autonomous(name = "Red Wing to Center Park Two Pixels", group = "Red Wing")
+@Autonomous(name = "Red Wing to Center Park Two Pixels", group = "Red Wing", preselectTeleOp="Competition TeleOp v1 - Red")
 class RedWingToCenterFull: AutonomousOpMode(
     Constants.Color.RED,
     CompetitionTrajectoryFactory,
@@ -25,7 +25,7 @@ class RedWingToCenterFull: AutonomousOpMode(
     MecanumDrive(
         CompetitionDriveConstants,
         TwoWheelOdometryLocalizer(CompetitionOdometryConstants)
-    ),
+    ) { CompetitionTrajectoryFactory.wingStartPose },
     Arm,
     Claw,
     Lift,

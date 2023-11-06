@@ -4,6 +4,7 @@ import org.atomicrobotics3805.cflib.Command
 import org.atomicrobotics3805.cflib.Constants
 import org.atomicrobotics3805.cflib.parallel
 import org.atomicrobotics3805.cflib.sequential
+import org.atomicrobotics3805.cflib.utilCommands.Delay
 import org.atomicrobotics3805.cflib.utilCommands.OptionCommand
 import org.firstinspires.ftc.teamcode.mechanisms.Arm
 import org.firstinspires.ftc.teamcode.mechanisms.Claw
@@ -29,40 +30,45 @@ object BackstageRoutines {
                 Pair(
                     Constants.Color.BLUE,
                     sequential {
+                        +Claw.close
                         // Blue side ("left" is on the back side of the field)
                         +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToBackSpikeTape)
                         +Intake.slowEject
                         +parallel {
                             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageBackSpikeTapeToScore)
-                            +Lift.toLow
+                            +Lift.toAuto
                             +Arm.open
                         }
-                        +Claw.drop
+                        +Claw.intake
                         +parallel {
                             +SharedRoutines.scoreOuterToPark
                             +Arm.close
-                            +Claw.close
                             +Lift.toIntake
                         }
+                        +Claw.close
                     }
                 ), Pair(
                     Constants.Color.RED,
                     sequential {
+                        +Claw.close
                         // Red side ("left" is on the front side of the field)
                         +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToFrontSpikeTape)
                         +Intake.slowEject
                         +parallel {
                             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageFrontSpikeTapeToScore)
-                            +Lift.toLow
+                            +sequential {
+                                +Delay(5.0)
+                                +Lift.toAuto
+                            }
                             +Arm.open
                         }
-                        +Claw.drop
+                        +Claw.intake
                         +parallel {
                             +SharedRoutines.scoreInnerToPark
                             +Arm.close
-                            +Claw.close
                             +Lift.toIntake
                         }
+                        +Claw.close
                     }
                 ))
 
@@ -70,20 +76,21 @@ object BackstageRoutines {
 
     val backstageCenterRoutine: Command
         get() = sequential {
+            +Claw.close
             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToCenterSpikeTape)
             +Intake.slowEject
             +parallel {
                 +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageCenterSpikeTapeToScore)
-                +Lift.toLow
+                +Lift.toAuto
                 +Arm.open
             }
-            +Claw.drop
+            +Claw.intake
             +parallel {
                 +SharedRoutines.scoreCenterToPark
                 +Arm.close
-                +Claw.close
                 +Lift.toIntake
             }
+            +Claw.close
         }
 
     val backstageRightRoutine: Command
@@ -92,38 +99,43 @@ object BackstageRoutines {
                 Pair(
                     Constants.Color.BLUE,
                     sequential {
+                        +Claw.close
                         +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToFrontSpikeTape)
                         +Intake.slowEject
                         +parallel {
                             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageFrontSpikeTapeToScore)
-                            +Lift.toLow
+                            +sequential {
+                                +Delay(5.0)
+                                +Lift.toAuto
+                            }
                             +Arm.open
                         }
-                        +Claw.drop
+                        +Claw.intake
                         +parallel {
                             +SharedRoutines.scoreInnerToPark
                             +Arm.close
-                            +Claw.close
                             +Lift.toIntake
                         }
+                        +Claw.close
                     }
                 ), Pair(Constants.Color.RED,
                     sequential {
+                        +Claw.close
                         // Blue side ("left" is on the back side of the field)
                         +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToBackSpikeTape)
                         +Intake.slowEject
                         +parallel {
                             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageBackSpikeTapeToScore)
-                            +Lift.toLow
+                            +Lift.toAuto
                             +Arm.open
                         }
-                        +Claw.drop
+                        +Claw.intake
                         +parallel {
                             +SharedRoutines.scoreOuterToPark
                             +Arm.close
-                            +Claw.close
                             +Lift.toIntake
                         }
+                        +Claw.close
                     })
             )
         }

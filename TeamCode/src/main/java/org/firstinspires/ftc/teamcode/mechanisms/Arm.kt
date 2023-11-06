@@ -33,7 +33,7 @@ import org.atomicrobotics3805.cflib.subsystems.Subsystem
 @Suppress("PropertyName", "MemberVisibilityCanBePrivate", "unused")
 object Arm: Subsystem {
     var NAME = "arm"
-    var OPEN_POSITION = 0.95 // y
+    var OPEN_POSITION = 1.0 // y
     var CLOSE_POSITION = 0.69 // b
     var TIME = 1.0
     val armServo = ServoEx(NAME)

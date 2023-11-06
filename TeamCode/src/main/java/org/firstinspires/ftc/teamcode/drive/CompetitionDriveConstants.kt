@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.drive
 
+import com.acmerobotics.dashboard.config.Config
 import com.acmerobotics.roadrunner.control.PIDCoefficients
 import com.noahbres.meepmeep.core.toRadians
 import com.qualcomm.robotcore.hardware.DcMotorSimple
@@ -9,6 +10,7 @@ import org.atomicrobotics3805.cflib.driving.MecanumDriveConstants
 import org.atomicrobotics3805.cflib.hardware.MotorEx
 import org.atomicrobotics3805.cflib.roadrunner.AxisDirection
 
+@Config
 object CompetitionDriveConstants: MecanumDriveConstants {
 
     @JvmField
@@ -28,33 +30,33 @@ object CompetitionDriveConstants: MecanumDriveConstants {
     @JvmField
     var _LATERAL_MULTIPLIER = 1.0
     @JvmField
-    var _LEFT_BACK_MOTOR = MotorEx("LB", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 19.2, direction = DcMotorSimple.Direction.FORWARD)
+    var _LEFT_BACK_MOTOR = MotorEx("LB", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 19.2, direction = DcMotorSimple.Direction.REVERSE)
     @JvmField
-    var _LEFT_FRONT_MOTOR = MotorEx("LF", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 19.2, direction = DcMotorSimple.Direction.FORWARD)
+    var _LEFT_FRONT_MOTOR = MotorEx("LF", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 19.2, direction = DcMotorSimple.Direction.REVERSE)
     @JvmField
-    var _RIGHT_FRONT_MOTOR = MotorEx("RF", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 19.2, direction = DcMotorSimple.Direction.REVERSE)
+    var _RIGHT_FRONT_MOTOR = MotorEx("RF", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 19.2, direction = DcMotorSimple.Direction.FORWARD)
     @JvmField
-    var _RIGHT_BACK_MOTOR = MotorEx("RB", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 19.2, direction = DcMotorSimple.Direction.REVERSE)
+    var _RIGHT_BACK_MOTOR = MotorEx("RB", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 19.2, direction = DcMotorSimple.Direction.FORWARD)
     @JvmField
-    var _MAX_ACCEL = 30.0
+    var _MAX_ACCEL = 90.0
     @JvmField
-    var _MAX_ANG_ACCEL = 30.0.toRadians()
+    var _MAX_ANG_ACCEL = 90.0.toRadians()
     @JvmField
-    var _MAX_ANG_VEL = 30.0.toRadians()
+    var _MAX_ANG_VEL = 180.0.toRadians()
     @JvmField
     var _MAX_RPM = 312.0
     @JvmField
-    var _MAX_VEL = 30.0
+    var _MAX_VEL = 90.0
     @JvmField
     var _MOTOR_VEL_PID = PIDFCoefficients(0.0, 0.0, 0.0, getMotorVelocityF(MAX_RPM / 60 * TICKS_PER_REV))
     @JvmField
-    var _POV = DriverControlled.POV.ROBOT_CENTRIC
+    var _POV = DriverControlled.POV.FIELD_CENTRIC
     @JvmField
     var _REVERSE_STRAFE = true
     @JvmField
     var _REVERSE_STRAIGHT = true
     @JvmField
-    var _REVERSE_TURN = false
+    var _REVERSE_TURN = true
 
     var _RIGHT_DRIFT_MULTIPLIER = 1.0
     var _BACKWARD_DRIFT_MULTIPLIER = 1.0
@@ -70,11 +72,11 @@ object CompetitionDriveConstants: MecanumDriveConstants {
     var _VERTICAL_AXIS = AxisDirection.POS_Z
 
     @JvmField
-    var _kA = 0.0
+    var _kA = 0.005
     @JvmField
     var _kStatic = 0.0
     @JvmField
-    var _kV = 1.0 / rpmToVelocity(MAX_RPM)
+    var _kV = 0.0185
 
     //region Backend
     override val BACKWARD_DRIFT_MULTIPLIER: Double

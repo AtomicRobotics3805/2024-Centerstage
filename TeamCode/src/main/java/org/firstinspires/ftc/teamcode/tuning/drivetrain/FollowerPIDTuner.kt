@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.tuning.drivetrain
 import com.acmerobotics.dashboard.config.Config
 import com.acmerobotics.roadrunner.geometry.Pose2d
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous
+import com.qualcomm.robotcore.eventloop.opmode.Disabled
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode
 import org.atomicrobotics3805.cflib.*
 import org.atomicrobotics3805.cflib.Constants.drive
@@ -29,6 +30,7 @@ import org.firstinspires.ftc.teamcode.localizers.CompetitionOdometryConstants
  */
 @Config
 @Autonomous(group = "tuning")
+@Disabled
 class FollowerPIDTuner: LinearOpMode() {
 
     private var startPose = Pose2d(-DISTANCE / 2, -DISTANCE / 2, 0.0)

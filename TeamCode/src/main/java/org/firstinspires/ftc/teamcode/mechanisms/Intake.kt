@@ -7,7 +7,7 @@ import org.atomicrobotics3805.cflib.Command
 import org.atomicrobotics3805.cflib.hardware.MotorEx
 import org.atomicrobotics3805.cflib.parallel
 import org.atomicrobotics3805.cflib.sequential
-import org.atomicrobotics3805.cflib.subsystems.PowerMotor
+import org.firstinspires.ftc.teamcode.utility.PowerMotor
 import org.atomicrobotics3805.cflib.subsystems.Subsystem
 import org.atomicrobotics3805.cflib.utilCommands.Delay
 
@@ -19,7 +19,7 @@ object Intake: Subsystem {
     var DIRECTION = DcMotorSimple.Direction.FORWARD
 
     @JvmField
-    var SPEED = 0.8
+    var SPEED = 1.0
 
     @JvmField
     var EJECTION_SPEED = 0.8
@@ -38,12 +38,12 @@ object Intake: Subsystem {
     val eject: Command
         get() = PowerMotor(MOTOR, -EJECTION_SPEED, requirements = listOf(this@Intake), logData = true)
     val slowEject: Command
-        get() = sequential {
-            +parallel {
-                +PowerMotor(MOTOR, -SLOW_EJECT_SPEED, requirements = listOf(this@Intake), logData = true)
-                +Delay(1.0)
+        get() = parallel {
+            +PowerMotor(MOTOR, -SLOW_EJECT_SPEED, requirements = listOf(this@Intake), logData = true)
+            +sequential {
+                +Delay(0.5)
+                +stop
             }
-            +stop
         }
 
     override fun initialize() {

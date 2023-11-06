@@ -5,7 +5,9 @@ import com.qualcomm.robotcore.hardware.Gamepad
 import org.atomicrobotics3805.cflib.Command
 import org.atomicrobotics3805.cflib.Constants.drive
 import org.atomicrobotics3805.cflib.subsystems.Subsystem
+import org.atomicrobotics3805.cflib.utilCommands.CustomCommand
 import kotlin.math.*
+
 
 class DriverControlled(
     private val gamepad: Gamepad,
@@ -18,6 +20,11 @@ class DriverControlled(
     private val lowMultiplier: Double = 0.65,
     private val highMultiplier: Double = 1.0
 ): Command() {
+
+    var rotationOffset = 0.0
+
+    val resetRotation: Command
+            get() = CustomCommand(_start = { rotationOffset = drive.poseEstimate.heading })
 
     enum class POV {
         ROBOT_CENTRIC,
@@ -47,9 +54,9 @@ class DriverControlled(
             rotX = rotX * 1.1;  // Counteract imperfect strafing
             */
 
-            val heading = drive.poseEstimate.heading
-            val rotX = x * cos(heading) + y * sin(heading)
-            val rotY = x * sin(heading) - y * cos(heading)
+            val heading = drive.poseEstimate.heading - rotationOffset
+            val rotX = x * cos(-heading) - y * sin(-heading)
+            val rotY = x * sin(-heading) + y * cos(-heading)
 
 
 

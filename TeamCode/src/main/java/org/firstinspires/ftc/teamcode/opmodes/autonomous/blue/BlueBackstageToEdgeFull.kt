@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.routines.BackstageRoutines
 import org.firstinspires.ftc.teamcode.routines.SharedRoutines
 import org.firstinspires.ftc.teamcode.trajectoryFactory.CompetitionTrajectoryFactory
 
-@Autonomous(name = "Blue Backstage to Edge Park Two Pixels", group = "Blue Backstage")
+@Autonomous(name = "Blue Backstage to Edge Park Two Pixels", group = "Blue Backstage", preselectTeleOp="Competition TeleOp v1 - Blue")
 class BlueBackstageToEdgeFull: AutonomousOpMode(
     Constants.Color.BLUE,
     CompetitionTrajectoryFactory,
@@ -25,7 +25,7 @@ class BlueBackstageToEdgeFull: AutonomousOpMode(
     MecanumDrive(
         CompetitionDriveConstants,
         TwoWheelOdometryLocalizer(CompetitionOdometryConstants)
-    ),
+    ) { CompetitionTrajectoryFactory.backstageStartPose },
     Arm,
     Claw,
     Lift,

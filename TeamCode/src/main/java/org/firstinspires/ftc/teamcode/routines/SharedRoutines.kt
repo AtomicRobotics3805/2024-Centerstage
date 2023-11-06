@@ -47,12 +47,7 @@ object SharedRoutines {
             +setParkTargetCenter
         }
 
-    val teleopInitRoutine: Command
-        get() = parallel {
-            +Claw.close
-            +Arm.close
-            +Drone.reset
-        }
+
 
     val scoreInnerToPark: Command
         get() = sequential {
