@@ -76,9 +76,9 @@ object AdvancedTrajectoryFactory: TrajectoryFactory() {
         parkEdge            = Pose2d(parkX,     60.0.switch,   180.0.rad)
         parkCenter          = Pose2d(parkX,     12.0.switch,   180.0.rad)
     }
-    private fun wingPoses() {
 
-    }
+    private fun wingPoses() { }
+
     private fun backstageTrajectories() {
         backstageStartToTapeFront = d.trajectoryBuilder(startBackstage)
             .forward(20.0)
@@ -101,9 +101,11 @@ object AdvancedTrajectoryFactory: TrajectoryFactory() {
             .splineToSplineHeading(backdropOuter, 0.0.rad)
             .build()
     }
+
     private fun wingTrajectories() {
 
     }
+
     private fun sharedTrajectories() {
         backdropInnerToCenterStack = d.trajectoryBuilder(backdropInner, 180.0.rad)
             .splineToSplineHeading(Pose2d(24.0, 12.0, 180.0.rad), 180.0.rad)
@@ -190,19 +192,19 @@ object AdvancedTrajectoryFactory: TrajectoryFactory() {
             .splineToConstantHeading(parkCenter.vec(), 0.0.rad)
             .build()
     }
-    private fun initializeTrajectories() {
-        backstageTrajectories()
-        wingTrajectories()
-        sharedTrajectories()
-    }
+
     override fun initialize() {
         super.initialize()
         initializePoses()
         initializeTrajectories()
     }
-
     private fun initializePoses() {
         backstagePoses()
         wingPoses()
+    }
+    private fun initializeTrajectories() {
+        backstageTrajectories()
+        wingTrajectories()
+        sharedTrajectories()
     }
 }
