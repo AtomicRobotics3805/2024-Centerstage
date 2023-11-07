@@ -10,6 +10,7 @@ import org.atomicrobotics3805.cflib.trajectories.switchAngle
 import org.atomicrobotics3805.cflib.Constants.drive as d
 
 @Suppress("MemberVisibilityCanBePrivate")
+@Deprecated("Replaced with AdvancedTrajectoryFactory, which contains same and more (no wing yet)")
 object CompetitionTrajectoryFactory: TrajectoryFactory() {
 
     //region ***NEW POSES***
