@@ -45,6 +45,14 @@ object Intake: Subsystem {
                 +stop
             }
         }
+    val intakeStack: Command
+        get() = parallel {
+            +PowerMotor(MOTOR, SPEED, requirements = listOf(this@Intake), logData = true)
+            +sequential {
+                +Delay(1.0)
+                +stop
+            }
+        }
 
     override fun initialize() {
         MOTOR.initialize()

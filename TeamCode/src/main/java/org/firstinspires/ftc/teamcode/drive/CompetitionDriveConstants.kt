@@ -38,9 +38,9 @@ object CompetitionDriveConstants: MecanumDriveConstants {
     @JvmField
     var _RIGHT_BACK_MOTOR = MotorEx("RB", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 19.2, direction = DcMotorSimple.Direction.FORWARD)
     @JvmField
-    var _MAX_ACCEL = 90.0
+    var _MAX_ACCEL = 60.0
     @JvmField
-    var _MAX_ANG_ACCEL = 90.0.toRadians()
+    var _MAX_ANG_ACCEL = 30.0.toRadians()
     @JvmField
     var _MAX_ANG_VEL = 180.0.toRadians()
     @JvmField

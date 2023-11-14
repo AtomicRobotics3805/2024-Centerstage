@@ -19,7 +19,7 @@ class CompetitionControls: Controls() {
     override fun registerCommands() {
         val dc = DriverControlled(Constants.opMode.gamepad1, pov = DriverControlled.POV.FIELD_CENTRIC, reverseStrafe = CompetitionDriveConstants.REVERSE_STRAFE, reverseStraight = CompetitionDriveConstants.REVERSE_STRAIGHT, reverseTurn = CompetitionDriveConstants.REVERSE_TURN)
         CommandScheduler.scheduleCommand(dc)
-        //CommandScheduler.scheduleCommand(org.atomicrobotics3805.cflib.driving.DriverControlled(Constants.opMode.gamepad1))
+        CommandScheduler.scheduleCommand(Lift.ManualControl(gamepad2)) // manual control using gamepad2.rightStick.y
 
         gamepad2.rightTrigger.pressedCommand = { parallel {
             +Claw.intake
@@ -76,37 +76,20 @@ class CompetitionControls: Controls() {
             }
             +Claw.close
         } }
-        /*
-        gamepad1.dpadDown.pressedCommand = { sequential {
-            +parallel {
-                +Claw.intake
-                +Arm.close
-                +sequential {
-                    +Lift.toIntake
-                    +Lift.applyHeight
-                }
-            }
-            +Claw.close
-        } }
-        */
 
-        // Lift automatic and manual controls
-//        gamepad2.leftTrigger.pressedCommand = { Lift.manualControl }
-//        gamepad2.leftTrigger.releasedCommand = { Lift.automaticControl }
         gamepad2.dpadUp.pressedCommand = { parallel {
             +sequential {
                 +Lift.toHigh
-                //+Lift.applyHeight
             }
             +sequential {
                 +Delay(1.0)
                 +Arm.open
             }
         } }
+
         gamepad2.dpadLeft.pressedCommand = { parallel {
             +sequential {
                 +Lift.toLow
-                //+Lift.applyHeight
             }
             +sequential {
                 +Delay(0.5)
@@ -126,9 +109,10 @@ class CompetitionControls: Controls() {
         gamepad2.a.pressedCommand = { Claw.drop }
         gamepad2.y.pressedCommand = { Arm.open }
         gamepad2.b.pressedCommand = { Arm.close }
-        gamepad2.dpadRight.pressedCommand = { Lift.toHang }
+//        gamepad2.dpadRight.pressedCommand = { Lift.toHang }
         gamepad2.leftStick.button.pressedCommand = { Drone.launch }
         gamepad2.rightBumper.pressedCommand = { TeleOpRoutines.ejectRoutine }
         gamepad1.x.pressedCommand = { dc.resetRotation }
+
     }
 }

@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.routines
+package org.firstinspires.ftc.teamcode.routines.old
 
 import org.atomicrobotics3805.cflib.Command
 import org.atomicrobotics3805.cflib.Constants
@@ -9,9 +9,6 @@ import org.atomicrobotics3805.cflib.utilCommands.OptionCommand
 import org.firstinspires.ftc.teamcode.mechanisms.Arm
 import org.firstinspires.ftc.teamcode.mechanisms.Claw
 import org.firstinspires.ftc.teamcode.mechanisms.DetectionMechanism
-import org.firstinspires.ftc.teamcode.mechanisms.Drone
-import org.firstinspires.ftc.teamcode.mechanisms.Intake
-import org.firstinspires.ftc.teamcode.mechanisms.Lift
 import org.firstinspires.ftc.teamcode.trajectoryFactory.CompetitionTrajectoryFactory
 
 object SharedRoutines {

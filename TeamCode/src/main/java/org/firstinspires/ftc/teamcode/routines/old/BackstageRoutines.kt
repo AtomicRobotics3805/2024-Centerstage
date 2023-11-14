@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.routines
+package org.firstinspires.ftc.teamcode.routines.old
 
 import org.atomicrobotics3805.cflib.Command
 import org.atomicrobotics3805.cflib.Constants
@@ -6,6 +6,7 @@ import org.atomicrobotics3805.cflib.parallel
 import org.atomicrobotics3805.cflib.sequential
 import org.atomicrobotics3805.cflib.utilCommands.Delay
 import org.atomicrobotics3805.cflib.utilCommands.OptionCommand
+import org.atomicrobotics3805.cflib.utilCommands.TelemetryCommand
 import org.firstinspires.ftc.teamcode.mechanisms.Arm
 import org.firstinspires.ftc.teamcode.mechanisms.Claw
 import org.firstinspires.ftc.teamcode.mechanisms.DetectionMechanism
@@ -40,6 +41,7 @@ object BackstageRoutines {
                             +Arm.open
                         }
                         +Claw.intake
+                        +TelemetryCommand(3.0, "Waiting 3 seconds")
                         +parallel {
                             +SharedRoutines.scoreOuterToPark
                             +Arm.close

@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.opmodes.autonomous.red
+package org.firstinspires.ftc.teamcode.opmodes.autonomous.advanced.blue
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous
 import org.atomicrobotics3805.cflib.Constants
@@ -12,20 +12,23 @@ import org.firstinspires.ftc.teamcode.mechanisms.Claw
 import org.firstinspires.ftc.teamcode.mechanisms.DetectionMechanism
 import org.firstinspires.ftc.teamcode.mechanisms.Intake
 import org.firstinspires.ftc.teamcode.mechanisms.Lift
-import org.firstinspires.ftc.teamcode.routines.SharedRoutines
-import org.firstinspires.ftc.teamcode.routines.WingRoutines
+import org.firstinspires.ftc.teamcode.routines.advanced.TwoPlusTwoBackstage
+import org.firstinspires.ftc.teamcode.routines.advanced.TwoPlusTwoShared
+import org.firstinspires.ftc.teamcode.routines.old.BackstageRoutines
+import org.firstinspires.ftc.teamcode.routines.old.SharedRoutines
+import org.firstinspires.ftc.teamcode.trajectoryFactory.AdvancedTrajectoryFactory
 import org.firstinspires.ftc.teamcode.trajectoryFactory.CompetitionTrajectoryFactory
 
-@Autonomous(name = "Red Wing to Edge Park Two Pixels", group = "Red Wing", preselectTeleOp="Competition TeleOp v1 - Red")
-class RedWingToEdgeFull: AutonomousOpMode(
-    Constants.Color.RED,
-    CompetitionTrajectoryFactory,
-    { WingRoutines.wingFullPathAndPark },
-    { SharedRoutines.initRoutineEdgePark },
+@Autonomous(name = "2+2 Blue Backstage Center Park", group = "2+2 Blue", preselectTeleOp="Competition TeleOp v1 - Blue")
+class TwoPlusTwoBlueBackstageFarPark : AutonomousOpMode(
+    Constants.Color.BLUE,
+    AdvancedTrajectoryFactory,
+    { TwoPlusTwoBackstage.backstageTwoPlusTwo },
+    { SharedRoutines.initRoutineCenterPark },
     MecanumDrive(
         CompetitionDriveConstants,
         TwoWheelOdometryLocalizer(CompetitionOdometryConstants)
-    ) { CompetitionTrajectoryFactory.wingStartPose },
+    ) { AdvancedTrajectoryFactory.startBackstage },
     Arm,
     Claw,
     Lift,
