@@ -85,12 +85,22 @@ object Lift: Subsystem {
     class ManualControl(val gamepad: GamepadEx): Command() {
         override val _isDone = false
 
+        var justMoved = false
+
         override fun execute() {
             if(gamepad.rightStick.y > 0.2 || gamepad.rightStick.y < -0.2) {
                 setRunMode(DcMotor.RunMode.RUN_USING_ENCODER)
                 manual(SPEED * -gamepad.rightStick.y)
+                justMoved = true
             }
-            else manual(0.0)
+            else {
+                if(justMoved) {
+                    justMoved = false
+                    MOTOR.power = SPEED
+                    MOTOR.mode = DcMotor.RunMode.RUN_TO_POSITION
+                    MOTOR.targetPosition = MOTOR.currentPosition
+                }
+            }
         }
     }
 

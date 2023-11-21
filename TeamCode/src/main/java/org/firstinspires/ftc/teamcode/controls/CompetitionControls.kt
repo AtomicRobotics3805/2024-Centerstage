@@ -106,7 +106,6 @@ class CompetitionControls: Controls() {
         gamepad2.a.pressedCommand = { Claw.drop }
         gamepad2.x.pressedCommand = { Claw.close }
         gamepad2.leftBumper.pressedCommand = { Claw.intake }
-        gamepad2.a.pressedCommand = { Claw.drop }
         gamepad2.y.pressedCommand = { Arm.open }
         gamepad2.b.pressedCommand = { Arm.close }
 //        gamepad2.dpadRight.pressedCommand = { Lift.toHang }
