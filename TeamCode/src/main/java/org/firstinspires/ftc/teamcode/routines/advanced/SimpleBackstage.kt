@@ -4,16 +4,14 @@ import org.atomicrobotics3805.cflib.Command
 import org.atomicrobotics3805.cflib.Constants
 import org.atomicrobotics3805.cflib.parallel
 import org.atomicrobotics3805.cflib.sequential
-import org.atomicrobotics3805.cflib.utilCommands.Delay
 import org.atomicrobotics3805.cflib.utilCommands.OptionCommand
-import org.firstinspires.ftc.teamcode.mechanisms.Claw
 import org.firstinspires.ftc.teamcode.mechanisms.DetectionMechanism
 import org.firstinspires.ftc.teamcode.mechanisms.Intake
 import org.firstinspires.ftc.teamcode.mechanisms.PropProcessor
 import org.firstinspires.ftc.teamcode.trajectoryFactory.AdvancedTrajectoryFactory
 
-object TwoPlusTwoBackstage {
-    val backstageTwoPlusTwo: Command
+object SimpleBackstage {
+    val simpleBackstage: Command
         get() = sequential {
             +OptionCommand("Different signature",
                 { DetectionMechanism.selectedPosition },
@@ -34,21 +32,7 @@ object TwoPlusTwoBackstage {
                         +MechanismRoutines.liftRaise
                     }
                     +MechanismRoutines.scoreSingle
-                    +Constants.drive.followTrajectory(AdvancedTrajectoryFactory.backdropOuterToInnerStack)
-                    +parallel {
-                        +Intake.intakeStack
-                        +Claw.intake
-                    }
-                    +Claw.close
-                    +parallel {
-                        +Constants.drive.followTrajectory(AdvancedTrajectoryFactory.innerStackToBackdropInner)
-                        +sequential {
-                            +Delay(2.0)
-                            +MechanismRoutines.liftRaise
-                        }
-                    }
-                    +MechanismRoutines.scoreTwo
-                    +GeneralShared.backdropInnerToPark
+                    +GeneralShared.backdropOuterToPark
                 }),
                 Pair(Constants.Color.RED, sequential {
                     +Constants.drive.followTrajectory(AdvancedTrajectoryFactory.backstageStartToTapeFront)
@@ -58,23 +42,9 @@ object TwoPlusTwoBackstage {
                         +MechanismRoutines.liftRaise
                     }
                     +MechanismRoutines.scoreSingle
-                    +Constants.drive.followTrajectory(AdvancedTrajectoryFactory.backdropInnerToInnerStack)
-                    +parallel {
-                        +Intake.intakeStack
-                        +Claw.intake
-                    }
-                    +Claw.close
-                    +parallel {
-                        +Constants.drive.followTrajectory(AdvancedTrajectoryFactory.innerStackToBackdropOuter)
-                        +sequential {
-                            +Delay(2.0)
-                            +MechanismRoutines.liftRaise
-                        }
-                    }
-                    +MechanismRoutines.scoreTwo
-                    +GeneralShared.backdropOuterToPark
+                    +GeneralShared.backdropInnerToPark
                 }))
-            }
+        }
 
     val centerRoutine: Command
         get() = sequential {
@@ -85,21 +55,7 @@ object TwoPlusTwoBackstage {
                 +MechanismRoutines.liftRaise
             }
             +MechanismRoutines.scoreSingle
-            +Constants.drive.followTrajectory(AdvancedTrajectoryFactory.backdropCenterToInnerStack)
-            +parallel {
-                +Intake.intakeStack
-                +Claw.intake
-            }
-            +Claw.close
-            +parallel {
-                +Constants.drive.followTrajectory(AdvancedTrajectoryFactory.innerStackToBackdropInner)
-                +sequential {
-                    +Delay(2.0)
-                    +MechanismRoutines.liftRaise
-                }
-            }
-            +MechanismRoutines.scoreTwo
-            +GeneralShared.backdropInnerToPark
+            +GeneralShared.backdropCenterToPark
         }
 
     val rightRoutine: Command
@@ -113,21 +69,7 @@ object TwoPlusTwoBackstage {
                     +MechanismRoutines.liftRaise
                 }
                 +MechanismRoutines.scoreSingle
-                +Constants.drive.followTrajectory(AdvancedTrajectoryFactory.backdropInnerToInnerStack)
-                +parallel {
-                    +Intake.intakeStack
-                    +Claw.intake
-                }
-                +Claw.close
-                +parallel {
-                    +Constants.drive.followTrajectory(AdvancedTrajectoryFactory.innerStackToBackdropOuter)
-                    +sequential {
-                        +Delay(2.0)
-                        +MechanismRoutines.liftRaise
-                    }
-                }
-                +MechanismRoutines.scoreTwo
-                +GeneralShared.backdropOuterToPark
+                +GeneralShared.backdropInnerToPark
             }),
             Pair(Constants.Color.RED, sequential {
                 +Constants.drive.followTrajectory(AdvancedTrajectoryFactory.backstageStartToTapeBack)
@@ -137,20 +79,6 @@ object TwoPlusTwoBackstage {
                     +MechanismRoutines.liftRaise
                 }
                 +MechanismRoutines.scoreSingle
-                +Constants.drive.followTrajectory(AdvancedTrajectoryFactory.backdropOuterToInnerStack)
-                +parallel {
-                    +Intake.intakeStack
-                    +Claw.intake
-                }
-                +Claw.close
-                +parallel {
-                    +Constants.drive.followTrajectory(AdvancedTrajectoryFactory.innerStackToBackdropInner)
-                    +sequential {
-                        +Delay(2.0)
-                        +MechanismRoutines.liftRaise
-                    }
-                }
-                +MechanismRoutines.scoreTwo
-                +GeneralShared.backdropInnerToPark
+                +GeneralShared.backdropOuterToPark
             }))
 }

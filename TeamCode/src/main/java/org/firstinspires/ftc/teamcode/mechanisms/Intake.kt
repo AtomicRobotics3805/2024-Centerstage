@@ -27,7 +27,7 @@ object Intake: Subsystem {
     @JvmField
     var SLOW_EJECT_SPEED = 0.3
 
-    val MOTOR = MotorEx(NAME, MotorEx.MotorType.ANDYMARK_NEVEREST, 3.7, DIRECTION)
+    val MOTOR = MotorEx(NAME, MotorEx.MotorType.GOBILDA_YELLOWJACKET, 3.7, DIRECTION)
 
     val start: Command
         get() = PowerMotor(MOTOR, SPEED, requirements = listOf(this@Intake), logData = true)

@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.mechanisms
 import android.widget.Switch
 import com.acmerobotics.dashboard.config.Config
 import com.qualcomm.robotcore.hardware.DcMotor
+import com.qualcomm.robotcore.hardware.DcMotorEx
 import com.qualcomm.robotcore.hardware.DcMotorSimple
 import org.apache.commons.math3.analysis.function.Pow
 import org.atomicrobotics3805.cflib.Command
@@ -86,10 +87,19 @@ object Lift: Subsystem {
 
         override fun execute() {
             if(gamepad.rightStick.y > 0.2 || gamepad.rightStick.y < -0.2) {
-                PowerMotor(MOTOR, SPEED * -gamepad.rightStick.y, requirements = listOf(Lift))
+                setRunMode(DcMotor.RunMode.RUN_USING_ENCODER)
+                manual(SPEED * -gamepad.rightStick.y)
             }
-            else PowerMotor(MOTOR, 0.0, requirements = listOf(Lift))
+            else manual(0.0)
         }
+    }
+
+    fun manual(speed: Double) {
+        MOTOR.power = speed
+    }
+
+    fun setRunMode(mode: DcMotor.RunMode) {
+        MOTOR.mode = mode
     }
 
     override fun initialize() {

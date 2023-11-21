@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.opmodes.autonomous.advanced.red
+package org.firstinspires.ftc.teamcode.opmodes.autonomous.advanced.blue
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous
 import org.atomicrobotics3805.cflib.Constants
@@ -13,15 +13,15 @@ import org.firstinspires.ftc.teamcode.mechanisms.DetectionMechanism
 import org.firstinspires.ftc.teamcode.mechanisms.Intake
 import org.firstinspires.ftc.teamcode.mechanisms.Lift
 import org.firstinspires.ftc.teamcode.routines.advanced.GeneralShared
+import org.firstinspires.ftc.teamcode.routines.advanced.SimpleBackstage
 import org.firstinspires.ftc.teamcode.routines.advanced.TwoPlusTwoBackstage
-import org.firstinspires.ftc.teamcode.routines.old.SharedRoutines
 import org.firstinspires.ftc.teamcode.trajectoryFactory.AdvancedTrajectoryFactory
 
-@Autonomous(name = "2+2 Red Backstage Center Park", group = "2+2 Red", preselectTeleOp="Competition TeleOp v1 - Red")
-class TwoPlusTwoRedBackstageFarPark : AutonomousOpMode(
-    Constants.Color.RED,
+@Autonomous(name = "Simple Blue Backstage", group = "Simple Blue", preselectTeleOp="Competition TeleOp v1 - Blue")
+class SimpleBackstageBlue : AutonomousOpMode(
+    Constants.Color.BLUE,
     AdvancedTrajectoryFactory,
-    { TwoPlusTwoBackstage.backstageTwoPlusTwo },
+    { SimpleBackstage.simpleBackstage },
     { GeneralShared.initRoutineGamepadPark },
     MecanumDrive(
         CompetitionDriveConstants,

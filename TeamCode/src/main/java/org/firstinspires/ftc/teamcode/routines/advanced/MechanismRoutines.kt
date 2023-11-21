@@ -28,7 +28,6 @@ object MechanismRoutines {
         get() = sequential {
             +Claw.drop
             +Delay(1.0)
-            +Delay(1.0)
             +parallel {
                 +Arm.close
                 +Lift.toIntake

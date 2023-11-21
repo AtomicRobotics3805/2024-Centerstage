@@ -17,8 +17,9 @@ object AdvancedTrajectoryFactory: TrajectoryFactory() {
     //region Variables
     val startY    =  62.75
     val backdropX =  54.0
-    val stackX    = -60.0
+    val stackX    = -55.0
     val parkX     =  60.0
+    val corridor  =  12.0
     //endregion
 
     //region Initialization
@@ -108,27 +109,27 @@ object AdvancedTrajectoryFactory: TrajectoryFactory() {
 
     private fun sharedTrajectories() {
         backdropInnerToCenterStack = d.trajectoryBuilder(backdropInner, 180.0.rad)
-            .splineToSplineHeading(Pose2d(24.0, 12.0.switch, 180.0.rad), 180.0.rad)
+            .splineToSplineHeading(Pose2d(24.0, corridor.switch, 180.0.rad), 180.0.rad)
             .forward(74.0)
             .splineToConstantHeading(centerStack.v, 180.0.rad)
             .build()
         backdropCenterToCenterStack = d.trajectoryBuilder(backdropCenter, 180.0.rad)
-            .splineToSplineHeading(Pose2d(24.0, 12.0.switch, 180.0.rad), 180.0.rad)
+            .splineToSplineHeading(Pose2d(24.0, corridor.switch, 180.0.rad), 180.0.rad)
             .forward(74.0)
             .splineToConstantHeading(centerStack.v, 180.0.rad)
             .build()
         backdropOuterToCenterStack = d.trajectoryBuilder(backdropOuter, 180.0.rad)
-            .splineToSplineHeading(Pose2d(24.0, 12.0.switch, 180.0.rad), 180.0.rad)
+            .splineToSplineHeading(Pose2d(24.0, corridor.switch, 180.0.rad), 180.0.rad)
             .forward(74.0)
             .splineToConstantHeading(centerStack.v, 180.0.rad)
             .build()
         centerStackToBackdropOuter = d.trajectoryBuilder(centerStack)
-            .splineToConstantHeading(Vector2d(-50.0, 12.0.switch), 0.0.rad)
-            .lineTo(Vector2d(24.0, 12.0.switch))
+            .splineToConstantHeading(Vector2d(-50.0, corridor.switch), 0.0.rad)
+            .lineTo(Vector2d(24.0, corridor.switch))
             .splineToSplineHeading(backdropOuter, 0.0.rad)
             .build()
         centerStackToBackdropCenter = d.trajectoryBuilder(centerStack)
-            .splineToConstantHeading(Vector2d(-50.0, 12.0.switch), 0.0.rad)
+            .splineToConstantHeading(Vector2d(-50.0, corridor.switch), 0.0.rad)
             .lineTo(Vector2d(24.0, 12.0.switch))
             .splineToSplineHeading(backdropCenter, 0.0.rad)
             .build()
