@@ -30,23 +30,24 @@ object CompetitionDriveConstants: MecanumDriveConstants {
     @JvmField
     var _LATERAL_MULTIPLIER = 1.0
     @JvmField
-    var _LEFT_BACK_MOTOR = MotorEx("LB", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 19.2, direction = DcMotorSimple.Direction.REVERSE)
+    var _LEFT_BACK_MOTOR = MotorEx("LB", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 13.7, direction = DcMotorSimple.Direction.REVERSE)
     @JvmField
-    var _LEFT_FRONT_MOTOR = MotorEx("LF", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 19.2, direction = DcMotorSimple.Direction.REVERSE)
+    var _LEFT_FRONT_MOTOR = MotorEx("LF", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 13.7, direction = DcMotorSimple.Direction.REVERSE)
     @JvmField
-    var _RIGHT_FRONT_MOTOR = MotorEx("RF", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 19.2, direction = DcMotorSimple.Direction.FORWARD)
+    var _RIGHT_FRONT_MOTOR = MotorEx("RF", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 13.7, direction = DcMotorSimple.Direction.FORWARD)
     @JvmField
-    var _RIGHT_BACK_MOTOR = MotorEx("RB", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 19.2, direction = DcMotorSimple.Direction.FORWARD)
+    var _RIGHT_BACK_MOTOR = MotorEx("RB", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 13.7, direction = DcMotorSimple.Direction.FORWARD)
     @JvmField
-    var _MAX_ACCEL = 60.0
+    var _MAX_ACCEL = 45.0
     @JvmField
-    var _MAX_ANG_ACCEL = 30.0.toRadians()
+    var _MAX_ANG_ACCEL = 180.0.toRadians()
     @JvmField
     var _MAX_ANG_VEL = 180.0.toRadians()
+    // Theoretical max velocity assuming no load on motors: 86.0846416947 in/sec. Using 50%.
     @JvmField
-    var _MAX_RPM = 312.0
+    var _MAX_VEL = 45.0
     @JvmField
-    var _MAX_VEL = 90.0
+    var _MAX_RPM = 435.0
     @JvmField
     var _MOTOR_VEL_PID = PIDFCoefficients(0.0, 0.0, 0.0, getMotorVelocityF(MAX_RPM / 60 * TICKS_PER_REV))
     @JvmField
@@ -71,6 +72,7 @@ object CompetitionDriveConstants: MecanumDriveConstants {
     @JvmField
     var _VERTICAL_AXIS = AxisDirection.POS_Z
 
+    // TODO: RE TUNE VALUES
     @JvmField
     var _kA = 0.005
     @JvmField
