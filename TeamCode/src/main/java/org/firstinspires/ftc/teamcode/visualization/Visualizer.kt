@@ -8,9 +8,8 @@ import org.atomicrobotics3805.cflib.sequential
 import org.atomicrobotics3805.cflib.visualization.MeepMeepRobot
 import org.atomicrobotics3805.cflib.visualization.MeepMeepVisualizer
 import org.firstinspires.ftc.teamcode.drive.CompetitionDriveConstants
+import org.firstinspires.ftc.teamcode.interleague.trajectoryFactory.CompetitionTrajectoryFactory
 import org.firstinspires.ftc.teamcode.localizers.CompetitionOdometryConstants
-import org.firstinspires.ftc.teamcode.leagues.trajectoryFactory.AdvancedTrajectoryFactory
-import org.firstinspires.ftc.teamcode.leagues.trajectoryFactory.CompetitionTrajectoryFactory
 
 fun main() {
     MeepMeepVisualizer.addRobot(
@@ -24,8 +23,6 @@ fun main() {
             15.0,
             {
                 sequential {
-//                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToFrontSpikeTape)
-//                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToCenterSpikeTape)
                     +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToBackSpikeTape)
                 }
             },

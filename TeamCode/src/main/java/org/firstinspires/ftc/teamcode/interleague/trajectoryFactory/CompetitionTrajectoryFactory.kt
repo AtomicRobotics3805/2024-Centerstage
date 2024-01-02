@@ -96,9 +96,9 @@ object CompetitionTrajectoryFactory: TrajectoryFactory() {
         wingCenterSpikeTape = Pose2d(-50.0, 24.0.switch, 0.0.switchAngle.rad)
         wingBackSpikeTape = Pose2d(-24.0, 38.0.switch, 270.0.switch.rad)
 
-        backstageFrontSpikeTape = Pose2d(-0.2, 38.0.switch, 270.0.switchAngle.rad)
+        backstageFrontSpikeTape = Pose2d(8.0, 32.0.switch, 180.0.rad)
         backstageCenterSpikeTape = Pose2d(23.0, 24.0.switch, 180.0.switchAngle.rad)
-        backstageBackSpikeTape = Pose2d(24.0, 42.0.switch, 270.0.switchAngle.rad)
+        backstageBackSpikeTape = Pose2d(30.0, 32.0.switch, 180.0.rad)
 
         middleStackLocation = Pose2d(-60.0, 24.0.switch, 180.0.rad)
         //endregion
@@ -117,15 +117,14 @@ object CompetitionTrajectoryFactory: TrajectoryFactory() {
             .build()
 
         backstageStartToFrontSpikeTape = d.trajectoryBuilder(backstageStartPose)
-            .forward(20.0)
+//            .forward(20.0)
             .splineToLinearHeading(backstageFrontSpikeTape, 180.0.rad)
             .build()
         backstageStartToCenterSpikeTape = d.trajectoryBuilder(backstageStartPose)
             .splineToSplineHeading(backstageCenterSpikeTape, 270.0.switchAngle.rad)
             .build()
         backstageStartToBackSpikeTape = d.trajectoryBuilder(backstageStartPose)
-            .forward(20.0)
-            .splineToLinearHeading(backstageBackSpikeTape, 0.0.rad)
+            .splineToLinearHeading(backstageBackSpikeTape, 180.0.rad)
             .build()
         //endregion
 
