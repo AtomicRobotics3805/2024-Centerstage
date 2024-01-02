@@ -38,14 +38,14 @@ object CompetitionDriveConstants: MecanumDriveConstants {
     @JvmField
     var _RIGHT_BACK_MOTOR = MotorEx("RB", MotorEx.MotorType.GOBILDA_YELLOWJACKET, 13.7, direction = DcMotorSimple.Direction.FORWARD)
     @JvmField
-    var _MAX_ACCEL = 45.0
+    var _MAX_ACCEL = 40.0
     @JvmField
-    var _MAX_ANG_ACCEL = 180.0.toRadians()
+    var _MAX_ANG_ACCEL = 120.0.toRadians()
     @JvmField
     var _MAX_ANG_VEL = 180.0.toRadians()
     // Theoretical max velocity assuming no load on motors: 86.0846416947 in/sec. Using 50%.
     @JvmField
-    var _MAX_VEL = 45.0
+    var _MAX_VEL = 60.0
     @JvmField
     var _MAX_RPM = 435.0
     @JvmField
@@ -72,13 +72,12 @@ object CompetitionDriveConstants: MecanumDriveConstants {
     @JvmField
     var _VERTICAL_AXIS = AxisDirection.POS_Z
 
-    // TODO: RE TUNE VALUES
     @JvmField
-    var _kA = 0.005
+    var _kA = 0.0051
     @JvmField
     var _kStatic = 0.0
     @JvmField
-    var _kV = 0.0185
+    var _kV = 0.015
 
     //region Backend
     override val BACKWARD_DRIFT_MULTIPLIER: Double
@@ -110,7 +109,7 @@ object CompetitionDriveConstants: MecanumDriveConstants {
     override val MAX_RPM: Double
         get() = _MAX_RPM
     override val MAX_VEL: Double
-        get() = 30.0
+        get() = _MAX_VEL
     override val MOTOR_VEL_PID: PIDFCoefficients
         get() = _MOTOR_VEL_PID
     override val POV: DriverControlled.POV

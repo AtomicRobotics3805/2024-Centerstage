@@ -25,5 +25,6 @@ class PowerMotor(
         if(logData) {
             RobotLog.i("PowerMotor", power)
         }
+
     }
 }

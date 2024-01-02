@@ -10,6 +10,7 @@ import org.atomicrobotics3805.cflib.sequential
 import org.firstinspires.ftc.teamcode.utility.PowerMotor
 import org.atomicrobotics3805.cflib.subsystems.Subsystem
 import org.atomicrobotics3805.cflib.utilCommands.Delay
+import org.firstinspires.ftc.teamcode.utility.CurrentWatcher
 
 object Intake: Subsystem {
     @JvmField
@@ -25,7 +26,10 @@ object Intake: Subsystem {
     var EJECTION_SPEED = 0.8
 
     @JvmField
-    var SLOW_EJECT_SPEED = 0.3
+    var SLOW_EJECT_SPEED = 0.4
+
+    @JvmField
+    var STACK_INTAKE_TIME = 0.5
 
     val MOTOR = MotorEx(NAME, MotorEx.MotorType.GOBILDA_YELLOWJACKET, 3.7, DIRECTION)
 
@@ -41,7 +45,7 @@ object Intake: Subsystem {
         get() = parallel {
             +PowerMotor(MOTOR, -SLOW_EJECT_SPEED, requirements = listOf(this@Intake), logData = true)
             +sequential {
-                +Delay(0.5)
+                +Delay(1.0)
                 +stop
             }
         }
@@ -49,7 +53,7 @@ object Intake: Subsystem {
         get() = parallel {
             +PowerMotor(MOTOR, SPEED, requirements = listOf(this@Intake), logData = true)
             +sequential {
-                +Delay(1.0)
+                +Delay(STACK_INTAKE_TIME)
                 +stop
             }
         }
@@ -57,6 +61,7 @@ object Intake: Subsystem {
     override fun initialize() {
         MOTOR.initialize()
         MOTOR.mode = DcMotor.RunMode.RUN_WITHOUT_ENCODER
+
     }
 }
 

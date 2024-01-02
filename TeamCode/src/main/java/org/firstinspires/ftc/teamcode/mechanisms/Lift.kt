@@ -17,7 +17,7 @@ import org.atomicrobotics3805.cflib.subsystems.MotorToPosition
 import org.atomicrobotics3805.cflib.subsystems.Subsystem
 import org.atomicrobotics3805.cflib.utilCommands.CustomCommand
 import org.atomicrobotics3805.cflib.utilCommands.Delay
-import org.firstinspires.ftc.teamcode.controls.CompetitionControls
+import org.firstinspires.ftc.teamcode.leagues.controls.CompetitionControls
 import org.firstinspires.ftc.teamcode.utility.SwitchCommand
 import org.firstinspires.ftc.teamcode.utility.PowerMotor
 
@@ -31,7 +31,7 @@ object Lift: Subsystem {
     var LOW_POSITION = 12.0 // in
     var HIGH_POSITION = 19.0 // in
     var HANG_POSITION = 18.0 // in
-    var AUTO_POSITION = 10.5 // in
+    var AUTO_POSITION = 8.5 // in
 
     @JvmField
     var DIRECTION = DcMotorSimple.Direction.FORWARD
@@ -85,12 +85,22 @@ object Lift: Subsystem {
     class ManualControl(val gamepad: GamepadEx): Command() {
         override val _isDone = false
 
+        var justMoved = false
+
         override fun execute() {
             if(gamepad.rightStick.y > 0.2 || gamepad.rightStick.y < -0.2) {
                 setRunMode(DcMotor.RunMode.RUN_USING_ENCODER)
                 manual(SPEED * -gamepad.rightStick.y)
+                justMoved = true
             }
-            else manual(0.0)
+            else {
+                if (justMoved) {
+                    justMoved = false
+                    MOTOR.power = SPEED
+                    MOTOR.mode = DcMotor.RunMode.RUN_TO_POSITION
+                    MOTOR.targetPosition = MOTOR.currentPosition
+                }
+            }
         }
     }
 

@@ -9,7 +9,8 @@ import org.atomicrobotics3805.cflib.visualization.MeepMeepRobot
 import org.atomicrobotics3805.cflib.visualization.MeepMeepVisualizer
 import org.firstinspires.ftc.teamcode.drive.CompetitionDriveConstants
 import org.firstinspires.ftc.teamcode.localizers.CompetitionOdometryConstants
-import org.firstinspires.ftc.teamcode.trajectoryFactory.AdvancedTrajectoryFactory
+import org.firstinspires.ftc.teamcode.leagues.trajectoryFactory.AdvancedTrajectoryFactory
+import org.firstinspires.ftc.teamcode.leagues.trajectoryFactory.CompetitionTrajectoryFactory
 
 fun main() {
     MeepMeepVisualizer.addRobot(
@@ -18,17 +19,19 @@ fun main() {
                 CompetitionDriveConstants,
                 TwoWheelOdometryLocalizer(CompetitionOdometryConstants)
 
-            ) { AdvancedTrajectoryFactory.startBackstage },
+            ) { CompetitionTrajectoryFactory.backstageStartPose },
             14.5,
             15.0,
             {
                 sequential {
-                    +Constants.drive.followTrajectory(AdvancedTrajectoryFactory.backstageStartToTapeCenter)
+//                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToFrontSpikeTape)
+//                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToCenterSpikeTape)
+                    +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToBackSpikeTape)
                 }
             },
-            Constants.Color.BLUE
+            Constants.Color.RED
         )
     )
 
-    MeepMeepVisualizer.run(AdvancedTrajectoryFactory, background = MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
+    MeepMeepVisualizer.run(CompetitionTrajectoryFactory, background = MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
 }

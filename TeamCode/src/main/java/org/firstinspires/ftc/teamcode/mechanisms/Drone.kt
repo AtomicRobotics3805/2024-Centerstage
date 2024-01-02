@@ -9,10 +9,9 @@ import org.atomicrobotics3805.cflib.utilCommands.TelemetryCommand
 
 object Drone: Subsystem {
     var NAME = "drone"
-    var LAUNCH_POSITION = 0.4
+    var LAUNCH_POSITION = 0.5
     var TIME = 1.0
     val droneServo = ServoEx(NAME)
-    var isPrimed: Boolean = false
 
     override fun initialize() {
         droneServo.initialize()
