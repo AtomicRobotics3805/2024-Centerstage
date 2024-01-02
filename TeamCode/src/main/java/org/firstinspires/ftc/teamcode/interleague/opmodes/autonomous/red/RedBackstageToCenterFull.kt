@@ -19,7 +19,7 @@ import org.firstinspires.ftc.teamcode.mechanisms.Lift
 import org.firstinspires.ftc.teamcode.mechanisms.NewLid
 import org.firstinspires.ftc.teamcode.mechanisms.VerticalIntake
 
-@Autonomous(name = "Red Backstage to Center Park Two Pixels", group = "Red Backstage", preselectTeleOp="Competition TeleOp v1 - Red")
+@Autonomous(name = "Red Backstage to Center Park Two Pixels", group = "Red Backstage", preselectTeleOp="Competition TeleOp v2 - Red")
 class RedBackstageToCenterFull: AutonomousOpMode(
     Constants.Color.RED,
     CompetitionTrajectoryFactory,

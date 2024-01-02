@@ -18,7 +18,7 @@ import org.firstinspires.ftc.teamcode.mechanisms.Lift
 import org.firstinspires.ftc.teamcode.mechanisms.NewLid
 import org.firstinspires.ftc.teamcode.mechanisms.VerticalIntake
 
-@Autonomous(name = "Red Wing to Center Park Two Pixels", group = "Red Wing", preselectTeleOp="Competition TeleOp v1 - Red")
+@Autonomous(name = "Red Wing to Center Park Two Pixels", group = "Red Wing", preselectTeleOp="Competition TeleOp v2 - Red")
 class RedWingToCenterFull: AutonomousOpMode(
     Constants.Color.RED,
     CompetitionTrajectoryFactory,
