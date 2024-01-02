@@ -36,23 +36,23 @@ object VerticalIntake: Subsystem {
 
     val start: Command
         get() = parallel {
-            PowerMotor(MOTOR1, SPEED, requirements = listOf(this@VerticalIntake), logData = true)
-            PowerMotor(MOTOR2, SPEED, requirements = listOf(this@VerticalIntake), logData = true)
+            +PowerMotor(MOTOR1, SPEED, requirements = listOf(this@VerticalIntake), logData = true)
+            +PowerMotor(MOTOR2, SPEED, requirements = listOf(this@VerticalIntake), logData = true)
         }
     val stop: Command
         get() = parallel {
-            PowerMotor(MOTOR1, 0.0, requirements = listOf(this@VerticalIntake), logData = true)
-            PowerMotor(MOTOR2, 0.0, requirements = listOf(this@VerticalIntake), logData = true)
+            +PowerMotor(MOTOR1, 0.0, requirements = listOf(this@VerticalIntake), logData = true)
+            +PowerMotor(MOTOR2, 0.0, requirements = listOf(this@VerticalIntake), logData = true)
         }
     val reverse: Command
         get() = parallel {
-            PowerMotor(MOTOR1, -SPEED, requirements = listOf(this@VerticalIntake), logData = true)
-            PowerMotor(MOTOR2, -SPEED, requirements = listOf(this@VerticalIntake), logData = true)
+            +PowerMotor(MOTOR1, -SPEED, requirements = listOf(this@VerticalIntake), logData = true)
+            +PowerMotor(MOTOR2, -SPEED, requirements = listOf(this@VerticalIntake), logData = true)
         }
     val eject: Command
         get() = parallel {
-            PowerMotor(MOTOR1, -EJECTION_SPEED, requirements = listOf(this@VerticalIntake), logData = true)
-            PowerMotor(MOTOR2, -EJECTION_SPEED, requirements = listOf(this@VerticalIntake), logData = true)
+            +PowerMotor(MOTOR1, -EJECTION_SPEED, requirements = listOf(this@VerticalIntake), logData = true)
+            +PowerMotor(MOTOR2, -EJECTION_SPEED, requirements = listOf(this@VerticalIntake), logData = true)
         }
     val slowEject: Command
         get() = parallel {
