@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.leagues.opmodes.autonomous.old.blue
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous
+import com.qualcomm.robotcore.eventloop.opmode.Disabled
 import org.atomicrobotics3805.cflib.Constants
 import org.atomicrobotics3805.cflib.driving.drivers.MecanumDrive
 import org.atomicrobotics3805.cflib.driving.localizers.TwoWheelOdometryLocalizer
@@ -16,6 +17,7 @@ import org.firstinspires.ftc.teamcode.leagues.routines.old.BackstageRoutines
 import org.firstinspires.ftc.teamcode.leagues.routines.old.SharedRoutines
 import org.firstinspires.ftc.teamcode.leagues.trajectoryFactory.CompetitionTrajectoryFactory
 
+@Disabled
 @Autonomous(name = "Blue Backstage to Center Park Two Pixels", group = "Blue Backstage", preselectTeleOp="Competition TeleOp v1 - Blue")
 class BlueBackstageToCenterFull: AutonomousOpMode(
     Constants.Color.BLUE,

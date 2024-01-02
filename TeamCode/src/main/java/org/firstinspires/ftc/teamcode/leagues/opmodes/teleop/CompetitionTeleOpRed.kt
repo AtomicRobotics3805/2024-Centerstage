@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.leagues.opmodes.teleop
 
 import com.acmerobotics.roadrunner.geometry.Pose2d
+import com.qualcomm.robotcore.eventloop.opmode.Disabled
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp
 import org.atomicrobotics3805.cflib.Constants
 import org.atomicrobotics3805.cflib.driving.drivers.MecanumDrive
@@ -19,6 +20,7 @@ import org.firstinspires.ftc.teamcode.mechanisms.Ramp
 import org.firstinspires.ftc.teamcode.leagues.routines.TeleOpRoutines
 import org.firstinspires.ftc.teamcode.mechanisms.NewLid
 
+@Disabled
 @TeleOp(name = "Competition TeleOp v1 - Red")
 class CompetitionTeleOpRed: TeleOpMode(
     CompetitionControls(),
