@@ -14,6 +14,7 @@ import org.firstinspires.ftc.teamcode.mechanisms.Lift
 import org.firstinspires.ftc.teamcode.mechanisms.Ramp
 import org.firstinspires.ftc.teamcode.leagues.routines.TeleOpRoutines
 import org.firstinspires.ftc.teamcode.mechanisms.NewLid
+import org.firstinspires.ftc.teamcode.mechanisms.VerticalIntake
 import org.firstinspires.ftc.teamcode.utility.DriverControlled
 
 class CompetitionControls: Controls() {
@@ -84,5 +85,9 @@ class CompetitionControls: Controls() {
         gamepad1.dpadLeft.pressedCommand = { Ramp.oneHigh }
         gamepad1.dpadUp.pressedCommand = { Ramp.threeHigh }
         gamepad1.dpadRight.pressedCommand = { Ramp.fullHigh } // For hanging
+
+        // TESTING
+        gamepad1.leftStick.button.pressedCommand = { VerticalIntake.start }
+        gamepad1.leftStick.button.releasedCommand = { VerticalIntake.stop }
     }
 }

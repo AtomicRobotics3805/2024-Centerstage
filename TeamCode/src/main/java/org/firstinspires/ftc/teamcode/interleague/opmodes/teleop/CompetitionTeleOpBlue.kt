@@ -18,6 +18,7 @@ import org.firstinspires.ftc.teamcode.mechanisms.Intake
 import org.firstinspires.ftc.teamcode.mechanisms.Lift
 import org.firstinspires.ftc.teamcode.mechanisms.Ramp
 import org.firstinspires.ftc.teamcode.mechanisms.NewLid
+import org.firstinspires.ftc.teamcode.mechanisms.VerticalIntake
 
 @TeleOp(name = "Competition TeleOp v2 - Blue")
 class CompetitionTeleOpBlue: TeleOpMode(
@@ -35,5 +36,6 @@ class CompetitionTeleOpBlue: TeleOpMode(
     Arm,
     NewLid,
     Ramp,
-    Drone
+    Drone,
+    VerticalIntake
 )

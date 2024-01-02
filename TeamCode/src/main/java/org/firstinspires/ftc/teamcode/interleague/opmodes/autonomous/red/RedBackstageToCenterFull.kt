@@ -17,6 +17,7 @@ import org.firstinspires.ftc.teamcode.mechanisms.DetectionMechanism
 import org.firstinspires.ftc.teamcode.mechanisms.Intake
 import org.firstinspires.ftc.teamcode.mechanisms.Lift
 import org.firstinspires.ftc.teamcode.mechanisms.NewLid
+import org.firstinspires.ftc.teamcode.mechanisms.VerticalIntake
 
 @Autonomous(name = "Red Backstage to Center Park Two Pixels", group = "Red Backstage", preselectTeleOp="Competition TeleOp v1 - Red")
 class RedBackstageToCenterFull: AutonomousOpMode(
@@ -32,5 +33,6 @@ class RedBackstageToCenterFull: AutonomousOpMode(
     NewLid,
     Lift,
     Intake,
-    DetectionMechanism
+    DetectionMechanism,
+    VerticalIntake
 )

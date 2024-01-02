@@ -14,6 +14,7 @@ import org.firstinspires.ftc.teamcode.mechanisms.Intake
 import org.firstinspires.ftc.teamcode.mechanisms.Lift
 import org.firstinspires.ftc.teamcode.mechanisms.PropProcessor
 import org.firstinspires.ftc.teamcode.mechanisms.NewLid
+import org.firstinspires.ftc.teamcode.mechanisms.VerticalIntake
 
 object BackstageRoutines {
     val backstageFullPathAndPark: Command
@@ -34,7 +35,7 @@ object BackstageRoutines {
                         +NewLid.close
                         // Blue side ("left" is on the back side of the field)
                         +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToBackSpikeTape)
-                        +Intake.slowEject
+                        +VerticalIntake.slowEject
                         +parallel {
                             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageBackSpikeTapeToScore)
                             +Lift.toLow
@@ -55,7 +56,7 @@ object BackstageRoutines {
                         +NewLid.close
                         // Red side ("left" is on the front side of the field)
                         +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToFrontSpikeTape)
-                        +Intake.slowEject
+                        +VerticalIntake.slowEject
                         +parallel {
                             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageFrontSpikeTapeToScore)
                             +sequential {
@@ -80,7 +81,7 @@ object BackstageRoutines {
         get() = sequential {
             +NewLid.close
             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToCenterSpikeTape)
-            +Intake.slowEject
+            +VerticalIntake.slowEject
             +parallel {
                 +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageCenterSpikeTapeToScore)
                 +Lift.toLow
@@ -103,7 +104,7 @@ object BackstageRoutines {
                     sequential {
                         +NewLid.close
                         +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToFrontSpikeTape)
-                        +Intake.slowEject
+                        +VerticalIntake.slowEject
                         +parallel {
                             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageFrontSpikeTapeToScore)
                             +sequential {
@@ -125,7 +126,7 @@ object BackstageRoutines {
                         +NewLid.close
                         // Blue side ("left" is on the back side of the field)
                         +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToBackSpikeTape)
-                        +Intake.slowEject
+                        +VerticalIntake.slowEject
                         +parallel {
                             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageBackSpikeTapeToScore)
                             +Lift.toLow

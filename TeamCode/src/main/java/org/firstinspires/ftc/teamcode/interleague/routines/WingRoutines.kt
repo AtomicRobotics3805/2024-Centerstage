@@ -13,6 +13,7 @@ import org.firstinspires.ftc.teamcode.mechanisms.Intake
 import org.firstinspires.ftc.teamcode.mechanisms.Lift
 import org.firstinspires.ftc.teamcode.mechanisms.PropProcessor
 import org.firstinspires.ftc.teamcode.mechanisms.NewLid
+import org.firstinspires.ftc.teamcode.mechanisms.VerticalIntake
 
 object WingRoutines {
     val wingFullPathAndPark: Command
@@ -32,7 +33,7 @@ object WingRoutines {
                     Constants.Color.BLUE,
                     sequential {
                         +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingStartToBackSpikeTape)
-                        +Intake.slowEject
+                        +VerticalIntake.slowEject
                         +parallel {
                             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingBackSpikeTapeToScore)
                             +sequential {
@@ -60,7 +61,7 @@ object WingRoutines {
                     Constants.Color.RED,
                     sequential {
                         +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingStartToFrontSpikeTape)
-                        +Intake.slowEject
+                        +VerticalIntake.slowEject
                         +parallel {
                             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingFrontSpikeTapeToScore)
                             +sequential {
@@ -91,7 +92,7 @@ object WingRoutines {
     val wingCenterRoutine: Command
         get() = sequential {
             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingStartToCenterSpikeTape)
-            +Intake.slowEject
+            +VerticalIntake.slowEject
             +parallel {
                 +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingCenterSpikeTapeToScore)
                 +sequential {
@@ -123,7 +124,7 @@ object WingRoutines {
                     Constants.Color.BLUE,
                     sequential {
                         +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingStartToFrontSpikeTape)
-                        +Intake.slowEject
+                        +VerticalIntake.slowEject
                         +parallel {
                             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingFrontSpikeTapeToScore)
                             +sequential {
@@ -150,7 +151,7 @@ object WingRoutines {
                 ), Pair(Constants.Color.RED,
                     sequential {
                         +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingStartToBackSpikeTape)
-                        +Intake.slowEject
+                        +VerticalIntake.slowEject
                         +parallel {
                             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.wingBackSpikeTapeToScore)
                             +sequential {

@@ -17,6 +17,7 @@ import org.firstinspires.ftc.teamcode.mechanisms.DetectionMechanism
 import org.firstinspires.ftc.teamcode.mechanisms.Intake
 import org.firstinspires.ftc.teamcode.mechanisms.Lift
 import org.firstinspires.ftc.teamcode.mechanisms.NewLid
+import org.firstinspires.ftc.teamcode.mechanisms.VerticalIntake
 
 @Autonomous(name = "Blue Wing to Center Park Two Pixels", group = "Blue Wing", preselectTeleOp="Competition TeleOp v1 - Blue")
 class BlueWingToCenterFull: AutonomousOpMode(
@@ -32,5 +33,6 @@ class BlueWingToCenterFull: AutonomousOpMode(
     NewLid,
     Lift,
     Intake,
-    DetectionMechanism
+    DetectionMechanism,
+    VerticalIntake
 )
