@@ -61,7 +61,10 @@ object BackstageRoutines {
                         +VerticalIntake.stop
                         +parallel {
                             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageFrontSpikeTapeToScore)
-                            +Lift.toLow
+                            sequential {
+                                +Delay(2.0)
+                                +Lift.toLow
+                            }
                             +Arm.open
                         }
                         +NewLid.open
@@ -108,7 +111,10 @@ object BackstageRoutines {
                         +VerticalIntake.stop
                         +parallel {
                             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageFrontSpikeTapeToScore)
-                            +Lift.toLow
+                            sequential {
+                                +Delay(2.0)
+                                +Lift.toLow
+                            }
                             +Arm.open
                         }
                         +NewLid.open
