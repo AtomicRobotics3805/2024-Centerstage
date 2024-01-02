@@ -26,7 +26,7 @@ object VerticalIntake: Subsystem {
     var EJECTION_SPEED = 0.8
 
     @JvmField
-    var SLOW_EJECT_SPEED = 0.4
+    var SLOW_EJECT_SPEED = 0.2
 
     @JvmField
     var STACK_INTAKE_TIME = 0.5

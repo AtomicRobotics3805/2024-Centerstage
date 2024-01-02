@@ -36,6 +36,7 @@ object BackstageRoutines {
                         // Blue side ("left" is on the back side of the field)
                         +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToBackSpikeTape)
                         +VerticalIntake.slowEject
+                        +VerticalIntake.stop
                         +parallel {
                             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageBackSpikeTapeToScore)
                             +Lift.toLow
@@ -57,6 +58,7 @@ object BackstageRoutines {
                         // Red side ("left" is on the front side of the field)
                         +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToFrontSpikeTape)
                         +VerticalIntake.slowEject
+                        +VerticalIntake.stop
                         +parallel {
                             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageFrontSpikeTapeToScore)
                             +sequential {
@@ -82,6 +84,7 @@ object BackstageRoutines {
             +NewLid.close
             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToCenterSpikeTape)
             +VerticalIntake.slowEject
+            +VerticalIntake.stop
             +parallel {
                 +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageCenterSpikeTapeToScore)
                 +Lift.toLow
@@ -105,6 +108,7 @@ object BackstageRoutines {
                         +NewLid.close
                         +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToFrontSpikeTape)
                         +VerticalIntake.slowEject
+                        +VerticalIntake.stop
                         +parallel {
                             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageFrontSpikeTapeToScore)
                             +sequential {
@@ -127,6 +131,7 @@ object BackstageRoutines {
                         // Blue side ("left" is on the back side of the field)
                         +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToBackSpikeTape)
                         +VerticalIntake.slowEject
+                        +VerticalIntake.stop
                         +parallel {
                             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageBackSpikeTapeToScore)
                             +Lift.toLow
