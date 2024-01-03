@@ -92,9 +92,9 @@ object CompetitionTrajectoryFactory: TrajectoryFactory() {
         parkPoseCenter = Pose2d(parkXPosition, 12.0.switch, 180.0.rad)
         parkPoseEdge = Pose2d(parkXPosition, 60.0.switch, 180.0.rad)
 
-        wingFrontSpikeTape = Pose2d(-46.0, 38.0.switch, 270.0.switchAngle.rad)
-        wingCenterSpikeTape = Pose2d(-50.0, 24.0.switch, 0.0.switchAngle.rad)
-        wingBackSpikeTape = Pose2d(-24.0, 38.0.switch, 270.0.switch.rad)
+        wingFrontSpikeTape = Pose2d(-39.5, 32.0.switch, 180.0.rad)
+        wingCenterSpikeTape = Pose2d(-45.0, 24.0.switch, 0.0.switchAngle.rad)
+        wingBackSpikeTape = Pose2d(-31.5, 32.0.switch, 0.0.rad)
 
         backstageFrontSpikeTape = Pose2d(8.0, 32.0.switch, 180.0.rad)
         backstageCenterSpikeTape = Pose2d(23.0, 24.0.switch, 180.0.switchAngle.rad)
@@ -105,14 +105,12 @@ object CompetitionTrajectoryFactory: TrajectoryFactory() {
 
         //region PURPLE PIXEL
         wingStartToFrontSpikeTape = d.trajectoryBuilder(wingStartPose)
-            .forward(20.0)
-            .splineToLinearHeading(wingFrontSpikeTape, 180.0.rad)
+            .splineToSplineHeading(wingFrontSpikeTape, 0.0.rad)
             .build()
         wingStartToCenterSpikeTape = d.trajectoryBuilder(wingStartPose)
             .splineToSplineHeading(wingCenterSpikeTape, 270.0.switchAngle.rad)
             .build()
         wingStartToBackSpikeTape = d.trajectoryBuilder(wingStartPose)
-            .forward(20.0)
             .splineToLinearHeading(wingBackSpikeTape, 0.0.rad)
             .build()
 
@@ -141,14 +139,13 @@ object CompetitionTrajectoryFactory: TrajectoryFactory() {
         wingFrontSpikeTapeToScore = d.trajectoryBuilder(wingFrontSpikeTape, 270.0.switchAngle.rad) // FIXED
 //            .splineTo(Vector2d(-12.0, 58.0.switch), 0.0.rad)
 //            .splineToSplineHeading(scorePoseInner, 0.0.rad)
-            .strafeLeft(5.0.switch)
-            .splineToSplineHeading(Pose2d(-29.0, corridor.switch, 0.0.rad), 0.0.rad)
+            .splineToConstantHeading(Vector2d(-29.0, corridor.switch), 0.0.rad)
             .lineTo(Vector2d(24.0, 12.0.switch))
             .splineToSplineHeading(scorePoseOuter, 0.0.rad)
             .build()
 
         wingCenterSpikeTapeToScore = d.trajectoryBuilder(wingCenterSpikeTape, 0.0.rad)
-            .splineToConstantHeading(Vector2d(-47.0, corridor.switch), 0.0.rad)
+            .splineToConstantHeading(Vector2d(-29.0, corridor.switch), 0.0.rad)
             .lineTo(Vector2d(10.0, 12.0.switch))
             .splineToSplineHeading(scorePoseCenter, 0.0.rad)
             .build()
@@ -165,9 +162,9 @@ object CompetitionTrajectoryFactory: TrajectoryFactory() {
 //            .splineToConstantHeading(Vector2d(-32.0, 58.0.switch), 0.0.rad)
 //            .splineTo(Vector2d(-12.0, 58.0.switch), 0.0.rad)
 //            .splineToSplineHeading(scorePoseOuter, 0.0.rad)
-            .strafeRight(5.0.switch)
+//            .strafeRight(5.0.switch)
             .splineToConstantHeading(Vector2d(-30.0, corridor.switch), 0.0.rad)
-            .lineTo(Vector2d(24.0, 12.0.switch))
+            .splineTo(Vector2d(24.0, 12.0.switch), 0.0.rad)
             .splineToSplineHeading(scorePoseOuter, 0.0.rad)
             .build()
         //endregion
