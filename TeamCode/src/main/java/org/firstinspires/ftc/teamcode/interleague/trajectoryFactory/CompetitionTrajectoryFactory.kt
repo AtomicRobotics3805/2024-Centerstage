@@ -7,7 +7,6 @@ import org.atomicrobotics3805.cflib.trajectories.TrajectoryFactory
 import org.atomicrobotics3805.cflib.trajectories.rad
 import org.atomicrobotics3805.cflib.trajectories.switch
 import org.atomicrobotics3805.cflib.trajectories.switchAngle
-import org.firstinspires.ftc.teamcode.leagues.trajectoryFactory.AdvancedTrajectoryFactory.corridor
 import org.atomicrobotics3805.cflib.Constants.drive as d
 
 @Suppress("MemberVisibilityCanBePrivate")
@@ -40,6 +39,8 @@ object CompetitionTrajectoryFactory: TrajectoryFactory() {
 
     // STACK LOCATIONS
     var middleStackLocation = Pose2d() // The center of the three
+
+    var corridor: Double = 14.0
     //endregion
 
     //region ***NEW TRAJECTORIES***
@@ -139,13 +140,13 @@ object CompetitionTrajectoryFactory: TrajectoryFactory() {
         wingFrontSpikeTapeToScore = d.trajectoryBuilder(wingFrontSpikeTape, 270.0.switchAngle.rad) // FIXED
 //            .splineTo(Vector2d(-12.0, 58.0.switch), 0.0.rad)
 //            .splineToSplineHeading(scorePoseInner, 0.0.rad)
-            .splineToConstantHeading(Vector2d(-29.0, corridor.switch), 0.0.rad)
+            .splineToLinearHeading(Pose2d(-40.0, corridor.switch, 180.0.rad), 0.0.rad)
             .lineTo(Vector2d(24.0, 12.0.switch))
             .splineToSplineHeading(scorePoseOuter, 0.0.rad)
             .build()
 
-        wingCenterSpikeTapeToScore = d.trajectoryBuilder(wingCenterSpikeTape, 0.0.rad)
-            .splineToConstantHeading(Vector2d(-29.0, corridor.switch), 0.0.rad)
+        wingCenterSpikeTapeToScore = d.trajectoryBuilder(wingCenterSpikeTape, 270.0.switchAngle.rad)
+            .splineToLinearHeading(Pose2d(-40.0, corridor.switch, 0.0.rad), 0.0.rad)
             .lineTo(Vector2d(10.0, 12.0.switch))
             .splineToSplineHeading(scorePoseCenter, 0.0.rad)
             .build()
@@ -163,7 +164,7 @@ object CompetitionTrajectoryFactory: TrajectoryFactory() {
 //            .splineTo(Vector2d(-12.0, 58.0.switch), 0.0.rad)
 //            .splineToSplineHeading(scorePoseOuter, 0.0.rad)
 //            .strafeRight(5.0.switch)
-            .splineToConstantHeading(Vector2d(-30.0, corridor.switch), 0.0.rad)
+            .splineToLinearHeading(Pose2d(-40.0, corridor.switch, 0.0.rad), 0.0.rad)
             .splineTo(Vector2d(24.0, 12.0.switch), 0.0.rad)
             .splineToSplineHeading(scorePoseOuter, 0.0.rad)
             .build()

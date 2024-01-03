@@ -18,7 +18,6 @@ import org.firstinspires.ftc.teamcode.mechanisms.VerticalIntake
 object WingRoutines {
     val wingFullPathAndPark: Command
         get() = sequential {
-            +Delay(12.0)
             +OptionCommand("Different signature",
                 { DetectionMechanism.selectedPosition },
                 Pair(PropProcessor.Selected.LEFT, wingLeftRoutine),
