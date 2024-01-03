@@ -98,7 +98,7 @@ object CompetitionTrajectoryFactory: TrajectoryFactory() {
 
         backstageFrontSpikeTape = Pose2d(8.0, 32.0.switch, 180.0.rad)
         backstageCenterSpikeTape = Pose2d(23.0, 24.0.switch, 180.0.switchAngle.rad)
-        backstageBackSpikeTape = Pose2d(30.0, 32.0.switch, 180.0.rad)
+        backstageBackSpikeTape = Pose2d(35.0, 32.0.switch, 180.0.rad)
 
         middleStackLocation = Pose2d(-60.0, 24.0.switch, 180.0.rad)
         //endregion
