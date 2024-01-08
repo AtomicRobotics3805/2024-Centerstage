@@ -18,7 +18,7 @@ object AdvancedTrajectoryFactory: TrajectoryFactory() {
     val startY    =  62.75
     val backdropX =  56.0
     val stackX    = -56.0
-    val parkX     =  60.0
+    val parkX     =  55.0
     val corridor  =  12.0
     //endregion
 
@@ -75,7 +75,7 @@ object AdvancedTrajectoryFactory: TrajectoryFactory() {
         centerStack         = Pose2d(stackX,    24.0.switch,   180.0.rad)
         innerStack          = Pose2d(stackX,    12.0.switch,   180.0.rad)
         parkEdge            = Pose2d(parkX,     60.0.switch,   180.0.rad)
-        parkCenter          = Pose2d(parkX,     12.0.switch,   180.0.rad)
+        parkCenter          = Pose2d(parkX,     5.0.switch,   180.0.rad)
     }
 
     private fun wingPoses() { }
@@ -184,7 +184,7 @@ object AdvancedTrajectoryFactory: TrajectoryFactory() {
             .build()
         backdropCenterToParkInner = d.trajectoryBuilder(backdropCenter, 270.0.switchAngle.rad)
             .forward(1.0)
-            .splineToConstantHeading(Vector2d(backdropX -5.0, 17.0.switch), 270.0.switchAngle.rad)
+            .splineToConstantHeading(Vector2d(backdropX -5.0, 5.0.switch), 270.0.switchAngle.rad)
             .splineToConstantHeading(parkCenter.vec(), 0.0.rad)
             .build()
         backdropInnerToParkInner = d.trajectoryBuilder(backdropInner, 270.0.switchAngle.rad)

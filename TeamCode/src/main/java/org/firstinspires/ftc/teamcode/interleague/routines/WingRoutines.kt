@@ -18,6 +18,8 @@ import org.firstinspires.ftc.teamcode.mechanisms.VerticalIntake
 object WingRoutines {
     val wingFullPathAndPark: Command
         get() = sequential {
+            +Delay(15.0
+            )
             +OptionCommand("Different signature",
                 { DetectionMechanism.selectedPosition },
                 Pair(PropProcessor.Selected.LEFT, wingLeftRoutine),
@@ -38,8 +40,8 @@ object WingRoutines {
                             +sequential {
                                 +Delay(5.0)
                                 +Lift.toLow
+                                +Arm.open
                             }
-                            +Arm.open
                         }
                         +NewLid.open
                         +parallel {
@@ -66,8 +68,8 @@ object WingRoutines {
                             +sequential {
                                 +Delay(5.0)
                                 +Lift.toLow
+                                +Arm.open
                             }
-                            +Arm.open
                         }
                         +NewLid.open
                         +parallel {
@@ -97,8 +99,8 @@ object WingRoutines {
                 +sequential {
                     +Delay(5.0)
                     +Lift.toLow
+                    +Arm.open
                 }
-                +Arm.open
             }
             +NewLid.open
             +parallel {
@@ -107,7 +109,7 @@ object WingRoutines {
                     Delay(1.0)
                     +Arm.close
                 }
-                +Lift.toLow
+                //+Lift.toLow
                 +sequential {
                     +Delay(1.0)
                     +Lift.toIntake
@@ -129,8 +131,8 @@ object WingRoutines {
                             +sequential {
                                 +Delay(5.0)
                                 +Lift.toLow
+                                +Arm.open
                             }
-                            +Arm.open
                         }
                         +NewLid.open
                         +parallel {
@@ -139,7 +141,7 @@ object WingRoutines {
                                 Delay(1.0)
                                 +Arm.close
                             }
-                            +Lift.toLow
+                            //+Lift.toLow
                             +sequential {
                                 +Delay(1.0)
                                 +Lift.toIntake
@@ -156,8 +158,8 @@ object WingRoutines {
                             +sequential {
                                 +Delay(5.0)
                                 +Lift.toLow
+                                +Arm.open
                             }
-                            +Arm.open
                         }
                         +NewLid.open
                         +parallel {
@@ -166,7 +168,7 @@ object WingRoutines {
                                 Delay(1.0)
                                 +Arm.close
                             }
-                            +Lift.toLow
+                            //+Lift.toLow
                             +sequential {
                                 +Delay(1.0)
                                 +Lift.toIntake

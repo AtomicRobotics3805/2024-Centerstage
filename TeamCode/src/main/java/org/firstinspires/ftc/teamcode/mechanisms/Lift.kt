@@ -28,7 +28,7 @@ object Lift: Subsystem {
 
     @JvmField
     var INTAKE_POSITION = 0.0 // in
-    var LOW_POSITION = 12.0 // in
+    var LOW_POSITION = 10.5 // in
     var HIGH_POSITION = 19.0 // in
     var HANG_POSITION = 18.0 // in
     var AUTO_POSITION = 8.5 // in

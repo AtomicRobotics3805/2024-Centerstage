@@ -34,7 +34,7 @@ import org.atomicrobotics3805.cflib.subsystems.Subsystem
 object Arm: Subsystem {
     var NAME = "arm"
     var OPEN_POSITION = 1.0 // y
-    var CLOSE_POSITION = 0.69 // b
+    var CLOSE_POSITION = 0.65 // b
     var TIME = 1.0
     val armServo = ServoEx(NAME)
     override fun initialize() {

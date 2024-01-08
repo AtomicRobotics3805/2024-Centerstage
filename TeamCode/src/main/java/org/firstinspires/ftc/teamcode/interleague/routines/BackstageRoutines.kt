@@ -47,8 +47,10 @@ object BackstageRoutines {
                         +parallel {
                             +SharedRoutines.scoreOuterToPark
                             +Arm.close
-                            +Lift.toIntake
-                        }
+                            +sequential {
+                                +Delay(0.3)
+                                +Lift.toIntake
+                            }                        }
                         +NewLid.close
                     }
                 ), Pair(
@@ -57,6 +59,7 @@ object BackstageRoutines {
                         +NewLid.close
                         // Red side ("left" is on the front side of the field)
                         +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToFrontSpikeTape)
+                        +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToFrontSpikeTape2)
                         +VerticalIntake.slowEject
                         +VerticalIntake.stop
                         +parallel {
@@ -71,8 +74,10 @@ object BackstageRoutines {
                         +parallel {
                             +SharedRoutines.scoreInnerToPark
                             +Arm.close
-                            +Lift.toIntake
-                        }
+                            +sequential {
+                                +Delay(0.3)
+                                +Lift.toIntake
+                            }                        }
                         +NewLid.close
                     }
                 ))
@@ -94,7 +99,10 @@ object BackstageRoutines {
             +parallel {
                 +SharedRoutines.scoreCenterToPark
                 +Arm.close
-                +Lift.toIntake
+                +sequential {
+                    +Delay(0.3)
+                    +Lift.toIntake
+                }
             }
             +NewLid.close
         }
@@ -107,22 +115,22 @@ object BackstageRoutines {
                     sequential {
                         +NewLid.close
                         +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToFrontSpikeTape)
+                        +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageStartToFrontSpikeTape2)
                         +VerticalIntake.slowEject
                         +VerticalIntake.stop
                         +parallel {
                             +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.backstageFrontSpikeTapeToScore)
-                            sequential {
-                                +Delay(2.0)
-                                +Lift.toLow
-                            }
+                            +Lift.toLow
                             +Arm.open
                         }
                         +NewLid.open
                         +parallel {
                             +SharedRoutines.scoreInnerToPark
                             +Arm.close
-                            +Lift.toIntake
-                        }
+                            +sequential {
+                                +Delay(0.3)
+                                +Lift.toIntake
+                            }                        }
                         +NewLid.close
                     }
                 ), Pair(Constants.Color.RED,
@@ -141,8 +149,10 @@ object BackstageRoutines {
                         +parallel {
                             +SharedRoutines.scoreOuterToPark
                             +Arm.close
-                            +Lift.toIntake
-                        }
+                            +sequential {
+                                +Delay(0.3)
+                                +Lift.toIntake
+                            }                        }
                         +NewLid.close
                     })
             )
