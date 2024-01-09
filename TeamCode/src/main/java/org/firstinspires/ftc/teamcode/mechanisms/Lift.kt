@@ -31,7 +31,7 @@ object Lift: Subsystem {
     var LOW_POSITION = 10.5 // in
     var HIGH_POSITION = 19.0 // in
     var HANG_POSITION = 18.0 // in
-    var AUTO_POSITION = 8.5 // in
+    var AUTO_POSITION = 13.0 // in
 
     @JvmField
     var DIRECTION = DcMotorSimple.Direction.FORWARD
@@ -62,8 +62,6 @@ object Lift: Subsystem {
            // +org.firstinspires.ftc.teamcode.utility.PowerMotor(MOTOR, 0.0, requirements = listOf(this@Lift))
         }
      //   get() = CustomCommand(_start = { currPos = LiftHeights.INTAKE })
-    val toAuto: Command
-         get() = MotorToPosition(MOTOR, (AUTO_POSITION * COUNTS_PER_INCH).toInt(), SPEED, requirements = listOf(this@Lift), kP = 0.003)
     val toLow: Command
         get() = MotorToPosition(MOTOR, (LOW_POSITION * COUNTS_PER_INCH).toInt(), SPEED, requirements = listOf(this@Lift), kP = 0.003)
     //    get() = CustomCommand(_start = { currPos = LiftHeights.LOW })
@@ -73,6 +71,9 @@ object Lift: Subsystem {
     val toHang: Command
         get() = MotorToPosition(MOTOR, (HANG_POSITION * COUNTS_PER_INCH).toInt(), SPEED, requirements = listOf(this@Lift), kP = 0.003)
 //        get() = CustomCommand(_start = { currPos = LiftHeights.HANG })
+
+    val toAuto: Command
+        get() = MotorToPosition(MOTOR, (AUTO_POSITION * COUNTS_PER_INCH).toInt(), SPEED, requirements = listOf(this@Lift), kP = 0.003)
 
     //val applyHeight: Command
     //    get() = MotorToPosition(MOTOR, ((if(currPos == LiftHeights.INTAKE) INTAKE_POSITION else if (currPos == LiftHeights.LOW) LOW_POSITION else if (currPos == LiftHeights.HIGH) HIGH_POSITION else if (currPos == LiftHeights.HANG) HANG_POSITION else 0.0) * COUNTS_PER_INCH).toInt(),SPEED, requirements = listOf(this@Lift))

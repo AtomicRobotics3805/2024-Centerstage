@@ -18,8 +18,8 @@ import org.firstinspires.ftc.teamcode.mechanisms.VerticalIntake
 object WingRoutines {
     val wingFullPathAndPark: Command
         get() = sequential {
-            +Delay(15.0
-            )
+            // Do a jitter to lower the intake
+            +Constants.drive.followTrajectory(CompetitionTrajectoryFactory.jitterForward)
             +OptionCommand("Different signature",
                 { DetectionMechanism.selectedPosition },
                 Pair(PropProcessor.Selected.LEFT, wingLeftRoutine),
@@ -52,7 +52,7 @@ object WingRoutines {
                             }
                             +Lift.toLow
                             +sequential {
-                                +Delay(1.0)
+                                +Lift.toAuto
                                 +Lift.toIntake
                             }
                         }
@@ -80,7 +80,7 @@ object WingRoutines {
                             }
                             +Lift.toLow
                             +sequential {
-                                +Delay(1.0)
+                                +Lift.toAuto
                                 +Lift.toIntake
                             }
                         }
@@ -111,7 +111,7 @@ object WingRoutines {
                 }
                 //+Lift.toLow
                 +sequential {
-                    +Delay(1.0)
+                    +Lift.toAuto
                     +Lift.toIntake
                 }
             }
@@ -143,7 +143,7 @@ object WingRoutines {
                             }
                             //+Lift.toLow
                             +sequential {
-                                +Delay(1.0)
+                                +Lift.toAuto
                                 +Lift.toIntake
                             }
                         }
@@ -170,7 +170,7 @@ object WingRoutines {
                             }
                             //+Lift.toLow
                             +sequential {
-                                +Delay(1.0)
+                                +Lift.toAuto
                                 +Lift.toIntake
                             }
                         }

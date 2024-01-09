@@ -18,17 +18,17 @@ import org.firstinspires.ftc.teamcode.utility.VoltageWatcher
 object TeleOpRoutines {
     val teleOpInitRoutine: Command
         get() = parallel {
-            +CurrentWatcher()
-            +CustomCommand(_start = {
-                CurrentWatcher.motorsToWatch += Lift.MOTOR
-                CurrentWatcher.motorsToWatch += Intake.MOTOR
-                CurrentWatcher.motorsToWatch += CompetitionDriveConstants._LEFT_FRONT_MOTOR
-                CurrentWatcher.motorsToWatch += CompetitionDriveConstants._LEFT_BACK_MOTOR
-                CurrentWatcher.motorsToWatch += CompetitionDriveConstants._RIGHT_FRONT_MOTOR
-                CurrentWatcher.motorsToWatch += CompetitionDriveConstants._RIGHT_BACK_MOTOR
-            })
-            +VoltageWatcher()
-            +NewLid.close
+//            +CurrentWatcher()
+//            +CustomCommand(_start = {
+//                CurrentWatcher.motorsToWatch += Lift.MOTOR
+//                CurrentWatcher.motorsToWatch += Intake.MOTOR
+//                CurrentWatcher.motorsToWatch += CompetitionDriveConstants._LEFT_FRONT_MOTOR
+//                CurrentWatcher.motorsToWatch += CompetitionDriveConstants._LEFT_BACK_MOTOR
+//                CurrentWatcher.motorsToWatch += CompetitionDriveConstants._RIGHT_FRONT_MOTOR
+//                CurrentWatcher.motorsToWatch += CompetitionDriveConstants._RIGHT_BACK_MOTOR
+//            })
+//            +VoltageWatcher()
+            +NewLid.open
             +Arm.close
             +DisplayRobot()
             +Ramp.intake

@@ -18,7 +18,7 @@ class VoltageWatcher: Command() {
     val CONTROL_HUB_NAME: String = "Control Hub" // TODO: Get Control Hub Name
 
     var unit = VoltageUnit.VOLTS
-    var threshold = 8.0
+    var threshold = 0.0
 
     lateinit var controlHub: LynxModule;
 

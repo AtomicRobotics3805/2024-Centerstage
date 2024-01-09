@@ -19,13 +19,13 @@ object CompetitionTrajectoryFactory: TrajectoryFactory() {
     var backstageStartPose = Pose2d() // The start pose that is closest to the backstage area
 
     // BACKDROP SCORING POSITIONS
-    var scoreXPosition = 55.0 // x coordinates for the backdrop. Varies depending on the robot
+    var scoreXPosition = 50.5 // x coordinates for the backdrop. Varies depending on the robot
     var scorePoseInner = Pose2d() // When looking at the backdrop, the leftmost pair of slots
     var scorePoseCenter = Pose2d() // When looking at the backdrop, the center pair of slots
     var scorePoseOuter = Pose2d() // When looking at the backdrop, the rightmost pair of slots
 
     // PARKING POSITIONS
-    var parkXPosition = 60.0 // x coordinates for parking; how far from the wall
+    var parkXPosition = 50.0 // x coordinates for parking; how far from the wall
     var parkPoseCenter = Pose2d() // The tile next to the backdrop that is closest to the opponent
     var parkPoseEdge = Pose2d() // The tile next to the backdrop that is closest to the field wall
 
@@ -33,14 +33,12 @@ object CompetitionTrajectoryFactory: TrajectoryFactory() {
     var wingFrontSpikeTape = Pose2d() // Closest to the wing; spike tape closest to audience
     var wingCenterSpikeTape = Pose2d() // Closest to the wing; spike tape in between other two
     var wingBackSpikeTape = Pose2d() // Closest to the wing; spike tape farthest from audience
+
     var backstageFrontSpikeTape = Pose2d() // Closest to backstage; spike tape closest to audience
     var backstageCenterSpikeTape = Pose2d() // Closest to backstage; spike tape between other two
     var backstageBackSpikeTape = Pose2d() // Closest to backstage; spike tape farthest from audience
 
-    // STACK LOCATIONS
-    var middleStackLocation = Pose2d() // The center of the three
-
-    var corridor: Double = 0.0
+    var corridor: Double = 57.5
     //endregion
 
     //region ***NEW TRAJECTORIES***
@@ -75,11 +73,14 @@ object CompetitionTrajectoryFactory: TrajectoryFactory() {
     // BACKUP TRAJECTORIES
     lateinit var backstageStartToParkCenter: ParallelTrajectory
     lateinit var backstageStartToParkEdge: ParallelTrajectory
+
     lateinit var wingStartToParkCenter: ParallelTrajectory
     lateinit var wingStartToParkEdge: ParallelTrajectory
 
     //endregion
 
+    // NEW ROBOT FIXES
+    lateinit var jitterForward: ParallelTrajectory
     override fun initialize() {
         super.initialize()
 
@@ -88,31 +89,34 @@ object CompetitionTrajectoryFactory: TrajectoryFactory() {
         backstageStartPose = Pose2d(12.0, startYPosition.switch, 270.0.switchAngle.rad)
 
         scorePoseOuter = Pose2d(scoreXPosition, 42.0.switch, 180.0.rad)
-        scorePoseCenter = Pose2d(scoreXPosition, 38.0.switch, 180.0.rad)
+        scorePoseCenter = Pose2d(scoreXPosition, 36.75.switch, 180.0.rad)
         scorePoseInner = Pose2d(scoreXPosition, 29.0.switch, 180.0.rad)
 
         parkPoseCenter = Pose2d(parkXPosition, 15.0.switch, 180.0.rad)
         parkPoseEdge = Pose2d(parkXPosition, 60.0.switch, 180.0.rad)
 
-        wingFrontSpikeTape = Pose2d(-39.5, 32.0.switch, 180.0.rad)
-        wingCenterSpikeTape = Pose2d(-45.0, 24.0.switch, 0.0.switchAngle.rad)
-        wingBackSpikeTape = Pose2d(-31.5, 32.0.switch, 0.0.rad)
-
+        wingFrontSpikeTape = Pose2d(-37.0, 38.0.switch, 225.0.switchAngle.rad) // Fixed 1.8.2024
+        wingCenterSpikeTape = Pose2d(-36.0, 36.0.switch, 270.0.switchAngle.rad) // Fixed 1.8.2024
+        wingBackSpikeTape = Pose2d(-35.0, 38.0.switch, 315.0.switchAngle.rad) // Fixed 1.8.2024
+        // -36, 30
+// 225.0
         backstageFrontSpikeTape = Pose2d(14.0, 32.0.switch, 180.0.rad)
         backstageCenterSpikeTape = Pose2d(23.0, 24.0.switch, 180.0.switchAngle.rad)
         backstageBackSpikeTape = Pose2d(35.0, 32.0.switch, 180.0.rad)
-
-        middleStackLocation = Pose2d(-60.0, 24.0.switch, 180.0.rad)
         //endregion
 
-        //region PURPLE PIXEL
-        wingStartToFrontSpikeTape = d.trajectoryBuilder(wingStartPose)
-            .splineToSplineHeading(wingFrontSpikeTape, 0.0.rad)
+        jitterForward = d.trajectoryBuilder(wingStartPose)
+            .forward(20.0)
             .build()
-        wingStartToCenterSpikeTape = d.trajectoryBuilder(wingStartPose)
+
+        //region PURPLE PIXEL
+        wingStartToFrontSpikeTape = d.trajectoryBuilder(jitterForward.end())
+            .splineToSplineHeading(wingFrontSpikeTape, 270.0.switchAngle.rad)
+            .build()
+        wingStartToCenterSpikeTape = d.trajectoryBuilder(jitterForward.end())
             .splineToSplineHeading(wingCenterSpikeTape, 270.0.switchAngle.rad)
             .build()
-        wingStartToBackSpikeTape = d.trajectoryBuilder(wingStartPose)
+        wingStartToBackSpikeTape = d.trajectoryBuilder(jitterForward.end())
             .splineToLinearHeading(wingBackSpikeTape, 0.0.rad)
             .build()
 
@@ -144,17 +148,20 @@ object CompetitionTrajectoryFactory: TrajectoryFactory() {
         backstageBackSpikeTapeToScore = d.trajectoryBuilder(backstageBackSpikeTape, 0.0.rad)
             .splineToSplineHeading(scorePoseOuter, 0.0.rad)
             .build()
-        wingFrontSpikeTapeToScore = d.trajectoryBuilder(wingFrontSpikeTape, 270.0.switchAngle.rad) // FIXED
+
+        wingFrontSpikeTapeToScore = d.trajectoryBuilder(wingFrontSpikeTape, 90.0.switchAngle.rad) // FIXED
+            .splineToSplineHeading(Pose2d(-36.0, corridor.switch, 180.0.rad), 0.0.rad)
+            .lineTo(Vector2d(12.0, corridor.switch))
+            .splineToSplineHeading(scorePoseInner, 0.0.rad)
 //            .splineTo(Vector2d(-12.0, 58.0.switch), 0.0.rad)
 //            .splineToSplineHeading(scorePoseInner, 0.0.rad)
-            .splineToLinearHeading(Pose2d(-40.0, corridor.switch, 180.0.rad), 0.0.rad)
-            .lineTo(Vector2d(24.0, corridor.switch))
-            .splineToSplineHeading(scorePoseInner, 0.0.rad)
+//            .splineToSplineHeading(Pose2d(-40.0, corridor.switch, 180.0.rad), 0.0.rad)
+//            .lineTo(Vector2d(24.0, corridor.switch))
+//            .splineToSplineHeading(scorePoseInner, 0.0.rad)
             .build()
-
-        wingCenterSpikeTapeToScore = d.trajectoryBuilder(wingCenterSpikeTape, 270.0.switchAngle.rad)
-            .splineToLinearHeading(Pose2d(-40.0, corridor.switch, 0.0.rad), 0.0.rad)
-            .lineTo(Vector2d(10.0, corridor.switch))
+        wingCenterSpikeTapeToScore = d.trajectoryBuilder(wingCenterSpikeTape, 90.0.switchAngle.rad)
+            .splineToSplineHeading(Pose2d(-36.0, corridor.switch, 180.0.rad), 0.0.rad)
+            .lineTo(Vector2d(12.0, corridor.switch))
             .splineToSplineHeading(scorePoseCenter, 0.0.rad)
             .build()
         /*
@@ -165,14 +172,14 @@ object CompetitionTrajectoryFactory: TrajectoryFactory() {
             .build()
 
          */
-        wingBackSpikeTapeToScore = d.trajectoryBuilder(wingBackSpikeTape, 180.0.rad)
+        wingBackSpikeTapeToScore = d.trajectoryBuilder(wingBackSpikeTape, 135.0.switchAngle.rad)
 //            .splineToConstantHeading(Vector2d(-32.0, 38.0.switch), 180.0.rad)
 //            .splineToConstantHeading(Vector2d(-32.0, 58.0.switch), 0.0.rad)
 //            .splineTo(Vector2d(-12.0, 58.0.switch), 0.0.rad)
 //            .splineToSplineHeading(scorePoseOuter, 0.0.rad)
 //            .strafeRight(5.0.switch)
-            .splineToLinearHeading(Pose2d(-40.0, corridor.switch, 0.0.rad), 0.0.rad)
-            .splineTo(Vector2d(24.0, corridor.switch), 0.0.rad)
+            .splineToSplineHeading(Pose2d(-36.0, corridor.switch, 180.0.rad), 0.0.rad)
+            .lineTo(Vector2d(12.0, corridor.switch))
             .splineToSplineHeading(scorePoseOuter, 0.0.rad)
             .build()
         //endregion
